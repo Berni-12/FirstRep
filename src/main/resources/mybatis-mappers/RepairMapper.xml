@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zw.admin.server.dao.RepairMapper" >
+  <resultMap id="BaseResultMap" type="com.zw.admin.server.model.Repair" >
+    <id column="repair_id" property="repairId" jdbcType="INTEGER" />
+    <result column="repair_time" property="repairTime" jdbcType="VARCHAR" />
+    <result column="repair_reson" property="repairReson" jdbcType="VARCHAR" />
+    <result column="owner_id" property="ownerId" jdbcType="VARCHAR" />
+    <result column="repair_state" property="repairState" jdbcType="INTEGER" />
+    <result column="finish_time" property="finishTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    repair_id, repair_time, repair_reson, owner_id, repair_state, finish_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_repair
+    where repair_id = #{repairId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_repair
+    where repair_id = #{repairId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zw.admin.server.model.Repair" >
+    insert into tb_repair (repair_id, repair_time, repair_reson, 
+      owner_id, repair_state, finish_time
+      )
+    values (#{repairId,jdbcType=INTEGER}, #{repairTime,jdbcType=VARCHAR}, #{repairReson,jdbcType=VARCHAR}, 
+      #{ownerId,jdbcType=VARCHAR}, #{repairState,jdbcType=INTEGER}, #{finishTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zw.admin.server.model.Repair" >
+    insert into tb_repair
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="repairId != null" >
+        repair_id,
+      </if>
+      <if test="repairTime != null" >
+        repair_time,
+      </if>
+      <if test="repairReson != null" >
+        repair_reson,
+      </if>
+      <if test="ownerId != null" >
+        owner_id,
+      </if>
+      <if test="repairState != null" >
+        repair_state,
+      </if>
+      <if test="finishTime != null" >
+        finish_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="repairId != null" >
+        #{repairId,jdbcType=INTEGER},
+      </if>
+      <if test="repairTime != null" >
+        #{repairTime,jdbcType=VARCHAR},
+      </if>
+      <if test="repairReson != null" >
+        #{repairReson,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerId != null" >
+        #{ownerId,jdbcType=VARCHAR},
+      </if>
+      <if test="repairState != null" >
+        #{repairState,jdbcType=INTEGER},
+      </if>
+      <if test="finishTime != null" >
+        #{finishTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.Repair" >
+    update tb_repair
+    <set >
+      <if test="repairTime != null" >
+        repair_time = #{repairTime,jdbcType=VARCHAR},
+      </if>
+      <if test="repairReson != null" >
+        repair_reson = #{repairReson,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerId != null" >
+        owner_id = #{ownerId,jdbcType=VARCHAR},
+      </if>
+      <if test="repairState != null" >
+        repair_state = #{repairState,jdbcType=INTEGER},
+      </if>
+      <if test="finishTime != null" >
+        finish_time = #{finishTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where repair_id = #{repairId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zw.admin.server.model.Repair" >
+    update tb_repair
+    set repair_time = #{repairTime,jdbcType=VARCHAR},
+      repair_reson = #{repairReson,jdbcType=VARCHAR},
+      owner_id = #{ownerId,jdbcType=VARCHAR},
+      repair_state = #{repairState,jdbcType=INTEGER},
+      finish_time = #{finishTime,jdbcType=VARCHAR}
+    where repair_id = #{repairId,jdbcType=INTEGER}
+  </update>
+</mapper>

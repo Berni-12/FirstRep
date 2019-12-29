@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zw.admin.server.dao.ParkMapper" >
+  <resultMap id="BaseResultMap" type="com.zw.admin.server.model.Park" >
+    <id column="park_no" property="parkNo" jdbcType="VARCHAR" />
+    <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
+    <result column="expira_date" property="expiraDate" jdbcType="VARCHAR" />
+    <result column="park_area" property="parkArea" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    park_no, owner_id, expira_date, park_area
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_park
+    where park_no = #{parkNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_park
+    where park_no = #{parkNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zw.admin.server.model.Park" >
+    insert into tb_park (park_no, owner_id, expira_date, 
+      park_area)
+    values (#{parkNo,jdbcType=VARCHAR}, #{ownerId,jdbcType=INTEGER}, #{expiraDate,jdbcType=VARCHAR}, 
+      #{parkArea,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zw.admin.server.model.Park" >
+    insert into tb_park
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="parkNo != null" >
+        park_no,
+      </if>
+      <if test="ownerId != null" >
+        owner_id,
+      </if>
+      <if test="expiraDate != null" >
+        expira_date,
+      </if>
+      <if test="parkArea != null" >
+        park_area,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="parkNo != null" >
+        #{parkNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerId != null" >
+        #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="expiraDate != null" >
+        #{expiraDate,jdbcType=VARCHAR},
+      </if>
+      <if test="parkArea != null" >
+        #{parkArea,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.Park" >
+    update tb_park
+    <set >
+      <if test="ownerId != null" >
+        owner_id = #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="expiraDate != null" >
+        expira_date = #{expiraDate,jdbcType=VARCHAR},
+      </if>
+      <if test="parkArea != null" >
+        park_area = #{parkArea,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where park_no = #{parkNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zw.admin.server.model.Park" >
+    update tb_park
+    set owner_id = #{ownerId,jdbcType=INTEGER},
+      expira_date = #{expiraDate,jdbcType=VARCHAR},
+      park_area = #{parkArea,jdbcType=VARCHAR}
+    where park_no = #{parkNo,jdbcType=VARCHAR}
+  </update>
+</mapper>
