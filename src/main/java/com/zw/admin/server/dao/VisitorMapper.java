@@ -1,11 +1,11 @@
 package com.zw.admin.server.dao;
 
 import com.zw.admin.server.model.Visitor;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface VisitorMapper {
     int deleteByPrimaryKey(Integer visitorId);
-
-    int insert(Visitor record);
 
     int insertSelective(Visitor record);
 
@@ -13,5 +13,4 @@ public interface VisitorMapper {
 
     int updateByPrimaryKeySelective(Visitor record);
 
-    int updateByPrimaryKey(Visitor record);
 }

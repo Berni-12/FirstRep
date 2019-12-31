@@ -2,7 +2,9 @@ package com.zw.admin.server.dao;
 
 
 import com.zw.admin.server.model.House;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface HouseMapper {
     int deleteByPrimaryKey(String houseNo);
 

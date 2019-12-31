@@ -22,7 +22,7 @@ import com.zw.admin.server.filter.RestfulFilter;
 /**
  * shiro配置
  * 
- * @author 小威老师 xiaoweijiagou@163.com
+ * @author zhangcc
  *
  */
 @Configuration
@@ -45,7 +45,7 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/files/*", "anon");
 		filterChainDefinitionMap.put("/swagger-resources/**", "anon");
 		filterChainDefinitionMap.put("/logout", "logout");
-		filterChainDefinitionMap.put("/**", "authc");
+//		filterChainDefinitionMap.put("/**", "authc");
 
 		shiroFilterFactoryBean.setLoginUrl("/login.html");
 		shiroFilterFactoryBean.setSuccessUrl("/index.html");

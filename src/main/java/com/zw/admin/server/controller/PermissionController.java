@@ -35,7 +35,7 @@ import io.swagger.annotations.ApiOperation;
 /**
  * 权限相关接口
  * 
- * @author 小威老师 xiaoweijiagou@163.com
+ * @author zhangcc
  *
  */
 @Api(tags = "权限")

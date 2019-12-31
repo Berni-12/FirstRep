@@ -3,7 +3,7 @@ package com.zw.admin.server.dao;
 import com.zw.admin.server.model.Notice;
 
 public interface NoticeMapper {
-    int deleteByPrimaryKey(Integer noticeId);
+    /*int deleteByPrimaryKey(Integer noticeId);
 
     int insert(Notice record);
 
@@ -15,5 +15,5 @@ public interface NoticeMapper {
 
     int updateByPrimaryKeyWithBLOBs(Notice record);
 
-    int updateByPrimaryKey(Notice record);
+    int updateByPrimaryKey(Notice record);*/
 }

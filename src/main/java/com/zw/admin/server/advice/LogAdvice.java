@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiOperation;
 /**
  * 统一日志处理
  * 
- * @author 小威老师 xiaoweijiagou@163.com
+ * @author zhangcc
  *
  *         2017年8月19日
  */

@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Restful方式登陆token
  * 
- * @author 小威老师 xiaoweijiagou@163.com
+ * @author zhangcc
  *
  *         2017年8月4日
  */

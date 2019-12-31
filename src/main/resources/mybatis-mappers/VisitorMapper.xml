@@ -22,14 +22,6 @@
     delete from tb_visitor
     where visitor_id = #{visitorId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zw.admin.server.model.Visitor" >
-    insert into tb_visitor (visitor_id, visitor_name, visitor_sex, 
-      visitor_phone, visitor_card_no, visitor_come_time
-      )
-    values (#{visitorId,jdbcType=INTEGER}, #{visitorName,jdbcType=VARCHAR}, #{visitorSex,jdbcType=VARCHAR}, 
-      #{visitorPhone,jdbcType=VARCHAR}, #{visitorCardNo,jdbcType=VARCHAR}, #{visitorComeTime,jdbcType=VARCHAR}
-      )
-  </insert>
   <insert id="insertSelective" parameterType="com.zw.admin.server.model.Visitor" >
     insert into tb_visitor
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -92,15 +84,6 @@
         visitor_come_time = #{visitorComeTime,jdbcType=VARCHAR},
       </if>
     </set>
-    where visitor_id = #{visitorId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.zw.admin.server.model.Visitor" >
-    update tb_visitor
-    set visitor_name = #{visitorName,jdbcType=VARCHAR},
-      visitor_sex = #{visitorSex,jdbcType=VARCHAR},
-      visitor_phone = #{visitorPhone,jdbcType=VARCHAR},
-      visitor_card_no = #{visitorCardNo,jdbcType=VARCHAR},
-      visitor_come_time = #{visitorComeTime,jdbcType=VARCHAR}
     where visitor_id = #{visitorId,jdbcType=INTEGER}
   </update>
 </mapper>

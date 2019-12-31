@@ -3,7 +3,7 @@ package com.zw.admin.server.constants;
 /**
  * 用户相关常量
  * 
- * @author 小威老师 xiaoweijiagou@163.com
+ * @author zhangcc
  *
  */
 public interface UserConstants {
