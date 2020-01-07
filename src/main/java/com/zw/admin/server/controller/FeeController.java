@@ -4,12 +4,10 @@ import com.github.pagehelper.PageHelper;
 import com.zw.admin.server.common.BaseResponse;
 import com.zw.admin.server.common.ResponseBuilder;
 import com.zw.admin.server.constants.HttpConstans;
-import com.zw.admin.server.dao.VisitorMapper;
-import com.zw.admin.server.model.Pay;
-import com.zw.admin.server.model.Visitor;
-import com.zw.admin.server.service.VisitorService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.zw.admin.server.dao.FeeMapper;
+import com.zw.admin.server.model.Car;
+import com.zw.admin.server.model.Fee;
+import com.zw.admin.server.service.FeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,38 +15,35 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * @ClassName VisitorController
- * @Description 访客Controller
+ * @ClassName FeeController
+ * @Description TODO
  * @Author zhangcc
- * @Date 2019/12/29 17:53
+ * @Date 2020/1/1 16:45
  */
-
 @RestController
-@RequestMapping("/visitors")
-public class VisitorController {
-
-    private static final Logger log = LoggerFactory.getLogger("adminLogger");
+@RequestMapping("/fee")
+public class FeeController {
 
     @Autowired
-    private VisitorService visitorService;
+    private FeeService feeService;
 
     @Autowired
-    private VisitorMapper visitorMapper;
+    private FeeMapper feeMapper;
 
     /**
-     * 根据ID查询访客
+     * 根据ID查询缴费项目信息
      *
-     * @param visitorId
+     * @param feeId
      * @return
      */
-    @GetMapping("/selectVisitor")
-    public BaseResponse selectVisitor(Integer visitorId) {
+    @GetMapping("/selectFee")
+    public BaseResponse selectFee(Integer feeId) {
         ResponseBuilder custom = ResponseBuilder.custom();
-        Visitor visitor = new Visitor();
+        Fee fee = new Fee();
         try {
-            visitor = visitorService.selectByPrimaryKey(visitorId);
-            if (visitor != null) {
-                custom.data(visitor).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            fee = feeService.selectByPrimaryKey(feeId);
+            if (fee != null) {
+                custom.data(fee).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
             } else {
                 custom.failed(HttpConstans.FAIL, HttpConstans.ERROR_CODE);
             }
@@ -59,17 +54,21 @@ public class VisitorController {
     }
 
     /**
-     * 添加访客
+     * 添加缴费项目信息
      *
-     * @param visitor
+     * @param fee
      * @return
      */
-    @PostMapping("/saveVisitor")
-    public BaseResponse saveVisitor(@RequestBody Visitor visitor) {
+    @PostMapping("/saveFee")
+    public BaseResponse saveFee(@RequestBody Fee fee) {
         ResponseBuilder custom = ResponseBuilder.custom();
         try {
-            visitorService.insertSelective(visitor);
-            custom.data(visitor).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            int result = feeService.insertSelective(fee);
+            if (result != 0) {
+                custom.data(fee).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
+                custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
+            }
         } catch (Exception e) {
             custom.failed(e.toString(), HttpConstans.EXCEPTION_CODE);
         }
@@ -77,17 +76,21 @@ public class VisitorController {
     }
 
     /**
-     * 更新访客信息
+     * 更新/修改缴费项目信息
      *
-     * @param visitor
+     * @param fee
      * @return
      */
-    @PostMapping("/updateVisitor")
-    public BaseResponse updateVisitor(@RequestBody Visitor visitor) {
+    @PostMapping("/updateFee")
+    public BaseResponse updateFee(@RequestBody Fee fee) {
         ResponseBuilder custom = ResponseBuilder.custom();
         try {
-            visitorService.updateByPrimaryKeySelective(visitor);
-            custom.data(visitor).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            int result = feeService.updateByPrimaryKeySelective(fee);
+            if (result != 0) {
+                custom.data(fee).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
+                custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
+            }
         } catch (Exception e) {
             custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
         }
@@ -95,17 +98,21 @@ public class VisitorController {
     }
 
     /**
-     * 删除访客信息
+     * 删除缴费项目信息
      *
-     * @param visitorId
+     * @param feeId
      * @return
      */
-    @DeleteMapping("/deleteVisitor")
-    public BaseResponse deleteVisitor(Integer visitorId) {
+    @DeleteMapping("/deleteFee")
+    public BaseResponse deleteFee(Integer feeId) {
         ResponseBuilder custom = ResponseBuilder.custom();
         try {
-            visitorService.deleteByPrimaryKey(visitorId);
-            custom.success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            int result = feeService.deleteByPrimaryKey(feeId);
+            if (result != 0) {
+                custom.success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
+                custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
+            }
         } catch (Exception e) {
             custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
         }
@@ -113,13 +120,13 @@ public class VisitorController {
     }
 
     /**
-     * 分页获取访客列表
+     * 分页获取缴费项目列表
      * @param currPage 当前页
      * @param pageSize 每页显示数量
      * @return
      */
-    @GetMapping("/getVisitorList")
-    public BaseResponse getVisitorList(@RequestParam Integer currPage,
+    @GetMapping("/getFeeList")
+    public BaseResponse getFeeList(@RequestParam Integer currPage,
                                    @RequestParam Integer pageSize) {
         ResponseBuilder custom = ResponseBuilder.custom();
 
@@ -128,10 +135,10 @@ public class VisitorController {
         //分页
         PageHelper.startPage(currPage, pageSize);
         try {
-            List<Visitor> visitorList = visitorMapper.getVisitorList();
-            Long count = visitorMapper.getVisitorCount();
-            if (count != 0 && visitorList != null) {
-                custom.data(visitorList).currPage(currPage)
+            List<Fee> feeList = feeMapper.getFeeList();
+            Long count = feeMapper.getFeeCount();
+            if (count != 0 && feeList != null) {
+                custom.data(feeList).currPage(currPage)
                         .pageSize(pageSize).totalCount(count.intValue());
             } else {
                 custom.failed(HttpConstans.FAIL, HttpConstans.ERROR_CODE);
@@ -139,7 +146,8 @@ public class VisitorController {
         } catch (Exception e) {
             custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
         }
-        return custom.build();
-    }
 
+        return custom.build();
+
+    }
 }

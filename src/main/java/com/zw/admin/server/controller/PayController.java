@@ -4,12 +4,10 @@ import com.github.pagehelper.PageHelper;
 import com.zw.admin.server.common.BaseResponse;
 import com.zw.admin.server.common.ResponseBuilder;
 import com.zw.admin.server.constants.HttpConstans;
-import com.zw.admin.server.dao.VisitorMapper;
+import com.zw.admin.server.dao.PayMapper;
+import com.zw.admin.server.model.Park;
 import com.zw.admin.server.model.Pay;
-import com.zw.admin.server.model.Visitor;
-import com.zw.admin.server.service.VisitorService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.zw.admin.server.service.PayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,38 +15,36 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * @ClassName VisitorController
- * @Description 访客Controller
+ * @ClassName PayController
+ * @Description 缴费单
  * @Author zhangcc
- * @Date 2019/12/29 17:53
+ * @Date 2020/1/3 16:40
  */
 
 @RestController
-@RequestMapping("/visitors")
-public class VisitorController {
-
-    private static final Logger log = LoggerFactory.getLogger("adminLogger");
+@RequestMapping("/pay")
+public class PayController {
 
     @Autowired
-    private VisitorService visitorService;
+    private PayService payService;
 
     @Autowired
-    private VisitorMapper visitorMapper;
+    private PayMapper payMapper;
 
     /**
-     * 根据ID查询访客
+     * 根据ID查询缴费单信息
      *
-     * @param visitorId
+     * @param payId
      * @return
      */
-    @GetMapping("/selectVisitor")
-    public BaseResponse selectVisitor(Integer visitorId) {
+    @GetMapping("/selectPay")
+    public BaseResponse selectPay(Integer payId) {
         ResponseBuilder custom = ResponseBuilder.custom();
-        Visitor visitor = new Visitor();
+        Pay pay = new Pay();
         try {
-            visitor = visitorService.selectByPrimaryKey(visitorId);
-            if (visitor != null) {
-                custom.data(visitor).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            pay = payService.selectByPrimaryKey(payId);
+            if (pay != null) {
+                custom.data(pay).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
             } else {
                 custom.failed(HttpConstans.FAIL, HttpConstans.ERROR_CODE);
             }
@@ -59,17 +55,21 @@ public class VisitorController {
     }
 
     /**
-     * 添加访客
+     * 添加缴费单信息
      *
-     * @param visitor
+     * @param pay
      * @return
      */
-    @PostMapping("/saveVisitor")
-    public BaseResponse saveVisitor(@RequestBody Visitor visitor) {
+    @PostMapping("/savePay")
+    public BaseResponse savePay(@RequestBody Pay pay) {
         ResponseBuilder custom = ResponseBuilder.custom();
         try {
-            visitorService.insertSelective(visitor);
-            custom.data(visitor).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            int result = payService.insertSelective(pay);
+            if (result != 0) {
+                custom.data(pay).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
+                custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
+            }
         } catch (Exception e) {
             custom.failed(e.toString(), HttpConstans.EXCEPTION_CODE);
         }
@@ -77,17 +77,21 @@ public class VisitorController {
     }
 
     /**
-     * 更新访客信息
+     * 更新/修改缴费单信息
      *
-     * @param visitor
+     * @param pay
      * @return
      */
-    @PostMapping("/updateVisitor")
-    public BaseResponse updateVisitor(@RequestBody Visitor visitor) {
+    @PostMapping("/updatePay")
+    public BaseResponse updatePay(@RequestBody Pay pay) {
         ResponseBuilder custom = ResponseBuilder.custom();
         try {
-            visitorService.updateByPrimaryKeySelective(visitor);
-            custom.data(visitor).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            int result = payService.updateByPrimaryKeySelective(pay);
+            if (result != 0) {
+                custom.data(pay).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
+                custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
+            }
         } catch (Exception e) {
             custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
         }
@@ -95,17 +99,21 @@ public class VisitorController {
     }
 
     /**
-     * 删除访客信息
+     * 删除缴费单
      *
-     * @param visitorId
+     * @param payId
      * @return
      */
-    @DeleteMapping("/deleteVisitor")
-    public BaseResponse deleteVisitor(Integer visitorId) {
+    @DeleteMapping("/deletePay")
+    public BaseResponse deletePay(Integer payId) {
         ResponseBuilder custom = ResponseBuilder.custom();
         try {
-            visitorService.deleteByPrimaryKey(visitorId);
-            custom.success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            int result = payService.deleteByPrimaryKey(payId);
+            if (result != 0) {
+                custom.success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
+                custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
+            }
         } catch (Exception e) {
             custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
         }
@@ -113,14 +121,14 @@ public class VisitorController {
     }
 
     /**
-     * 分页获取访客列表
+     * 分页获取缴费单列表
      * @param currPage 当前页
      * @param pageSize 每页显示数量
      * @return
      */
-    @GetMapping("/getVisitorList")
-    public BaseResponse getVisitorList(@RequestParam Integer currPage,
-                                   @RequestParam Integer pageSize) {
+    @GetMapping("/getPayList")
+    public BaseResponse getPayList(@RequestParam Integer currPage,
+                                    @RequestParam Integer pageSize) {
         ResponseBuilder custom = ResponseBuilder.custom();
 
         if (Objects.isNull(currPage) || currPage == 0) currPage = 1;
@@ -128,10 +136,10 @@ public class VisitorController {
         //分页
         PageHelper.startPage(currPage, pageSize);
         try {
-            List<Visitor> visitorList = visitorMapper.getVisitorList();
-            Long count = visitorMapper.getVisitorCount();
-            if (count != 0 && visitorList != null) {
-                custom.data(visitorList).currPage(currPage)
+            List<Pay> payList = payMapper.getPayList();
+            Long count = payMapper.getPayCount();
+            if (count != 0 && payList != null) {
+                custom.data(payList).currPage(currPage)
                         .pageSize(pageSize).totalCount(count.intValue());
             } else {
                 custom.failed(HttpConstans.FAIL, HttpConstans.ERROR_CODE);
@@ -141,5 +149,4 @@ public class VisitorController {
         }
         return custom.build();
     }
-
 }

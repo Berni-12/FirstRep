@@ -4,10 +4,10 @@ import com.github.pagehelper.PageHelper;
 import com.zw.admin.server.common.BaseResponse;
 import com.zw.admin.server.common.ResponseBuilder;
 import com.zw.admin.server.constants.HttpConstans;
-import com.zw.admin.server.dao.OwnerMapper;
-import com.zw.admin.server.model.House;
+import com.zw.admin.server.dao.ParkMapper;
 import com.zw.admin.server.model.Owner;
-import com.zw.admin.server.service.OwnerService;
+import com.zw.admin.server.model.Park;
+import com.zw.admin.server.service.ParkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,36 +15,37 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * @ClassName OwnerController
- * @Description 业主controller
+ * @ClassName ParkController
+ * @Description 车位管理Controller
  * @Author zhangcc
- * @Date 2019/12/31 15:51
+ * @Date 2020/1/1 16:56
  */
 @RestController
-@RequestMapping("/owner")
-public class OwnerController {
+@RequestMapping("/park")
+public class ParkController {
 
     @Autowired
-    private OwnerService ownerService;
+    private ParkService parkService;
 
     @Autowired
-    private OwnerMapper ownerMapper;
+    private ParkMapper parkMapper;
 
     /**
-     * 根据ID查询业主
-     * @param ownerId
+     * 根据ID查询车位信息
+     *
+     * @param parkNo
      * @return
      */
-    @GetMapping("/selectOwner")
-    public BaseResponse selectOwner(Integer ownerId){
+    @GetMapping("/selectPark")
+    public BaseResponse selectPark(String parkNo) {
         ResponseBuilder custom = ResponseBuilder.custom();
-        Owner owner=new Owner();
+        Park park = new Park();
         try {
-            owner=ownerService.selectByPrimaryKey(ownerId);
-            if (owner!=null){
-                custom.data(owner).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
-            }else {
-                custom.failed(HttpConstans.FAIL,HttpConstans.ERROR_CODE);
+            park = parkService.selectByPrimaryKey(parkNo);
+            if (park != null) {
+                custom.data(park).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
+                custom.failed(HttpConstans.FAIL, HttpConstans.ERROR_CODE);
             }
         } catch (Exception e) {
             custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
@@ -53,76 +54,79 @@ public class OwnerController {
     }
 
     /**
-     * 添加业主
-     * @param owner
+     * 添加车位信息
+     *
+     * @param park
      * @return
      */
-    @PostMapping("/saveOwner")
-    public BaseResponse saveOwner(@RequestBody Owner owner){
+    @PostMapping("/savePark")
+    public BaseResponse savePark(@RequestBody Park park) {
         ResponseBuilder custom = ResponseBuilder.custom();
-        try{
-            int result= ownerService.insertSelective(owner);
-            if (result!=0){
-                custom.data(owner).success(HttpConstans.SUCCESS,HttpConstans.SUCCESS_CODE);
-            }else{
+        try {
+            int result = parkService.insertSelective(park);
+            if (result != 0) {
+                custom.data(park).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
                 custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             custom.failed(e.toString(), HttpConstans.EXCEPTION_CODE);
         }
         return custom.build();
     }
 
     /**
-     * 更新/修改业主信息
-     * @param owner
+     * 更新/修改车位信息
+     *
+     * @param park
      * @return
      */
-    @PostMapping("/updateOwner")
-    public BaseResponse updateOwner(@RequestBody Owner owner){
+    @PostMapping("/updatePark")
+    public BaseResponse updatePark(@RequestBody Park park) {
         ResponseBuilder custom = ResponseBuilder.custom();
-        try{
-            int result= ownerService.updateByPrimaryKeySelective(owner);
-            if (result!=0){
-                custom.data(owner).success(HttpConstans.SUCCESS,HttpConstans.SUCCESS_CODE);
-            }else{
+        try {
+            int result = parkService.updateByPrimaryKeySelective(park);
+            if (result != 0) {
+                custom.data(park).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
                 custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
         }
         return custom.build();
     }
 
     /**
-     * 删除业主信息
-     * @param ownerId
+     * 删除车位信息
+     *
+     * @param parkNo
      * @return
      */
-    @DeleteMapping("/deleteOwner")
-    public BaseResponse deleteOwner(Integer ownerId){
+    @DeleteMapping("/deletePark")
+    public BaseResponse deletePark(String parkNo) {
         ResponseBuilder custom = ResponseBuilder.custom();
-        try{
-            int result= ownerService.deleteByPrimaryKey(ownerId);
-            if (result!=0){
-                custom.success(HttpConstans.SUCCESS,HttpConstans.SUCCESS_CODE);
-            }else{
+        try {
+            int result = parkService.deleteByPrimaryKey(parkNo);
+            if (result != 0) {
+                custom.success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
                 custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
         }
         return custom.build();
     }
 
     /**
-     * 分页获取业主信息列表
+     * 分页获取停车位信息列表
      * @param currPage 当前页
      * @param pageSize 每页显示数量
      * @return
      */
-    @GetMapping("/getOwnerList")
-    public BaseResponse getOwnerList(@RequestParam Integer currPage,
+    @GetMapping("/getParkList")
+    public BaseResponse getParkList(@RequestParam Integer currPage,
                                      @RequestParam Integer pageSize) {
         ResponseBuilder custom = ResponseBuilder.custom();
 
@@ -131,10 +135,10 @@ public class OwnerController {
         //分页
         PageHelper.startPage(currPage, pageSize);
         try {
-            List<Owner> ownerList = ownerMapper.getOwnerList();
-            Long count = ownerMapper.getOwnerCount();
-            if (count != 0 && ownerList != null) {
-                custom.data(ownerList).currPage(currPage)
+            List<Park> parkList = parkMapper.getParkList();
+            Long count = parkMapper.getParkCount();
+            if (count != 0 && parkList != null) {
+                custom.data(parkList).currPage(currPage)
                         .pageSize(pageSize).totalCount(count.intValue());
             } else {
                 custom.failed(HttpConstans.FAIL, HttpConstans.ERROR_CODE);

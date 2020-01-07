@@ -1,78 +1,104 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zw.admin.server.dao.HouseMapper" >
-  <resultMap id="BaseResultMap" type="com.zw.admin.server.model.House" >
-    <id column="house_no" property="houseNo" jdbcType="VARCHAR" />
-    <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
-    <result column="house_type" property="houseType" jdbcType="VARCHAR" />
-    <result column="house_area" property="houseArea" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
+<mapper namespace="com.zw.admin.server.dao.HouseMapper">
+    <resultMap id="BaseResultMap" type="com.zw.admin.server.model.House">
+        <id column="house_no" property="houseNo" jdbcType="VARCHAR"/>
+        <result column="owner_id" property="ownerId" jdbcType="INTEGER"/>
+        <result column="house_type" property="houseType" jdbcType="VARCHAR"/>
+        <result column="house_area" property="houseArea" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="where">
+        <where>
+            <if test="params.house_no != null and params.house_no != ''">
+                and house_no = #{params.house_no}
+            </if>
+            <if test="params.house_type != null and params.house_type != ''">
+                and house_type = #{params.house_type}
+            </if>
+            <if test="params.owner_id != null and params.owner_id != ''">
+                and owner_id = #{params.owner_id}
+            </if>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List">
     house_no, owner_id, house_type, house_area
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select 
-    <include refid="Base_Column_List" />
-    from tb_house
-    where house_no = #{houseNo,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_house
+        where house_no = #{houseNo,jdbcType=VARCHAR}
+    </select>
+    <select id="selectHouse" resultType="com.zw.admin.server.model.House">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_house
+        <include refid="where"/>
+        limit #{offset}, #{limit}
+    </select>
+    <select id="count" resultType="java.lang.Integer">
+        select count(1) from tb_house t
+        <include refid="where"/>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from tb_house
     where house_no = #{houseNo,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zw.admin.server.model.House" >
+    <insert id="insert" parameterType="com.zw.admin.server.model.House">
     insert into tb_house (house_no, owner_id, house_type, 
       house_area)
     values (#{houseNo,jdbcType=VARCHAR}, #{ownerId,jdbcType=INTEGER}, #{houseType,jdbcType=VARCHAR}, 
       #{houseArea,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zw.admin.server.model.House" >
-    insert into tb_house
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="houseNo != null" >
-        house_no,
-      </if>
-      <if test="ownerId != null" >
-        owner_id,
-      </if>
-      <if test="houseType != null" >
-        house_type,
-      </if>
-      <if test="houseArea != null" >
-        house_area,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="houseNo != null" >
-        #{houseNo,jdbcType=VARCHAR},
-      </if>
-      <if test="ownerId != null" >
-        #{ownerId,jdbcType=INTEGER},
-      </if>
-      <if test="houseType != null" >
-        #{houseType,jdbcType=VARCHAR},
-      </if>
-      <if test="houseArea != null" >
-        #{houseArea,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.House" >
-    update tb_house
-    <set >
-      <if test="ownerId != null" >
-        owner_id = #{ownerId,jdbcType=INTEGER},
-      </if>
-      <if test="houseType != null" >
-        house_type = #{houseType,jdbcType=VARCHAR},
-      </if>
-      <if test="houseArea != null" >
-        house_area = #{houseArea,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where house_no = #{houseNo,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.zw.admin.server.model.House" >
+    <insert id="insertSelective" parameterType="com.zw.admin.server.model.House">
+        insert into tb_house
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="houseNo != null">
+                house_no,
+            </if>
+            <if test="ownerId != null">
+                owner_id,
+            </if>
+            <if test="houseType != null">
+                house_type,
+            </if>
+            <if test="houseArea != null">
+                house_area,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="houseNo != null">
+                #{houseNo,jdbcType=VARCHAR},
+            </if>
+            <if test="ownerId != null">
+                #{ownerId,jdbcType=INTEGER},
+            </if>
+            <if test="houseType != null">
+                #{houseType,jdbcType=VARCHAR},
+            </if>
+            <if test="houseArea != null">
+                #{houseArea,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.House">
+        update tb_house
+        <set>
+            <if test="ownerId != null">
+                owner_id = #{ownerId,jdbcType=INTEGER},
+            </if>
+            <if test="houseType != null">
+                house_type = #{houseType,jdbcType=VARCHAR},
+            </if>
+            <if test="houseArea != null">
+                house_area = #{houseArea,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where house_no = #{houseNo,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.zw.admin.server.model.House">
     update tb_house
     set owner_id = #{ownerId,jdbcType=INTEGER},
       house_type = #{houseType,jdbcType=VARCHAR},

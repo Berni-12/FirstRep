@@ -41,7 +41,8 @@ public class LoginController {
 		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password);
 		SecurityUtils.getSubject().login(usernamePasswordToken);
 		// 设置shiro的session过期时间
-		SecurityUtils.getSubject().getSession().setTimeout(serverProperties.getServlet().getSession().getTimeout().toMillis());
+		SecurityUtils.getSubject().getSession().
+				setTimeout(serverProperties.getServlet().getSession().getTimeout().toMillis());
 	}
 
 	@LogAnnotation

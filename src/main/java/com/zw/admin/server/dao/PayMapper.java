@@ -1,7 +1,11 @@
 package com.zw.admin.server.dao;
 
+import com.zw.admin.server.model.Car;
 import com.zw.admin.server.model.Pay;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 @Mapper
 public interface PayMapper {
@@ -16,4 +20,10 @@ public interface PayMapper {
     int updateByPrimaryKeySelective(Pay record);
 
     int updateByPrimaryKey(Pay record);
+
+    @Select("select * from tb_pay")
+    List<Pay> getPayList();
+
+    @Select("select COUNT(*) from tb_pay")
+    Long getPayCount();
 }

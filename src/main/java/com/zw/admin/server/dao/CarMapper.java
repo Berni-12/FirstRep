@@ -2,6 +2,9 @@ package com.zw.admin.server.dao;
 
 import com.zw.admin.server.model.Car;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 @Mapper
 public interface CarMapper {
@@ -16,4 +19,10 @@ public interface CarMapper {
     int updateByPrimaryKeySelective(Car record);
 
     int updateByPrimaryKey(Car record);
+
+    @Select("select * from tb_car")
+    List<Car> getCarList();
+
+    @Select("select COUNT(*) from tb_car")
+    Long getCarCount();
 }

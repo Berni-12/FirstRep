@@ -24,7 +24,6 @@ function buttonDel(data, permission, pers){
 			return "";
 		}
 	}
-	
 	var btn = $("<button class='layui-btn layui-btn-xs' title='删除' onclick='del(\"" + data +"\")'><i class='layui-icon'>&#xe640;</i></button>");
 	return btn.prop("outerHTML");
 }

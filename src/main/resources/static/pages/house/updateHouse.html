@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+		<fieldset>
+			<input type="hidden" id="id" name="id">
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>房屋编号</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='请输入房屋编号' type='text' name='house_no' id='house_no' data-bv-notempty='true' data-bv-notempty-message='房屋编号不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>房屋面积</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='请输入房屋面积' type='text' name='house_area' id='house_area' data-bv-notempty='true' data-bv-notempty-message='房屋面积不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>房屋状态</label>
+				<div class="col-md-10" style="width: 100px">
+					<select class="form-control input-sm" name="house_type" id="house_type">
+						<option value="1">空置</option>
+						<option value="2">在住</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+					    <button class="btn btn-primary" onclick="location.href='houseList.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="update()">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+	<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jq.js"></script>
+	<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use(['layer','laydate'], function(){
+		    var layer = layui.layer;
+		});
+		
+		initData();
+
+        /**
+         * 根据ID查询房屋信息
+         */
+		function initData(){
+			var id = getUrlParam("id");
+			if(id != ""){
+				$.ajax({
+					type : 'get',
+					url : '/house/selectHouse',
+					data:{
+					  houseNo:id
+					},
+					async : false,
+					success : function(data) {
+						$('#id').val(data.data.houseNo);
+						$('#house_no').val(data.data.houseNo);
+						$('#house_area').val(data.data.houseArea);
+						var status=data.data.houseType;
+						if (status==="空置"){
+                            $('#house_type').val("1");
+                        } else if (status==="在住"){
+                            $('#house_type').val("2");
+						}
+					}
+				});
+			}
+		}
+
+        /**
+		 * 更新房屋信息
+         */
+		function update() {
+			$('#form').bootstrapValidator();
+			var bootstrapValidator = $("#form").data('bootstrapValidator');
+			bootstrapValidator.validate();
+		    if(!bootstrapValidator.isValid()){
+			   return;
+		    }
+
+            var house_type;
+            var house_no=$("#house_no").val();
+            var house_area=$("#house_area").val();
+            var status=$("#house_type").val();
+            if (status==="2"){
+                house_type="在住";
+            } else if (status==="1"){
+                house_type="空置";
+            }
+
+			$.ajax({
+				type : 'post',
+				url : '/house/updateHouse',
+				contentType: "application/json; charset=utf-8",
+                data : JSON.stringify({
+                    houseNo:house_no,
+                    houseArea:house_area,
+                    houseType:house_type
+                }),
+				success : function(data) {
+					layer.msg("修改成功", {shift: -1, time: 1000}, function(){
+                        location.href = "houseList.html";
+                    });
+				}
+			});
+		}
+		
+	</script>
+</body>
+</html>
