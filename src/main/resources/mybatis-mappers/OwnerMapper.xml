@@ -12,12 +12,42 @@
   <sql id="Base_Column_List" >
     owner_id, owner_name, owner_sex, owner_phone, owner_come_time, owner_id_card
   </sql>
+
+  <sql id="where">
+    <where>
+      <if test="params.owner_name != null and params.owner_name != ''">
+        and owner_name = #{params.owner_name}
+      </if>
+      <if test="params.owner_sex != null and params.owner_sex != ''">
+        and owner_sex = #{params.owner_sex}
+      </if>
+      <if test="params.owner_phone != null and params.owner_phone != ''">
+        and owner_phone = #{params.owner_phone}
+      </if>
+      <if test="params.owner_come_time != null and params.owner_come_time != ''">
+        and owner_come_time = #{params.owner_come_time}
+      </if>
+    </where>
+  </sql>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from tb_owner
     where owner_id = #{ownerId,jdbcType=INTEGER}
   </select>
+    <select id="selectOwnerList" resultType="com.zw.admin.server.model.Owner">
+      select
+      <include refid="Base_Column_List" />
+      from tb_owner
+      <include refid="where"/>
+      limit #{offset}, #{limit}
+    </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(1) from tb_owner t
+    <include refid="where"/>
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tb_owner
     where owner_id = #{ownerId,jdbcType=INTEGER}

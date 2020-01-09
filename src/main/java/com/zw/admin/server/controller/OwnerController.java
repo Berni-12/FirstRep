@@ -7,7 +7,11 @@ import com.zw.admin.server.constants.HttpConstans;
 import com.zw.admin.server.dao.OwnerMapper;
 import com.zw.admin.server.model.House;
 import com.zw.admin.server.model.Owner;
+import com.zw.admin.server.page.table.PageTableHandler;
+import com.zw.admin.server.page.table.PageTableRequest;
+import com.zw.admin.server.page.table.PageTableResponse;
 import com.zw.admin.server.service.OwnerService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +39,7 @@ public class OwnerController {
      * @param ownerId
      * @return
      */
+    @RequiresPermissions("owner:query")
     @GetMapping("/selectOwner")
     public BaseResponse selectOwner(Integer ownerId){
         ResponseBuilder custom = ResponseBuilder.custom();
@@ -57,6 +62,7 @@ public class OwnerController {
      * @param owner
      * @return
      */
+    @RequiresPermissions("owner:add")
     @PostMapping("/saveOwner")
     public BaseResponse saveOwner(@RequestBody Owner owner){
         ResponseBuilder custom = ResponseBuilder.custom();
@@ -78,6 +84,7 @@ public class OwnerController {
      * @param owner
      * @return
      */
+    @RequiresPermissions("owner:add")
     @PostMapping("/updateOwner")
     public BaseResponse updateOwner(@RequestBody Owner owner){
         ResponseBuilder custom = ResponseBuilder.custom();
@@ -99,6 +106,7 @@ public class OwnerController {
      * @param ownerId
      * @return
      */
+    @RequiresPermissions("owner:del")
     @DeleteMapping("/deleteOwner")
     public BaseResponse deleteOwner(Integer ownerId){
         ResponseBuilder custom = ResponseBuilder.custom();
@@ -121,6 +129,7 @@ public class OwnerController {
      * @param pageSize 每页显示数量
      * @return
      */
+    @RequiresPermissions("owner:query")
     @GetMapping("/getOwnerList")
     public BaseResponse getOwnerList(@RequestParam Integer currPage,
                                      @RequestParam Integer pageSize) {
@@ -145,5 +154,29 @@ public class OwnerController {
 
         return custom.build();
 
+    }
+
+    /**
+     * 多参数分页查询列表
+     *
+     * @param request
+     * @return
+     */
+    @RequiresPermissions("owner:query")
+    @GetMapping("/selectOwnerList")
+    public PageTableResponse selectOwnerList(PageTableRequest request) {
+        return new PageTableHandler(new PageTableHandler.CountHandler() {
+
+            @Override
+            public int count(PageTableRequest request) {
+                return ownerMapper.count(request.getParams());
+            }
+        }, new PageTableHandler.ListHandler() {
+
+            @Override
+            public List<Owner> list(PageTableRequest request) {
+                return ownerMapper.selectOwnerList(request.getParams(), request.getOffset(), request.getLimit());
+            }
+        }).handle(request);
     }
 }

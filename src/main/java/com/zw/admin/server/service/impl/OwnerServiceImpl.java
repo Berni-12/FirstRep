@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * @ClassName OwnerServiceImpl
  * @Description 业主Service
@@ -37,6 +40,9 @@ public class OwnerServiceImpl implements OwnerService {
 
     @Override
     public int insertSelective(Owner record) {
+        Date date=new Date();
+        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        record.setOwnerComeTime(dateFormat.format(date));
         int result=ownerMapper.insertSelective(record);
         log.debug("添加名为{}的业主", record.getOwnerName());
         return result;

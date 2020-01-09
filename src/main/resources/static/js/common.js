@@ -54,3 +54,23 @@ function loginInfo(){
     
     return user;
 }
+
+// 验证身份证号
+function isCardNo(card) {
+    var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+    if (reg.test(card) === false) {
+        return false
+    } else {
+        return true
+    }
+}
+
+// 验证手机号
+function checkMobile(str) {
+    var re = /^1\d{10}$/
+    if (re.test(str)) {
+        return true;
+    } else {
+        return false;
+    }
+}
