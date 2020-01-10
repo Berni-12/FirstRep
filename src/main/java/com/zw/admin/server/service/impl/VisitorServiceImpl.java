@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * @ClassName VisitorServiceImpl
  * @Description 访客Service
@@ -30,6 +33,9 @@ public class VisitorServiceImpl implements VisitorService {
 
     @Override
     public void insertSelective(Visitor record) {
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        record.setVisitorComeTime(dateFormat.format(date));
         visitorMapper.insertSelective(record);
 
         log.debug("添加访客{}", record.getVisitorName());

@@ -5,9 +5,14 @@ import com.zw.admin.server.common.BaseResponse;
 import com.zw.admin.server.common.ResponseBuilder;
 import com.zw.admin.server.constants.HttpConstans;
 import com.zw.admin.server.dao.VisitorMapper;
+import com.zw.admin.server.model.Owner;
 import com.zw.admin.server.model.Pay;
 import com.zw.admin.server.model.Visitor;
+import com.zw.admin.server.page.table.PageTableHandler;
+import com.zw.admin.server.page.table.PageTableRequest;
+import com.zw.admin.server.page.table.PageTableResponse;
 import com.zw.admin.server.service.VisitorService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +46,7 @@ public class VisitorController {
      * @param visitorId
      * @return
      */
+    @RequiresPermissions("visitor:query")
     @GetMapping("/selectVisitor")
     public BaseResponse selectVisitor(Integer visitorId) {
         ResponseBuilder custom = ResponseBuilder.custom();
@@ -64,6 +70,7 @@ public class VisitorController {
      * @param visitor
      * @return
      */
+    @RequiresPermissions("visitor:add")
     @PostMapping("/saveVisitor")
     public BaseResponse saveVisitor(@RequestBody Visitor visitor) {
         ResponseBuilder custom = ResponseBuilder.custom();
@@ -82,6 +89,7 @@ public class VisitorController {
      * @param visitor
      * @return
      */
+    @RequiresPermissions("visitor:add")
     @PostMapping("/updateVisitor")
     public BaseResponse updateVisitor(@RequestBody Visitor visitor) {
         ResponseBuilder custom = ResponseBuilder.custom();
@@ -100,6 +108,7 @@ public class VisitorController {
      * @param visitorId
      * @return
      */
+    @RequiresPermissions("visitor:del")
     @DeleteMapping("/deleteVisitor")
     public BaseResponse deleteVisitor(Integer visitorId) {
         ResponseBuilder custom = ResponseBuilder.custom();
@@ -118,6 +127,7 @@ public class VisitorController {
      * @param pageSize 每页显示数量
      * @return
      */
+    @RequiresPermissions("visitor:query")
     @GetMapping("/getVisitorList")
     public BaseResponse getVisitorList(@RequestParam Integer currPage,
                                    @RequestParam Integer pageSize) {
@@ -140,6 +150,30 @@ public class VisitorController {
             custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
         }
         return custom.build();
+    }
+
+    /**
+     * 多参数分页查询列表
+     *
+     * @param request
+     * @return
+     */
+    @RequiresPermissions("visitor:query")
+    @GetMapping("/selectVisitorList")
+    public PageTableResponse selectOwnerList(PageTableRequest request) {
+        return new PageTableHandler(new PageTableHandler.CountHandler() {
+
+            @Override
+            public int count(PageTableRequest request) {
+                return visitorMapper.count(request.getParams());
+            }
+        }, new PageTableHandler.ListHandler() {
+
+            @Override
+            public List<Visitor> list(PageTableRequest request) {
+                return visitorMapper.selectVisitorList(request.getParams(), request.getOffset(), request.getLimit());
+            }
+        }).handle(request);
     }
 
 }

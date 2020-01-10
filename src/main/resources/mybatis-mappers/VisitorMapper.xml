@@ -12,11 +12,40 @@
   <sql id="Base_Column_List" >
     visitor_id, visitor_name, visitor_sex, visitor_phone, visitor_card_no, visitor_come_time
   </sql>
+
+  <sql id="where">
+    <where>
+      <if test="params.visitor_name != null and params.visitor_name != ''">
+        and visitor_name = #{params.visitor_name}
+      </if>
+      <if test="params.visitor_sex != null and params.visitor_sex != ''">
+        and visitor_sex = #{params.visitor_sex}
+      </if>
+      <if test="params.visitor_phone != null and params.visitor_phone != ''">
+        and visitor_phone = #{params.visitor_phone}
+      </if>
+      <if test="params.visitor_card_no != null and params.visitor_card_no != ''">
+        and visitor_card_no = #{params.visitor_card_no}
+      </if>
+    </where>
+  </sql>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from tb_visitor
     where visitor_id = #{visitorId,jdbcType=INTEGER}
+  </select>
+    <select id="selectVisitorList" resultType="com.zw.admin.server.model.Visitor">
+      select
+      <include refid="Base_Column_List" />
+      from tb_visitor
+      <include refid="where"/>
+      limit #{offset}, #{limit}
+    </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(1) from tb_visitor t
+    <include refid="where"/>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tb_visitor

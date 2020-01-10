@@ -1,11 +1,14 @@
 package com.zw.admin.server.dao;
 
 import com.zw.admin.server.model.Car;
+import com.zw.admin.server.model.Owner;
 import com.zw.admin.server.model.Visitor;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface VisitorMapper {
@@ -22,5 +25,15 @@ public interface VisitorMapper {
 
     @Select("select COUNT(*) from tb_visitor")
     Long getVisitorCount();
+
+    /**
+     * 多参数查询房屋信息
+     * @param params
+     * @return
+     */
+    List<Visitor> selectVisitorList(@Param("params") Map<String,Object> params, @Param("offset") Integer offset,
+                                @Param("limit") Integer limit);
+
+    int count(@Param("params") Map<String, Object> params);
 
 }
