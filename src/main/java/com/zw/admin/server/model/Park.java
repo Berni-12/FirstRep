@@ -9,6 +9,26 @@ public class Park {
 
     private String parkArea;
 
+    private Integer parkType;
+
+    private String ownerName;
+
+    public Integer getParkType() {
+        return parkType;
+    }
+
+    public void setParkType(Integer parkType) {
+        this.parkType = parkType;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
     public String getParkNo() {
         return parkNo;
     }

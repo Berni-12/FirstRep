@@ -27,7 +27,7 @@ public interface VisitorMapper {
     Long getVisitorCount();
 
     /**
-     * 多参数查询房屋信息
+     * 多参数查询访客信息
      * @param params
      * @return
      */

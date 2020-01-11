@@ -6,15 +6,41 @@
     <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
     <result column="expira_date" property="expiraDate" jdbcType="VARCHAR" />
     <result column="park_area" property="parkArea" jdbcType="VARCHAR" />
+    <result column="park_type" property="parkType" jdbcType="INTEGER" />
+    <result column="owner_name" property="ownerName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    park_no, owner_id, expira_date, park_area
+    park_no, owner_id, expira_date, park_area,park_type,owner_name
+  </sql>
+  <sql id="where">
+    <where>
+      <if test="params.park_no != null and params.park_no != ''">
+        and park_no = #{params.park_no}
+      </if>
+      <if test="params.park_type != null and params.park_type != ''">
+        and park_type = #{params.park_type}
+      </if>
+      <if test="params.owner_name != null and params.owner_name != ''">
+        and owner_name = #{params.owner_name}
+      </if>
+    </where>
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from tb_park
     where park_no = #{parkNo,jdbcType=VARCHAR}
+  </select>
+  <select id="selectParkList" resultType="com.zw.admin.server.model.Park">
+    select
+    <include refid="Base_Column_List" />
+    from tb_park
+    <include refid="where"/>
+    limit #{offset}, #{limit}
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(1) from tb_park t
+    <include refid="where"/>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from tb_park
@@ -41,6 +67,12 @@
       <if test="parkArea != null" >
         park_area,
       </if>
+      <if test="parkType != null" >
+        park_type,
+      </if>
+      <if test="ownerName != null" >
+        owner_name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="parkNo != null" >
@@ -55,6 +87,12 @@
       <if test="parkArea != null" >
         #{parkArea,jdbcType=VARCHAR},
       </if>
+      <if test="parkType != null" >
+        #{parkType,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerName != null" >
+        #{ownerName,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.Park" >
@@ -68,6 +106,12 @@
       </if>
       <if test="parkArea != null" >
         park_area = #{parkArea,jdbcType=VARCHAR},
+      </if>
+      <if test="parkType != null" >
+        park_type = #{parkType,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerName != null" >
+        owner_name = #{ownerName,jdbcType=VARCHAR},
       </if>
     </set>
     where park_no = #{parkNo,jdbcType=VARCHAR}

@@ -7,7 +7,12 @@ import com.zw.admin.server.constants.HttpConstans;
 import com.zw.admin.server.dao.ParkMapper;
 import com.zw.admin.server.model.Owner;
 import com.zw.admin.server.model.Park;
+import com.zw.admin.server.model.Repair;
+import com.zw.admin.server.page.table.PageTableHandler;
+import com.zw.admin.server.page.table.PageTableRequest;
+import com.zw.admin.server.page.table.PageTableResponse;
 import com.zw.admin.server.service.ParkService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +41,7 @@ public class ParkController {
      * @param parkNo
      * @return
      */
+    @RequiresPermissions("park:query")
     @GetMapping("/selectPark")
     public BaseResponse selectPark(String parkNo) {
         ResponseBuilder custom = ResponseBuilder.custom();
@@ -59,6 +65,7 @@ public class ParkController {
      * @param park
      * @return
      */
+    @RequiresPermissions("park:add")
     @PostMapping("/savePark")
     public BaseResponse savePark(@RequestBody Park park) {
         ResponseBuilder custom = ResponseBuilder.custom();
@@ -81,6 +88,7 @@ public class ParkController {
      * @param park
      * @return
      */
+    @RequiresPermissions("park:add")
     @PostMapping("/updatePark")
     public BaseResponse updatePark(@RequestBody Park park) {
         ResponseBuilder custom = ResponseBuilder.custom();
@@ -103,6 +111,7 @@ public class ParkController {
      * @param parkNo
      * @return
      */
+    @RequiresPermissions("park:del")
     @DeleteMapping("/deletePark")
     public BaseResponse deletePark(String parkNo) {
         ResponseBuilder custom = ResponseBuilder.custom();
@@ -125,6 +134,7 @@ public class ParkController {
      * @param pageSize 每页显示数量
      * @return
      */
+    @RequiresPermissions("park:query")
     @GetMapping("/getParkList")
     public BaseResponse getParkList(@RequestParam Integer currPage,
                                      @RequestParam Integer pageSize) {
@@ -148,6 +158,29 @@ public class ParkController {
         }
 
         return custom.build();
+    }
 
+    /**
+     * 多参数分页查询列表
+     *
+     * @param request
+     * @return
+     */
+    @RequiresPermissions("park:query")
+    @GetMapping("/selectParkList")
+    public PageTableResponse selectRepairList(PageTableRequest request) {
+        return new PageTableHandler(new PageTableHandler.CountHandler() {
+
+            @Override
+            public int count(PageTableRequest request) {
+                return parkMapper.count(request.getParams());
+            }
+        }, new PageTableHandler.ListHandler() {
+
+            @Override
+            public List<Park> list(PageTableRequest request) {
+                return parkMapper.selectParkList(request.getParams(), request.getOffset(), request.getLimit());
+            }
+        }).handle(request);
     }
 }
