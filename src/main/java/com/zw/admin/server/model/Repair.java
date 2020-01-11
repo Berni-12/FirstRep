@@ -10,11 +10,39 @@ public class Repair {
 
     private String repairReson;
 
-    private String ownerId;
-
     private Integer repairState;
 
     private String finishTime;
+
+    private String repairPeopleName;
+
+    private String houseNo;
+
+    private String phoneNum;
+
+    public String getPhoneNum() {
+        return phoneNum;
+    }
+
+    public void setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public String getRepairPeopleName() {
+        return repairPeopleName;
+    }
+
+    public void setRepairPeopleName(String repairPeopleName) {
+        this.repairPeopleName = repairPeopleName;
+    }
+
+    public String getHouseNo() {
+        return houseNo;
+    }
+
+    public void setHouseNo(String houseNo) {
+        this.houseNo = houseNo;
+    }
 
     public Integer getRepairId() {
         return repairId;
@@ -40,13 +68,6 @@ public class Repair {
         this.repairReson = repairReson == null ? null : repairReson.trim();
     }
 
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId == null ? null : ownerId.trim();
-    }
 
     public Integer getRepairState() {
         return repairState;

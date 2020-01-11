@@ -5,12 +5,27 @@
     <id column="repair_id" property="repairId" jdbcType="INTEGER" />
     <result column="repair_time" property="repairTime" jdbcType="VARCHAR" />
     <result column="repair_reson" property="repairReson" jdbcType="VARCHAR" />
-    <result column="owner_id" property="ownerId" jdbcType="VARCHAR" />
+    <result column="repair_people_name" property="repairPeopleName" jdbcType="VARCHAR" />
     <result column="repair_state" property="repairState" jdbcType="INTEGER" />
     <result column="finish_time" property="finishTime" jdbcType="VARCHAR" />
+    <result column="house_no" property="houseNo" jdbcType="VARCHAR" />
+    <result column="phone_num" property="phoneNum" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    repair_id, repair_time, repair_reson, owner_id, repair_state, finish_time
+    repair_id, repair_time, repair_reson, repair_people_name, repair_state, finish_time,house_no,phone_num
+  </sql>
+  <sql id="where">
+    <where>
+      <if test="params.repair_id != null and params.repair_id != ''">
+        and repair_id = #{params.repair_id}
+      </if>
+      <if test="params.repair_people_name != null and params.repair_people_name != ''">
+        and repair_people_name = #{params.repair_people_name}
+      </if>
+      <if test="params.house_no != null and params.house_no != ''">
+        and house_no = #{params.house_no}
+      </if>
+    </where>
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -18,16 +33,28 @@
     from tb_repair
     where repair_id = #{repairId,jdbcType=INTEGER}
   </select>
+    <select id="selectRepairList" resultType="com.zw.admin.server.model.Repair">
+      select
+      <include refid="Base_Column_List" />
+      from tb_repair
+      <include refid="where"/>
+      limit #{offset}, #{limit}
+    </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(1) from tb_repair t
+    <include refid="where"/>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tb_repair
     where repair_id = #{repairId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.zw.admin.server.model.Repair" >
     insert into tb_repair (repair_id, repair_time, repair_reson, 
-      owner_id, repair_state, finish_time
+      repair_people_name, repair_state, finish_time,house_no,phone_num
       )
     values (#{repairId,jdbcType=INTEGER}, #{repairTime,jdbcType=VARCHAR}, #{repairReson,jdbcType=VARCHAR}, 
-      #{ownerId,jdbcType=VARCHAR}, #{repairState,jdbcType=INTEGER}, #{finishTime,jdbcType=VARCHAR}
+      #{repairPeopleName,jdbcType=VARCHAR}, #{repairState,jdbcType=INTEGER}, #{finishTime,jdbcType=VARCHAR},
+      #{houseNo,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR},
       )
   </insert>
   <insert id="insertSelective" parameterType="com.zw.admin.server.model.Repair" >
@@ -42,14 +69,20 @@
       <if test="repairReson != null" >
         repair_reson,
       </if>
-      <if test="ownerId != null" >
-        owner_id,
+      <if test="repairPeopleName != null" >
+        repair_people_name,
       </if>
       <if test="repairState != null" >
         repair_state,
       </if>
       <if test="finishTime != null" >
         finish_time,
+      </if>
+      <if test="houseNo != null" >
+        house_no,
+      </if>
+      <if test="phoneNum != null" >
+        phone_num,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -62,14 +95,20 @@
       <if test="repairReson != null" >
         #{repairReson,jdbcType=VARCHAR},
       </if>
-      <if test="ownerId != null" >
-        #{ownerId,jdbcType=VARCHAR},
+      <if test="repairPeopleName != null" >
+        #{repairPeopleName,jdbcType=VARCHAR},
       </if>
       <if test="repairState != null" >
         #{repairState,jdbcType=INTEGER},
       </if>
       <if test="finishTime != null" >
         #{finishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNo != null" >
+        #{houseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null" >
+        #{phoneNum,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -82,14 +121,20 @@
       <if test="repairReson != null" >
         repair_reson = #{repairReson,jdbcType=VARCHAR},
       </if>
-      <if test="ownerId != null" >
-        owner_id = #{ownerId,jdbcType=VARCHAR},
+      <if test="repairPeopleName != null" >
+        repair_people_name = #{repairPeopleName,jdbcType=VARCHAR},
       </if>
       <if test="repairState != null" >
         repair_state = #{repairState,jdbcType=INTEGER},
       </if>
       <if test="finishTime != null" >
         finish_time = #{finishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="houseNo != null" >
+        house_no = #{houseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneNum != null" >
+        phone_num = #{phoneNum,jdbcType=VARCHAR},
       </if>
     </set>
     where repair_id = #{repairId,jdbcType=INTEGER}
@@ -98,9 +143,11 @@
     update tb_repair
     set repair_time = #{repairTime,jdbcType=VARCHAR},
       repair_reson = #{repairReson,jdbcType=VARCHAR},
-      owner_id = #{ownerId,jdbcType=VARCHAR},
+      repair_people_name = #{repairPeopleName,jdbcType=VARCHAR},
       repair_state = #{repairState,jdbcType=INTEGER},
-      finish_time = #{finishTime,jdbcType=VARCHAR}
+      finish_time = #{finishTime,jdbcType=VARCHAR},
+      house_no = #{houseNo,jdbcType=VARCHAR},
+      phone_num = #{phoneNum,jdbcType=VARCHAR}
     where repair_id = #{repairId,jdbcType=INTEGER}
   </update>
 </mapper>
