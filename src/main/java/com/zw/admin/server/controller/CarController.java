@@ -6,7 +6,12 @@ import com.zw.admin.server.common.ResponseBuilder;
 import com.zw.admin.server.constants.HttpConstans;
 import com.zw.admin.server.dao.CarMapper;
 import com.zw.admin.server.model.Car;
+import com.zw.admin.server.model.Park;
+import com.zw.admin.server.page.table.PageTableHandler;
+import com.zw.admin.server.page.table.PageTableRequest;
+import com.zw.admin.server.page.table.PageTableResponse;
 import com.zw.admin.server.service.CarService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +40,7 @@ public class CarController {
      * @param carId
      * @return
      */
+    @RequiresPermissions("car:query")
     @GetMapping("/selectCar")
     public BaseResponse selectCar(Integer carId) {
         ResponseBuilder custom = ResponseBuilder.custom();
@@ -58,6 +64,7 @@ public class CarController {
      * @param car
      * @return
      */
+    @RequiresPermissions("car:add")
     @PostMapping("/saveCar")
     public BaseResponse saveCar(@RequestBody Car car) {
         ResponseBuilder custom = ResponseBuilder.custom();
@@ -80,6 +87,7 @@ public class CarController {
      * @param car
      * @return
      */
+    @RequiresPermissions("car:add")
     @PostMapping("/updateCar")
     public BaseResponse updateCar(@RequestBody Car car) {
         ResponseBuilder custom = ResponseBuilder.custom();
@@ -102,6 +110,7 @@ public class CarController {
      * @param carId
      * @return
      */
+    @RequiresPermissions("car:del")
     @DeleteMapping("/deleteCar")
     public BaseResponse deleteCar(Integer carId) {
         ResponseBuilder custom = ResponseBuilder.custom();
@@ -124,6 +133,7 @@ public class CarController {
      * @param pageSize 每页显示数量
      * @return
      */
+    @RequiresPermissions("car:query")
     @GetMapping("/getCarList")
     public BaseResponse getCarList(@RequestParam Integer currPage,
                                    @RequestParam Integer pageSize) {
@@ -148,6 +158,28 @@ public class CarController {
 
         return custom.build();
 
+    }
+
+    /**
+     * 多参数分页查询列表
+     *
+     * @param request
+     * @return
+     */
+    @RequiresPermissions("car:query")
+    @GetMapping("/selectCarList")
+    public PageTableResponse selectCarList(PageTableRequest request) {
+        return new PageTableHandler(new PageTableHandler.CountHandler() {
+            @Override
+            public int count(PageTableRequest request) {
+                return carMapper.count(request.getParams());
+            }
+        }, new PageTableHandler.ListHandler() {
+            @Override
+            public List<Car> list(PageTableRequest request) {
+                return carMapper.selectCarList(request.getParams(), request.getOffset(), request.getLimit());
+            }
+        }).handle(request);
     }
 }
 

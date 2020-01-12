@@ -1,100 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zw.admin.server.dao.CarMapper">
-  <resultMap id="BaseResultMap" type="com.zw.admin.server.model.Car">
-    <id column="car_id" jdbcType="INTEGER" property="carId" />
-    <result column="car_num" jdbcType="VARCHAR" property="carNum" />
-    <result column="park_no" jdbcType="VARCHAR" property="parkNo" />
-    <result column="car_flag" jdbcType="INTEGER" property="carFlag" />
-    <result column="car_type" jdbcType="VARCHAR" property="carType" />
-    <result column="car_color" jdbcType="VARCHAR" property="carColor" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    car_id, car_num, park_no, car_flag, car_type, car_color
+    <resultMap id="BaseResultMap" type="com.zw.admin.server.model.Car">
+        <id column="car_id" jdbcType="INTEGER" property="carId"/>
+        <result column="car_num" jdbcType="VARCHAR" property="carNum"/>
+        <result column="park_no" jdbcType="VARCHAR" property="parkNo"/>
+        <result column="car_flag" jdbcType="INTEGER" property="carFlag"/>
+        <result column="car_type" jdbcType="VARCHAR" property="carType"/>
+        <result column="car_color" jdbcType="VARCHAR" property="carColor"/>
+        <result column="car_owner" jdbcType="VARCHAR" property="carOwner"/>
+        <result column="car_owner_phone" jdbcType="VARCHAR" property="carOwnerPhone"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    car_id, car_num, park_no, car_flag, car_type, car_color,car_owner,car_owner_phone
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from tb_car
-    where car_id = #{carId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <sql id="where">
+        <where>
+            <if test="params.car_num != null and params.car_num != ''">
+                and car_num = #{params.car_num}
+            </if>
+            <if test="params.car_flag != null and params.car_flag != ''">
+                and car_flag = #{params.car_flag}
+            </if>
+        </where>
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_car
+        where car_id = #{carId,jdbcType=INTEGER}
+    </select>
+    <select id="selectCarList" resultType="com.zw.admin.server.model.Car">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_car
+        <include refid="where"/>
+        limit #{offset}, #{limit}
+    </select>
+    <select id="count" resultType="java.lang.Integer">
+        select count(1) from tb_car t
+        <include refid="where"/>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_car
     where car_id = #{carId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zw.admin.server.model.Car">
+    <insert id="insert" parameterType="com.zw.admin.server.model.Car">
     insert into tb_car (car_id, car_num, park_no, 
-      car_flag, car_type, car_color
+      car_flag, car_type, car_color,car_owner,car_owner_phone
       )
     values (#{carId,jdbcType=INTEGER}, #{carNum,jdbcType=VARCHAR}, #{parkNo,jdbcType=VARCHAR}, 
       #{carFlag,jdbcType=INTEGER}, #{carType,jdbcType=VARCHAR}, #{carColor,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zw.admin.server.model.Car">
-    insert into tb_car
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="carId != null">
-        car_id,
-      </if>
-      <if test="carNum != null">
-        car_num,
-      </if>
-      <if test="parkNo != null">
-        park_no,
-      </if>
-      <if test="carFlag != null">
-        car_flag,
-      </if>
-      <if test="carType != null">
-        car_type,
-      </if>
-      <if test="carColor != null">
-        car_color,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="carId != null">
-        #{carId,jdbcType=INTEGER},
-      </if>
-      <if test="carNum != null">
-        #{carNum,jdbcType=VARCHAR},
-      </if>
-      <if test="parkNo != null">
-        #{parkNo,jdbcType=VARCHAR},
-      </if>
-      <if test="carFlag != null">
-        #{carFlag,jdbcType=INTEGER},
-      </if>
-      <if test="carType != null">
-        #{carType,jdbcType=VARCHAR},
-      </if>
-      <if test="carColor != null">
-        #{carColor,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.Car">
-    update tb_car
-    <set>
-      <if test="carNum != null">
-        car_num = #{carNum,jdbcType=VARCHAR},
-      </if>
-      <if test="parkNo != null">
-        park_no = #{parkNo,jdbcType=VARCHAR},
-      </if>
-      <if test="carFlag != null">
-        car_flag = #{carFlag,jdbcType=INTEGER},
-      </if>
-      <if test="carType != null">
-        car_type = #{carType,jdbcType=VARCHAR},
-      </if>
-      <if test="carColor != null">
-        car_color = #{carColor,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where car_id = #{carId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.zw.admin.server.model.Car">
+    <insert id="insertSelective" parameterType="com.zw.admin.server.model.Car">
+        insert into tb_car
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="carId != null">
+                car_id,
+            </if>
+            <if test="carNum != null">
+                car_num,
+            </if>
+            <if test="parkNo != null">
+                park_no,
+            </if>
+            <if test="carFlag != null">
+                car_flag,
+            </if>
+            <if test="carType != null">
+                car_type,
+            </if>
+            <if test="carColor != null">
+                car_color,
+            </if>
+            <if test="carOwner != null">
+                car_owner,
+            </if>
+            <if test="carOwnerPhone != null">
+                car_owner_phone,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="carId != null">
+                #{carId,jdbcType=INTEGER},
+            </if>
+            <if test="carNum != null">
+                #{carNum,jdbcType=VARCHAR},
+            </if>
+            <if test="parkNo != null">
+                #{parkNo,jdbcType=VARCHAR},
+            </if>
+            <if test="carFlag != null">
+                #{carFlag,jdbcType=INTEGER},
+            </if>
+            <if test="carType != null">
+                #{carType,jdbcType=VARCHAR},
+            </if>
+            <if test="carColor != null">
+                #{carColor,jdbcType=VARCHAR},
+            </if>
+            <if test="carOwner != null">
+                #{carOwner,jdbcType=VARCHAR},
+            </if>
+            <if test="carOwnerPhone != null">
+                #{carOwnerPhone,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.Car">
+        update tb_car
+        <set>
+            <if test="carNum != null">
+                car_num = #{carNum,jdbcType=VARCHAR},
+            </if>
+            <if test="parkNo != null">
+                park_no = #{parkNo,jdbcType=VARCHAR},
+            </if>
+            <if test="carFlag != null">
+                car_flag = #{carFlag,jdbcType=INTEGER},
+            </if>
+            <if test="carType != null">
+                car_type = #{carType,jdbcType=VARCHAR},
+            </if>
+            <if test="carColor != null">
+                car_color = #{carColor,jdbcType=VARCHAR},
+            </if>
+            <if test="carOwner != null">
+                car_owner = #{carOwner,jdbcType=VARCHAR},
+            </if>
+            <if test="carOwnerPhone != null">
+                car_owner_phone = #{carOwnerPhone,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where car_id = #{carId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.zw.admin.server.model.Car">
     update tb_car
     set car_num = #{carNum,jdbcType=VARCHAR},
       park_no = #{parkNo,jdbcType=VARCHAR},

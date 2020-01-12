@@ -156,7 +156,6 @@ public class ParkController {
         } catch (Exception e) {
             custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
         }
-
         return custom.build();
     }
 
@@ -168,15 +167,13 @@ public class ParkController {
      */
     @RequiresPermissions("park:query")
     @GetMapping("/selectParkList")
-    public PageTableResponse selectRepairList(PageTableRequest request) {
+    public PageTableResponse selectCarList(PageTableRequest request) {
         return new PageTableHandler(new PageTableHandler.CountHandler() {
-
             @Override
             public int count(PageTableRequest request) {
                 return parkMapper.count(request.getParams());
             }
         }, new PageTableHandler.ListHandler() {
-
             @Override
             public List<Park> list(PageTableRequest request) {
                 return parkMapper.selectParkList(request.getParams(), request.getOffset(), request.getLimit());

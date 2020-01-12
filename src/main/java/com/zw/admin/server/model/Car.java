@@ -15,6 +15,26 @@ public class Car{
 
     private String carColor;
 
+    private String carOwner;
+
+    private String carOwnerPhone;
+
+    public String getCarOwner() {
+        return carOwner;
+    }
+
+    public void setCarOwner(String carOwner) {
+        this.carOwner = carOwner;
+    }
+
+    public String getCarOwnerPhone() {
+        return carOwnerPhone;
+    }
+
+    public void setCarOwnerPhone(String carOwnerPhone) {
+        this.carOwnerPhone = carOwnerPhone;
+    }
+
     public Integer getCarId() {
         return carId;
     }
