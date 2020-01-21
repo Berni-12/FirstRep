@@ -9,31 +9,32 @@
 	<form class="form-horizontal" onsubmit="return false" id="form">
 		<fieldset>
 			<div class='form-group'>
-				<label class='col-md-2 control-label'>房屋编号</label>
+				<label class='col-md-2 control-label'>楼栋名称</label>
 				<div class='col-md-10'>
-					<input class='form-control' placeholder='请输入房屋编号' type='text' name='house_no' id='house_no' data-bv-notempty='true' data-bv-notempty-message='房屋编号不能为空'>
+					<input class='form-control' placeholder='请输入楼栋名称' type='text' name='build_name'
+						   id='build_name' data-bv-notempty='true' data-bv-notempty-message='楼栋名称不能为空'>
 				</div>
 			</div>
 			<div class='form-group'>
-				<label class='col-md-2 control-label'>房屋面积</label>
+				<label class='col-md-2 control-label'>楼栋面积(m²)</label>
 				<div class='col-md-10'>
-					<input class='form-control' placeholder='请输入房屋面积' type='text' name='house_area' id='house_area' data-bv-notempty='true' data-bv-notempty-message='房屋面积不能为空'>
+					<input class='form-control' placeholder='请输入楼栋面积' type='text' name='build_area'
+						   id='build_area' data-bv-notempty='false'>
 				</div>
 			</div>
 			<div class='form-group'>
-				<label class='col-md-2 control-label'>房屋状态</label>
-				<div class="col-md-10" style="width: 100px">
-					<select class="form-control input-sm" name="house_type" id="house_type">
-						<option value="1">空置</option>
-						<option value="2">在住</option>
-					</select>
+				<label class='col-md-2 control-label'>楼层数</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='请输入楼层数' type='text' name='build_floor'
+						   id='build_floor' data-bv-notempty='false'>
 				</div>
 			</div>
+
 
 			<div class="form-actions">
 				<div class="row" align="center">
 					<div class="col-md-12">
-					    <button class="btn btn-primary" onclick="location.href='houseList.html'">返回</button>
+					    <button class="btn btn-primary" onclick="location.href='buildList.html'">返回</button>
 						<button class="btn btn-primary" type="submit" onclick="add()">
 							<i class="fa fa-save"></i> 保存
 						</button>
@@ -62,28 +63,23 @@
 			   return;
 		    }
 		    
-		    var house_type;
-		    var house_no=$("#house_no").val();
-		    var house_area=$("#house_area").val();
-            var status=$("#house_type").val();
-           if (status==="2"){
-               house_type="在住";
-            } else if (status==="1"){
-               house_type="空置";
-            }
+
+		    var build_name=$("#build_name").val();
+		    var build_area=$("#build_area").val();
+            var build_floor=$("#build_floor").val();
 
 			$.ajax({
 				type : 'post',
-				url : '/house/saveHouse',
+				url : '/build/saveBuild',
 				contentType: "application/json; charset=utf-8",  
 				data : JSON.stringify({
-					houseNo:house_no,
-					houseArea:house_area,
-					houseType:house_type
+					buildName:build_name,
+					buildArea:build_area,
+					buildFloor:build_floor
 				}),
 				success : function(data) {
 					layer.msg("添加成功", {shift: -1, time: 1000}, function(){
-                        location.href = "houseList.html";
+                        location.href = "buildList.html";
                     });
 				}
 			});

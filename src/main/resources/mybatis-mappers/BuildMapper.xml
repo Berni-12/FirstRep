@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zw.admin.server.dao.BuildMapper">
+    <resultMap id="BaseResultMap" type="com.zw.admin.server.model.Build">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="build_name" property="buildName" jdbcType="VARCHAR"/>
+        <result column="build_area" property="buildArea" jdbcType="VARCHAR"/>
+        <result column="build_floor" property="buildFloor" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="where">
+        <where>
+            <if test="params.build_name != null and params.build_name != ''">
+                and build_name = #{params.build_name}
+            </if>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List">
+    id, build_name, build_area, build_floor
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_build
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectBuild" resultType="com.zw.admin.server.model.Build">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_build
+        <include refid="where"/>
+        limit #{offset}, #{limit}
+    </select>
+    <select id="count" resultType="java.lang.Integer">
+        select count(1) from tb_build t
+        <include refid="where"/>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_build
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insertSelective" parameterType="com.zw.admin.server.model.Build">
+        insert into tb_build
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="buildName != null">
+                build_name,
+            </if>
+            <if test="buildArea != null">
+                build_area,
+            </if>
+            <if test="buildFloor != null">
+                build_floor,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="buildName != null">
+                #{buildName,jdbcType=VARCHAR},
+            </if>
+            <if test="buildArea != null">
+                #{buildArea,jdbcType=VARCHAR},
+            </if>
+            <if test="buildFloor != null">
+                #{buildFloor,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.Build">
+        update tb_build
+        <set>
+            <if test="buildName != null">
+                build_name = #{buildName,jdbcType=VARCHAR},
+            </if>
+            <if test="buildArea != null">
+                build_area = #{buildArea,jdbcType=VARCHAR},
+            </if>
+            <if test="buildFloor != null">
+                build_floor = #{buildFloor,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

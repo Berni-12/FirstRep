@@ -18,20 +18,14 @@
 	                   			<td>
 		                   			<form class="form-inline" onsubmit="return false">
 										<div class="form-group">
-											业主姓名：
-											<input id="owner_name" type="text" class="form-control" placeholder="请输入业主姓名">
-                                            业主性别：
-                                            <select class="form-control input-sm" id="owner_sex">
-                                                <option value="">全部</option>
-                                                <option value="1">男</option>
-                                                <option value="2">女</option>
-                                            </select>
-											<button id="searchBt" class="layui-btn layui-btn-sm" permission="owner:query"><i class="layui-icon">&#xe615;</i>搜索</button>
+											楼栋名称：
+											<input id="build_name" type="text" class="form-control" placeholder="请输入楼栋名称">
+											<button id="searchBt" class="layui-btn layui-btn-sm" permission="build:query"><i class="layui-icon">&#xe615;</i>搜索</button>
 										</div>
 									</form>
 	                   			</td>
 	                   			<td align="right">
-	                   				<button class="layui-btn layui-btn-sm" onclick="location.href='addOwner.html'" permission="owner:add">
+	                   				<button class="layui-btn layui-btn-sm" onclick="location.href='addBuild.html'" permission="build:add">
                                       <i class="layui-icon">&#xe608;</i> 添加
                                     </button>
 	                   			</td>
@@ -47,12 +41,10 @@
                                 <tr>
                                 </tr>                       
                                 <tr>
-									<th>业主ID</th>
-									<th>业主姓名</th>
-									<th>业主性别</th>
-									<th>联系电话</th>
-                                    <th>入住时间</th>
-                                    <th>身份证号</th>
+									<th>楼栋ID</th>
+									<th>楼栋名称</th>
+									<th>楼栋面积(m²)</th>
+									<th>楼层数</th>
 									<th>操作</th>
                                 </tr>
                             </thead>
@@ -87,37 +79,27 @@ function init(){
                 "url": "/js/plugin/datatables/Chinese.lang"
             },
         	"ajax": {
-        		"url" : "/owner/selectOwnerList",
+        		"url" : "/build/selectBuildList",
         		"type":"get",
         		"data":function(d){
-    				d.owner_name = $("#owner_name").val();
-    				var status=$("#owner_sex").val();
-    				if (status===""){
-                        d.owner_sex="";
-                    } else if (status==="1"){
-                        d.owner_sex="男";
-                    } else if (status==="2"){
-                        d.owner_sex="女";
-                    }
+    				d.build_name = $("#build_name").val();
     			}
         	},
         	"dom": "<'dt-toolbar'r>t<'dt-toolbar-footer'<'col-sm-10 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-10' p v>>",	
             "columns": [
-				{"data" : "ownerId", "defaultContent" : ""},
-				{"data" : "ownerName", "defaultContent" : ""},
-				{"data" : "ownerSex", "defaultContent" : ""},
-				{"data" : "ownerPhone", "defaultContent" : ""},
-				{"data" : "ownerComeTime", "defaultContent" : ""},
-				{"data" : "ownerIdCard", "defaultContent" : ""},
+				{"data" : "id", "defaultContent" : ""},
+				{"data" : "buildName", "defaultContent" : ""},
+				{"data" : "buildArea", "defaultContent" : ""},
+				{"data" : "buildFloor", "defaultContent" : ""},
 				{
 					"data": "", 
 					"defaultContent": "",
 					"orderable":false,
 			        "render": function (data, type, row) {
-             		           var id = row['ownerId'];
-             		           var href = "updateOwner.html?id=" + id;
-                                var edit = buttonEdit(href, "owner:add", pers);
-             		            var del = buttonDel(id, "owner:del", pers);
+             		           var id = row['id'];
+             		           var href = "updateBuild.html?id=" + id;
+                                var edit = buttonEdit(href, "build:add", pers);
+             		            var del = buttonDel(id, "build:del", pers);
                                 return edit + del;
                	            }		
 				},
@@ -137,16 +119,13 @@ function del(id){
     }, function() {
     	$.ajax({
             type : 'delete',
-            url : '/owner/deleteOwner',
+            url : '/build/deleteBuild',
             data:{
-                ownerId:id
+                id:id
             },
             success : function(data) {
                 example.ajax.reload();
                 layer.msg("删除成功");
-            },
-            error:function (data) {
-                layer.msg("删除失败");
             }
         });
         
