@@ -13,7 +13,9 @@ import com.zw.admin.server.service.HouseService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
@@ -180,5 +182,28 @@ public class HouseController {
                 return houseMapper.selectHouse(request.getParams(), request.getOffset(), request.getLimit());
             }
         }).handle(request);
+    }
+
+    /**
+     * 导入房屋信息
+     *
+     * @param file
+     * @return
+     */
+    @RequiresPermissions("house:add")
+    @PostMapping("/excelHouse")
+    public BaseResponse excelBuild(MultipartFile file) throws IOException {
+        ResponseBuilder custom = ResponseBuilder.custom();
+        try {
+            String result = houseService.excelHouse(file);
+            if (result.equals("0")) {
+                custom.success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
+                custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
+            }
+        } catch (Exception e) {
+            custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
+        }
+        return custom.build();
     }
 }

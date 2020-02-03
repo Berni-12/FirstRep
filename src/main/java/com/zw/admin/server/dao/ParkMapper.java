@@ -1,6 +1,7 @@
 package com.zw.admin.server.dao;
 
 import com.zw.admin.server.model.Car;
+import com.zw.admin.server.model.House;
 import com.zw.admin.server.model.Park;
 import com.zw.admin.server.model.Visitor;
 import org.apache.ibatis.annotations.Mapper;
@@ -40,4 +41,5 @@ public interface ParkMapper {
 
     int count(@Param("params") Map<String, Object> params);
 
+    int insertFromExcel(@Param("parks") List<Park> parks);
 }

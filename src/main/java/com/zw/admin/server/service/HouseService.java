@@ -2,6 +2,7 @@ package com.zw.admin.server.service;
 
 import com.zw.admin.server.model.House;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -20,5 +21,7 @@ public interface HouseService {
     House selectByPrimaryKey(String houseNo);
 
     int updateByPrimaryKeySelective(House record);
+
+    String excelHouse(MultipartFile file);
 
 }

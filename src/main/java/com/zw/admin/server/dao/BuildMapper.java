@@ -1,10 +1,8 @@
 package com.zw.admin.server.dao;
 
 import com.zw.admin.server.model.Build;
-import com.zw.admin.server.model.House;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 import java.util.Map;
@@ -28,11 +26,14 @@ public interface BuildMapper {
 
     /**
      * 多参数查询楼栋信息
+     *
      * @param params
      * @return
      */
-    List<Build> selectBuild(@Param("params") Map<String,Object> params, @Param("offset") Integer offset,
+    List<Build> selectBuild(@Param("params") Map<String, Object> params, @Param("offset") Integer offset,
                             @Param("limit") Integer limit);
 
     int count(@Param("params") Map<String, Object> params);
+
+    int insertFormExcel(@Param("builds") List<Build> builds);
 }

@@ -1,6 +1,7 @@
 package com.zw.admin.server.service;
 
 import com.zw.admin.server.model.Park;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @ClassName ParkService
@@ -17,5 +18,7 @@ public interface ParkService {
     Park selectByPrimaryKey(String parkNo);
 
     int updateByPrimaryKeySelective(Park record);
+
+    String excelPark(MultipartFile file);
 
 }

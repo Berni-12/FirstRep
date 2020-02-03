@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/boot_backend?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+    url: jdbc:mysql://localhost:3306/boot_backend?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT&allowMultiQueries=true
     username: root
     password: zhangcc
     druid:
@@ -17,7 +17,7 @@ spring:
       testOnReturn: false
       poolPreparedStatements: true
       maxPoolPreparedStatementPerConnectionSize: 20
-      filters: stat,wall
+      filters: stat
       connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
       stat-view-servlet:
         allow: 127.0.0.1

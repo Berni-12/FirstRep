@@ -83,6 +83,39 @@
             </if>
         </trim>
     </insert>
+    <insert id="insertFromExcel" parameterType="java.util.List">
+        <foreach collection="houses" item="house" separator=";">
+            insert into tb_house
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="house.houseNo != null and house.houseNo != ''">
+                    house_no,
+                </if>
+                <if test="house.houseType != null and house.houseType != ''">
+                    house_type,
+                </if>
+                <if test="house.houseArea != null and house.houseArea != ''">
+                    house_area,
+                </if>
+                <if test="house.ownerId != null and house.ownerId != ''">
+                    owner_id,
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="house.houseNo != null and house.houseNo != ''">
+                    #{house.houseNo,jdbcType=VARCHAR},
+                </if>
+                <if test="house.houseType != null and house.houseType != ''">
+                    #{house.houseType,jdbcType=VARCHAR},
+                </if>
+                <if test="house.houseArea != null and house.houseArea != ''">
+                    #{house.houseArea,jdbcType=VARCHAR},
+                </if>
+                <if test="house.ownerId != null and house.ownerId != ''">
+                    #{house.ownerId,jdbcType=INTEGER},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.House">
         update tb_house
         <set>

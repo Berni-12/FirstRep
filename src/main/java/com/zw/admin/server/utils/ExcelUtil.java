@@ -5,10 +5,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -175,5 +177,32 @@ public class ExcelUtil {
 		}
 
 		return workbook;
+	}
+
+	/**
+	 * 读取单元格内容
+	 * @param cell
+	 * @return
+	 */
+	public static String getCellValue(Cell cell) {
+
+		if (cell == null) {
+			return "";
+		}
+		if ("NUMERIC".equals(cell.getCellType().name())) {
+			return new BigDecimal(cell.getNumericCellValue()).toString();
+		} else if ("STRING".equals(cell.getCellType().name()))
+			return StringUtils.trimToEmpty(cell.getStringCellValue());
+		else if ("FORMULA".equals(cell.getCellType().name())) {
+			return StringUtils.trimToEmpty(cell.getCellFormula());
+		} else if ("BLANK".equals(cell.getCellType().name())) {
+			return "";
+		} else if ("BOOLEAN".equals(cell.getCellType().name())) {
+			return String.valueOf(cell.getBooleanCellValue());
+		} else if ("ERROR".equals(cell.getCellType().name())) {
+			return "ERROR";
+		} else {
+			return cell.toString().trim();
+		}
 	}
 }

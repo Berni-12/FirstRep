@@ -1,6 +1,7 @@
 package com.zw.admin.server.dao;
 
 
+import com.zw.admin.server.model.Build;
 import com.zw.admin.server.model.Car;
 import com.zw.admin.server.model.House;
 import org.apache.ibatis.annotations.Mapper;
@@ -39,4 +40,6 @@ public interface HouseMapper {
                             @Param("limit") Integer limit);
 
     int count(@Param("params") Map<String, Object> params);
+
+    int insertFromExcel(@Param("houses") List<House> houses);
 }

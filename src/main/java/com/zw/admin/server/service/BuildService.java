@@ -2,6 +2,7 @@ package com.zw.admin.server.service;
 
 import com.zw.admin.server.model.Build;
 import com.zw.admin.server.model.House;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @ClassName BuildService
@@ -18,4 +19,6 @@ public interface BuildService {
     Build selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(Build record);
+
+    String excelBuild(MultipartFile file);
 }

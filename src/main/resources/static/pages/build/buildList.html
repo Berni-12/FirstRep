@@ -24,7 +24,11 @@
 										</div>
 									</form>
 	                   			</td>
-	                   			<td align="right">
+
+                                <td align="right">
+                                    <button type="button" class="layui-btn layui-btn-sm" id="excel_build" permission="build:add">
+                                        <i class="layui-icon">&#xe67c;</i>一键导入
+                                    </button>
 	                   				<button class="layui-btn layui-btn-sm" onclick="location.href='addBuild.html'" permission="build:add">
                                       <i class="layui-icon">&#xe608;</i> 添加
                                     </button>
@@ -109,8 +113,41 @@ function init(){
         } );
 }
 
-layui.use('layer', function(){
+layui.use(['layer', 'upload'], function(){
     var layer = layui.layer;
+    var upload = layui.upload;
+
+    //一键导入楼栋信息
+    var uploadInst = upload.render({
+        elem: '#excel_build' //绑定元素
+        ,url: '/build/excelBuild' //上传接口
+        ,accept: 'file' //普通文件
+        ,exts: 'xls|excel|xlsx' //只允许上传Excel文件
+        ,before: function(obj){
+            layer.load(); //上传loading
+        }
+        ,done: function(res){
+            console.log(res);
+            //上传完毕回调
+            layer.closeAll('loading'); //关闭loading
+            layer.open({
+                title: '提示'
+                ,content: '上传成功！'
+            });
+            example.ajax.reload();
+
+        }
+        ,error: function(data){
+            console.log(data);
+            //请求异常回调
+            layer.closeAll('loading'); //关闭loading
+            layer.open({
+                title: '提示'
+                ,content: '上传失败，请重新上传！'
+            });
+
+        }
+    });
 });
 
 function del(id){

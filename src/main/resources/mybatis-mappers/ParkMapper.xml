@@ -95,7 +95,40 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.Park" >
+    <insert id="insertFromExcel" parameterType="java.util.List">
+      <foreach collection="parks" item="park" separator=";">
+        insert into tb_park
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="park.parkNo != null and park.parkNo != ''">
+            park_no,
+          </if>
+          <if test="park.parkArea != null and park.parkArea != ''" >
+            park_area,
+          </if>
+          <if test="park.parkType != null and park.parkType != ''" >
+            park_type,
+          </if>
+          <if test="park.ownerName != null and park.ownerName != ''" >
+            owner_name,
+          </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+          <if test="park.parkNo != null and park.parkNo != ''" >
+            #{park.parkNo,jdbcType=VARCHAR},
+          </if>
+          <if test="park.parkArea != null and park.parkArea != ''" >
+            #{park.parkArea,jdbcType=VARCHAR},
+          </if>
+          <if test="park.parkType != null and park.parkType != ''" >
+            #{park.parkType,jdbcType=VARCHAR},
+          </if>
+          <if test="park.ownerName != null and park.ownerName != ''" >
+            #{park.ownerName,jdbcType=VARCHAR},
+          </if>
+        </trim>
+      </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.Park" >
     update tb_park
     <set >
       <if test="ownerId != null" >

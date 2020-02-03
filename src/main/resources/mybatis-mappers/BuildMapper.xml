@@ -71,6 +71,15 @@
             </if>
         </trim>
     </insert>
+    <insert id="insertFormExcel" parameterType="java.util.List">
+        insert into tb_build(build_name,build_area,build_floor)
+        values
+        <foreach collection="builds" item="build" separator=",">
+            (#{build.buildName},#{build.buildArea},#{build.buildFloor})
+        </foreach>
+    </insert>
+
+
     <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.Build">
         update tb_build
         <set>
