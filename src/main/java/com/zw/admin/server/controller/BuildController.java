@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -174,4 +175,22 @@ public class BuildController {
         }
         return custom.build();
     }
+
+    @GetMapping("/buildNameList")
+    public BaseResponse buildNameList() {
+        ResponseBuilder custom = ResponseBuilder.custom();
+       List<String> buildNameList=new ArrayList<>();
+        try {
+            buildNameList = buildMapper.buildNameList();
+            if (buildNameList != null && buildNameList.size()>0) {
+                custom.data(buildNameList).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
+                custom.failed(HttpConstans.FAIL, HttpConstans.ERROR_CODE);
+            }
+        } catch (Exception e) {
+            custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
+        }
+        return custom.build();
+    }
+
 }

@@ -1,6 +1,8 @@
 package com.zw.admin.server.controller;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -15,10 +17,15 @@ public class Test {
 
 
     public static void main(String args[]) throws Exception {
-        cin = new Scanner(System.in);
-        Arrays.fill(rem,-1);
-        int n = cin.nextInt();
-        System.out.println(calc(n/2)+1);
+        Map<String,String> map=new HashMap<String,String>();
+        map.put("a","11111");
+        map.put("a","222222");
+        map.put("a","333333");
+        final Map<String,String> hashMap=map;
+
+        hashMap.put("c","22323244");
+
+        System.out.println(hashMap);
 
     }
 

@@ -1,8 +1,10 @@
 package com.zw.admin.server.dao;
 
 import com.zw.admin.server.model.Build;
+import com.zw.admin.server.model.House;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 import java.util.Map;
@@ -36,4 +38,9 @@ public interface BuildMapper {
     int count(@Param("params") Map<String, Object> params);
 
     int insertFormExcel(@Param("builds") List<Build> builds);
+
+    List<House> selectBuildName();
+
+    @Select("select build_name from tb_build")
+    List<String> buildNameList();
 }

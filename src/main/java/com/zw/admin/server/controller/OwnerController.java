@@ -5,7 +5,6 @@ import com.zw.admin.server.common.BaseResponse;
 import com.zw.admin.server.common.ResponseBuilder;
 import com.zw.admin.server.constants.HttpConstans;
 import com.zw.admin.server.dao.OwnerMapper;
-import com.zw.admin.server.model.House;
 import com.zw.admin.server.model.Owner;
 import com.zw.admin.server.page.table.PageTableHandler;
 import com.zw.admin.server.page.table.PageTableRequest;
@@ -15,6 +14,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -36,20 +36,21 @@ public class OwnerController {
 
     /**
      * 根据ID查询业主
+     *
      * @param ownerId
      * @return
      */
     @RequiresPermissions("owner:query")
     @GetMapping("/selectOwner")
-    public BaseResponse selectOwner(Integer ownerId){
+    public BaseResponse selectOwner(Integer ownerId) {
         ResponseBuilder custom = ResponseBuilder.custom();
-        Owner owner=new Owner();
+        Owner owner = new Owner();
         try {
-            owner=ownerService.selectByPrimaryKey(ownerId);
-            if (owner!=null){
+            owner = ownerService.selectByPrimaryKey(ownerId);
+            if (owner != null) {
                 custom.data(owner).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
-            }else {
-                custom.failed(HttpConstans.FAIL,HttpConstans.ERROR_CODE);
+            } else {
+                custom.failed(HttpConstans.FAIL, HttpConstans.ERROR_CODE);
             }
         } catch (Exception e) {
             custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
@@ -59,21 +60,22 @@ public class OwnerController {
 
     /**
      * 添加业主
+     *
      * @param owner
      * @return
      */
     @RequiresPermissions("owner:add")
     @PostMapping("/saveOwner")
-    public BaseResponse saveOwner(@RequestBody Owner owner){
+    public BaseResponse saveOwner(@RequestBody Owner owner) {
         ResponseBuilder custom = ResponseBuilder.custom();
-        try{
-            int result= ownerService.insertSelective(owner);
-            if (result!=0){
-                custom.data(owner).success(HttpConstans.SUCCESS,HttpConstans.SUCCESS_CODE);
-            }else{
+        try {
+            int result = ownerService.insertSelective(owner);
+            if (result != 0) {
+                custom.data(owner).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
                 custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             custom.failed(e.toString(), HttpConstans.EXCEPTION_CODE);
         }
         return custom.build();
@@ -81,21 +83,22 @@ public class OwnerController {
 
     /**
      * 更新/修改业主信息
+     *
      * @param owner
      * @return
      */
     @RequiresPermissions("owner:add")
     @PostMapping("/updateOwner")
-    public BaseResponse updateOwner(@RequestBody Owner owner){
+    public BaseResponse updateOwner(@RequestBody Owner owner) {
         ResponseBuilder custom = ResponseBuilder.custom();
-        try{
-            int result= ownerService.updateByPrimaryKeySelective(owner);
-            if (result!=0){
-                custom.data(owner).success(HttpConstans.SUCCESS,HttpConstans.SUCCESS_CODE);
-            }else{
+        try {
+            int result = ownerService.updateByPrimaryKeySelective(owner);
+            if (result != 0) {
+                custom.data(owner).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
                 custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
         }
         return custom.build();
@@ -103,21 +106,22 @@ public class OwnerController {
 
     /**
      * 删除业主信息
+     *
      * @param ownerId
      * @return
      */
     @RequiresPermissions("owner:del")
     @DeleteMapping("/deleteOwner")
-    public BaseResponse deleteOwner(Integer ownerId){
+    public BaseResponse deleteOwner(Integer ownerId) {
         ResponseBuilder custom = ResponseBuilder.custom();
-        try{
-            int result= ownerService.deleteByPrimaryKey(ownerId);
-            if (result!=0){
-                custom.success(HttpConstans.SUCCESS,HttpConstans.SUCCESS_CODE);
-            }else{
+        try {
+            int result = ownerService.deleteByPrimaryKey(ownerId);
+            if (result != 0) {
+                custom.success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
                 custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
         }
         return custom.build();
@@ -125,6 +129,7 @@ public class OwnerController {
 
     /**
      * 分页获取业主信息列表
+     *
      * @param currPage 当前页
      * @param pageSize 每页显示数量
      * @return
@@ -178,5 +183,23 @@ public class OwnerController {
                 return ownerMapper.selectOwnerList(request.getParams(), request.getOffset(), request.getLimit());
             }
         }).handle(request);
+    }
+
+    @RequiresPermissions("owner:query")
+    @GetMapping("/ownerIdList")
+    public BaseResponse ownerIdList() {
+        ResponseBuilder custom = ResponseBuilder.custom();
+        List<Owner> nameIdList = new ArrayList<>();
+        try {
+            nameIdList = ownerMapper.nameIdList();
+            if (nameIdList != null && nameIdList.size() > 0) {
+                custom.data(nameIdList).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
+                custom.failed(HttpConstans.FAIL, HttpConstans.ERROR_CODE);
+            }
+        } catch (Exception e) {
+            custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
+        }
+        return custom.build();
     }
 }

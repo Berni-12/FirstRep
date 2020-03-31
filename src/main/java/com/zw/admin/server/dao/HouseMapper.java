@@ -42,4 +42,8 @@ public interface HouseMapper {
     int count(@Param("params") Map<String, Object> params);
 
     int insertFromExcel(@Param("houses") List<House> houses);
+
+    @Select("select house_no from tb_house where build_name = #{buildName}")
+    List<String> houseNoList(String buildName);
+
 }

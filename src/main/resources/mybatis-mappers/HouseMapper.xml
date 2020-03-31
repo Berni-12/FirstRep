@@ -6,6 +6,9 @@
         <result column="owner_id" property="ownerId" jdbcType="INTEGER"/>
         <result column="house_type" property="houseType" jdbcType="VARCHAR"/>
         <result column="house_area" property="houseArea" jdbcType="VARCHAR"/>
+        <result column="build_name" property="buildName" jdbcType="VARCHAR"/>
+        <result column="build_id" property="buildId" jdbcType="INTEGER"/>
+        <result column="id" property="id" jdbcType="INTEGER"/>
     </resultMap>
 
     <sql id="where">
@@ -23,7 +26,7 @@
     </sql>
 
     <sql id="Base_Column_List">
-    house_no, owner_id, house_type, house_area
+    house_no, owner_id, house_type, house_area,build_name,build_id,owner_name
   </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
@@ -67,6 +70,12 @@
             <if test="houseArea != null">
                 house_area,
             </if>
+            <if test="buildName != null">
+                build_name,
+            </if>
+            <if test="id != null">
+                build_id,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="houseNo != null">
@@ -80,6 +89,12 @@
             </if>
             <if test="houseArea != null">
                 #{houseArea,jdbcType=VARCHAR},
+            </if>
+            <if test="buildName != null">
+                #{buildName,jdbcType=VARCHAR},
+            </if>
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
@@ -99,6 +114,12 @@
                 <if test="house.ownerId != null and house.ownerId != ''">
                     owner_id,
                 </if>
+                <if test="buildName != null and house.buildName != ''">
+                    build_name,
+                </if>
+                <if test="buildId != null house.buildId != ''">
+                    build_id,
+                </if>
             </trim>
             <trim prefix="values (" suffix=")" suffixOverrides=",">
                 <if test="house.houseNo != null and house.houseNo != ''">
@@ -112,6 +133,12 @@
                 </if>
                 <if test="house.ownerId != null and house.ownerId != ''">
                     #{house.ownerId,jdbcType=INTEGER},
+                </if>
+                <if test="house.buildName != null and house.buildName != ''">
+                    #{house.buildName,jdbcType=VARCHAR},
+                </if>
+                <if test="house.buildId != null and house.buildId != ''">
+                    #{house.buildId,jdbcType=INTEGER},
                 </if>
             </trim>
         </foreach>
@@ -127,6 +154,15 @@
             </if>
             <if test="houseArea != null">
                 house_area = #{houseArea,jdbcType=VARCHAR},
+            </if>
+            <if test="buildName != null">
+                build_name = #{buildName,jdbcType=VARCHAR},
+            </if>
+            <if test="buildId != null">
+                build_id = #{buildId,jdbcType=INTEGER},
+            </if>
+            <if test="ownerName != null">
+                owner_name = #{ownerName,jdbcType=VARCHAR},
             </if>
         </set>
         where house_no = #{houseNo,jdbcType=VARCHAR}

@@ -75,6 +75,7 @@ public class MyShiroRealm extends AuthorizingRealm {
 		List<Role> roles = SpringUtil.getBean(RoleDao.class).listByUserId(user.getId());
 		Set<String> roleNames = roles.stream().map(Role::getName).collect(Collectors.toSet());
 		authorizationInfo.setRoles(roleNames);
+
 		List<Permission> permissionList = SpringUtil.getBean(PermissionDao.class).listByUserId(user.getId());
 		UserUtil.setPermissionSession(permissionList);
 		Set<String> permissions = permissionList.stream().filter(p -> !StringUtils.isEmpty(p.getPermission()))

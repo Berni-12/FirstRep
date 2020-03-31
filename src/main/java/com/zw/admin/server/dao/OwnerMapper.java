@@ -39,4 +39,7 @@ public interface OwnerMapper {
                             @Param("limit") Integer limit);
 
     int count(@Param("params") Map<String, Object> params);
+
+    @Select("select owner_id,owner_name from tb_owner")
+    List<Owner> nameIdList();
 }

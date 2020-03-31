@@ -36,6 +36,9 @@
         select count(1) from tb_build t
         <include refid="where"/>
     </select>
+    <select id="selectBuildName" resultType="com.zw.admin.server.model.House">
+        select build_name,id from tb_build
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_build
     where id = #{id,jdbcType=INTEGER}

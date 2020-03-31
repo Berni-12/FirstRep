@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.zw.admin.server.common.BaseResponse;
 import com.zw.admin.server.common.ResponseBuilder;
 import com.zw.admin.server.constants.HttpConstans;
+import com.zw.admin.server.dao.BuildMapper;
 import com.zw.admin.server.dao.HouseMapper;
 import com.zw.admin.server.model.House;
 import com.zw.admin.server.page.table.PageTableHandler;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,6 +37,9 @@ public class HouseController {
 
     @Autowired
     private HouseMapper houseMapper;
+
+    @Autowired
+    private BuildMapper buildMapper;
 
     /**
      * 根据ID查询房屋信息
@@ -206,4 +211,41 @@ public class HouseController {
         }
         return custom.build();
     }
+
+    @RequiresPermissions("house:query")
+    @GetMapping("/selectBuildName")
+    public BaseResponse selectBuildName(){
+        ResponseBuilder custom = ResponseBuilder.custom();
+        List<House> houseList=new ArrayList<>();
+        try {
+           houseList = buildMapper.selectBuildName();
+            if (houseList!=null && houseList.size()!=0) {
+                custom.data(houseList).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
+                custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
+            }
+        } catch (Exception e) {
+            custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
+        }
+        return custom.build();
+    }
+
+    @RequiresPermissions("house:query")
+    @GetMapping("/selectHouseNo")
+    public BaseResponse selectHouseNo(String buildName){
+        ResponseBuilder custom = ResponseBuilder.custom();
+        List<String> houseNoList=new ArrayList<>();
+        try {
+            houseNoList = houseMapper.houseNoList(buildName);
+            if (houseNoList!=null && houseNoList.size()!=0) {
+                custom.data(houseNoList).success(HttpConstans.SUCCESS, HttpConstans.SUCCESS_CODE);
+            } else {
+                custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
+            }
+        } catch (Exception e) {
+            custom.failed(HttpConstans.FAIL, HttpConstans.EXCEPTION_CODE);
+        }
+        return custom.build();
+    }
+
 }

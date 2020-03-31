@@ -31,12 +31,9 @@ public class ShiroConfig {
 	@Bean
 	public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
-
 		// 拦截器.
 		Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
-
 		filterChainDefinitionMap.put("/css/**", "anon");
 		filterChainDefinitionMap.put("/fonts/**", "anon");
 		filterChainDefinitionMap.put("/img/**", "anon");
@@ -46,15 +43,11 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/swagger-resources/**", "anon");
 		filterChainDefinitionMap.put("/logout", "logout");
 		filterChainDefinitionMap.put("/**", "authc");
-
 		shiroFilterFactoryBean.setLoginUrl("/login.html");
 		shiroFilterFactoryBean.setSuccessUrl("/index.html");
-
 		LogoutFilter logoutFilter = new LogoutFilter();
 		logoutFilter.setRedirectUrl("/login.html");
-
 		RestfulFilter restfulFilter = new RestfulFilter();
-
 		shiroFilterFactoryBean.getFilters().put("authc", restfulFilter);
 		shiroFilterFactoryBean.getFilters().put("logout", logoutFilter);
 
