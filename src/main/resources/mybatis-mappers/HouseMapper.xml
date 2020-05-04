@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zw.admin.server.dao.HouseMapper">
-    <resultMap id="BaseResultMap" type="com.zw.admin.server.model.House">
+<mapper namespace="com.zcc.admin.server.dao.HouseMapper">
+    <resultMap id="BaseResultMap" type="com.zcc.admin.server.model.House">
         <id column="house_no" property="houseNo" jdbcType="VARCHAR"/>
         <result column="owner_id" property="ownerId" jdbcType="INTEGER"/>
         <result column="house_type" property="houseType" jdbcType="VARCHAR"/>
@@ -34,7 +34,7 @@
         from tb_house
         where house_no = #{houseNo,jdbcType=VARCHAR}
     </select>
-    <select id="selectHouse" resultType="com.zw.admin.server.model.House">
+    <select id="selectHouse" resultType="com.zcc.admin.server.model.House">
         select
         <include refid="Base_Column_List"/>
         from tb_house
@@ -49,13 +49,13 @@
     delete from tb_house
     where house_no = #{houseNo,jdbcType=VARCHAR}
   </delete>
-    <insert id="insert" parameterType="com.zw.admin.server.model.House">
+    <insert id="insert" parameterType="com.zcc.admin.server.model.House">
     insert into tb_house (house_no, owner_id, house_type, 
       house_area)
     values (#{houseNo,jdbcType=VARCHAR}, #{ownerId,jdbcType=INTEGER}, #{houseType,jdbcType=VARCHAR}, 
       #{houseArea,jdbcType=VARCHAR})
   </insert>
-    <insert id="insertSelective" parameterType="com.zw.admin.server.model.House">
+    <insert id="insertSelective" parameterType="com.zcc.admin.server.model.House">
         insert into tb_house
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="houseNo != null">
@@ -143,7 +143,7 @@
             </trim>
         </foreach>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.House">
+    <update id="updateByPrimaryKeySelective" parameterType="com.zcc.admin.server.model.House">
         update tb_house
         <set>
             <if test="ownerId != null">
@@ -167,7 +167,7 @@
         </set>
         where house_no = #{houseNo,jdbcType=VARCHAR}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.zw.admin.server.model.House">
+    <update id="updateByPrimaryKey" parameterType="com.zcc.admin.server.model.House">
     update tb_house
     set owner_id = #{ownerId,jdbcType=INTEGER},
       house_type = #{houseType,jdbcType=VARCHAR},

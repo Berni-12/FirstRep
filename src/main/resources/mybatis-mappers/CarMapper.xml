@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zw.admin.server.dao.CarMapper">
-    <resultMap id="BaseResultMap" type="com.zw.admin.server.model.Car">
+<mapper namespace="com.zcc.admin.server.dao.CarMapper">
+    <resultMap id="BaseResultMap" type="com.zcc.admin.server.model.Car">
         <id column="car_id" jdbcType="INTEGER" property="carId"/>
         <result column="car_num" jdbcType="VARCHAR" property="carNum"/>
         <result column="park_no" jdbcType="VARCHAR" property="parkNo"/>
@@ -30,7 +30,7 @@
         from tb_car
         where car_id = #{carId,jdbcType=INTEGER}
     </select>
-    <select id="selectCarList" resultType="com.zw.admin.server.model.Car">
+    <select id="selectCarList" resultType="com.zcc.admin.server.model.Car">
         select
         <include refid="Base_Column_List"/>
         from tb_car
@@ -45,7 +45,7 @@
     delete from tb_car
     where car_id = #{carId,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.zw.admin.server.model.Car">
+    <insert id="insert" parameterType="com.zcc.admin.server.model.Car">
     insert into tb_car (car_id, car_num, park_no, 
       car_flag, car_type, car_color,car_owner,car_owner_phone
       )
@@ -53,7 +53,7 @@
       #{carFlag,jdbcType=INTEGER}, #{carType,jdbcType=VARCHAR}, #{carColor,jdbcType=VARCHAR}
       )
   </insert>
-    <insert id="insertSelective" parameterType="com.zw.admin.server.model.Car">
+    <insert id="insertSelective" parameterType="com.zcc.admin.server.model.Car">
         insert into tb_car
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="carId != null">
@@ -108,7 +108,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.Car">
+    <update id="updateByPrimaryKeySelective" parameterType="com.zcc.admin.server.model.Car">
         update tb_car
         <set>
             <if test="carNum != null">
@@ -135,7 +135,7 @@
         </set>
         where car_id = #{carId,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.zw.admin.server.model.Car">
+    <update id="updateByPrimaryKey" parameterType="com.zcc.admin.server.model.Car">
     update tb_car
     set car_num = #{carNum,jdbcType=VARCHAR},
       park_no = #{parkNo,jdbcType=VARCHAR},

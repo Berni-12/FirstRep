@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zw.admin.server.dao.BuildMapper">
-    <resultMap id="BaseResultMap" type="com.zw.admin.server.model.Build">
+<mapper namespace="com.zcc.admin.server.dao.BuildMapper">
+    <resultMap id="BaseResultMap" type="com.zcc.admin.server.model.Build">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="build_name" property="buildName" jdbcType="VARCHAR"/>
         <result column="build_area" property="buildArea" jdbcType="VARCHAR"/>
@@ -25,7 +25,7 @@
         from tb_build
         where id = #{id,jdbcType=INTEGER}
     </select>
-    <select id="selectBuild" resultType="com.zw.admin.server.model.Build">
+    <select id="selectBuild" resultType="com.zcc.admin.server.model.Build">
         select
         <include refid="Base_Column_List"/>
         from tb_build
@@ -36,14 +36,14 @@
         select count(1) from tb_build t
         <include refid="where"/>
     </select>
-    <select id="selectBuildName" resultType="com.zw.admin.server.model.House">
+    <select id="selectBuildName" resultType="com.zcc.admin.server.model.House">
         select build_name,id from tb_build
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_build
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insertSelective" parameterType="com.zw.admin.server.model.Build">
+    <insert id="insertSelective" parameterType="com.zcc.admin.server.model.Build">
         insert into tb_build
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -83,7 +83,7 @@
     </insert>
 
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.Build">
+    <update id="updateByPrimaryKeySelective" parameterType="com.zcc.admin.server.model.Build">
         update tb_build
         <set>
             <if test="buildName != null">

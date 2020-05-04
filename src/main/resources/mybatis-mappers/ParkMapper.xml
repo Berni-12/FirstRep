@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zw.admin.server.dao.ParkMapper" >
-  <resultMap id="BaseResultMap" type="com.zw.admin.server.model.Park" >
+<mapper namespace="com.zcc.admin.server.dao.ParkMapper" >
+  <resultMap id="BaseResultMap" type="com.zcc.admin.server.model.Park" >
     <id column="park_no" property="parkNo" jdbcType="VARCHAR" />
     <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
     <result column="expira_date" property="expiraDate" jdbcType="VARCHAR" />
@@ -31,7 +31,7 @@
     from tb_park
     where park_no = #{parkNo,jdbcType=VARCHAR}
   </select>
-  <select id="selectParkList" resultType="com.zw.admin.server.model.Park">
+  <select id="selectParkList" resultType="com.zcc.admin.server.model.Park">
     select
     <include refid="Base_Column_List" />
     from tb_park
@@ -46,13 +46,13 @@
     delete from tb_park
     where park_no = #{parkNo,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zw.admin.server.model.Park" >
+  <insert id="insert" parameterType="com.zcc.admin.server.model.Park" >
     insert into tb_park (park_no, owner_id, expira_date, 
       park_area)
     values (#{parkNo,jdbcType=VARCHAR}, #{ownerId,jdbcType=INTEGER}, #{expiraDate,jdbcType=VARCHAR}, 
       #{parkArea,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zw.admin.server.model.Park" >
+  <insert id="insertSelective" parameterType="com.zcc.admin.server.model.Park" >
     insert into tb_park
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="parkNo != null" >
@@ -128,7 +128,7 @@
         </trim>
       </foreach>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.Park" >
+    <update id="updateByPrimaryKeySelective" parameterType="com.zcc.admin.server.model.Park" >
     update tb_park
     <set >
       <if test="ownerId != null" >
@@ -149,7 +149,7 @@
     </set>
     where park_no = #{parkNo,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zw.admin.server.model.Park" >
+  <update id="updateByPrimaryKey" parameterType="com.zcc.admin.server.model.Park" >
     update tb_park
     set owner_id = #{ownerId,jdbcType=INTEGER},
       expira_date = #{expiraDate,jdbcType=VARCHAR},

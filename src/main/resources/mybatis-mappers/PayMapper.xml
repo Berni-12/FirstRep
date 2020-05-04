@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zw.admin.server.dao.PayMapper" >
-  <resultMap id="BaseResultMap" type="com.zw.admin.server.model.Pay" >
+<mapper namespace="com.zcc.admin.server.dao.PayMapper" >
+  <resultMap id="BaseResultMap" type="com.zcc.admin.server.model.Pay" >
     <id column="owner_pay_id" property="ownerPayId" jdbcType="INTEGER" />
     <result column="fee_item_id" property="feeItemId" jdbcType="INTEGER" />
     <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
@@ -23,7 +23,7 @@
     delete from tb_pay
     where owner_pay_id = #{ownerPayId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zw.admin.server.model.Pay" >
+  <insert id="insert" parameterType="com.zcc.admin.server.model.Pay" >
     insert into tb_pay (owner_pay_id, fee_item_id, owner_id, 
       pay_time, pay_money, pay_receive, 
       pay_state)
@@ -31,7 +31,7 @@
       #{payTime,jdbcType=VARCHAR}, #{payMoney,jdbcType=DECIMAL}, #{payReceive,jdbcType=DECIMAL}, 
       #{payState,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zw.admin.server.model.Pay" >
+  <insert id="insertSelective" parameterType="com.zcc.admin.server.model.Pay" >
     insert into tb_pay
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="ownerPayId != null" >
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.Pay" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zcc.admin.server.model.Pay" >
     update tb_pay
     <set >
       <if test="feeItemId != null" >
@@ -104,7 +104,7 @@
     </set>
     where owner_pay_id = #{ownerPayId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zw.admin.server.model.Pay" >
+  <update id="updateByPrimaryKey" parameterType="com.zcc.admin.server.model.Pay" >
     update tb_pay
     set fee_item_id = #{feeItemId,jdbcType=INTEGER},
       owner_id = #{ownerId,jdbcType=INTEGER},

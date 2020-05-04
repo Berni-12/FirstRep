@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zw.admin.server.dao.FeeMapper" >
-  <resultMap id="BaseResultMap" type="com.zw.admin.server.model.Fee" >
+<mapper namespace="com.zcc.admin.server.dao.FeeMapper" >
+  <resultMap id="BaseResultMap" type="com.zcc.admin.server.model.Fee" >
     <id column="fee_id" property="feeId" jdbcType="INTEGER" />
     <result column="fee_name" property="feeName" jdbcType="VARCHAR" />
     <result column="fee_norm" property="feeNorm" jdbcType="VARCHAR" />
@@ -20,13 +20,13 @@
     delete from tb_fee
     where fee_id = #{feeId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zw.admin.server.model.Fee" >
+  <insert id="insert" parameterType="com.zcc.admin.server.model.Fee" >
     insert into tb_fee (fee_id, fee_name, fee_norm
       )
     values (#{feeId,jdbcType=INTEGER}, #{feeName,jdbcType=VARCHAR}, #{feeNorm,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zw.admin.server.model.Fee" >
+  <insert id="insertSelective" parameterType="com.zcc.admin.server.model.Fee" >
     insert into tb_fee
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="feeId != null" >
@@ -51,7 +51,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.Fee" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zcc.admin.server.model.Fee" >
     update tb_fee
     <set >
       <if test="feeName != null" >
@@ -63,7 +63,7 @@
     </set>
     where fee_id = #{feeId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zw.admin.server.model.Fee" >
+  <update id="updateByPrimaryKey" parameterType="com.zcc.admin.server.model.Fee" >
     update tb_fee
     set fee_name = #{feeName,jdbcType=VARCHAR},
       fee_norm = #{feeNorm,jdbcType=VARCHAR}

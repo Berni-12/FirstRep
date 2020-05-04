@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zw.admin.server.dao.OwnerMapper" >
-  <resultMap id="BaseResultMap" type="com.zw.admin.server.model.Owner" >
+<mapper namespace="com.zcc.admin.server.dao.OwnerMapper" >
+  <resultMap id="BaseResultMap" type="com.zcc.admin.server.model.Owner" >
     <id column="owner_id" property="ownerId" jdbcType="INTEGER" />
     <result column="owner_name" property="ownerName" jdbcType="VARCHAR" />
     <result column="owner_sex" property="ownerSex" jdbcType="VARCHAR" />
@@ -36,7 +36,7 @@
     from tb_owner
     where owner_id = #{ownerId,jdbcType=INTEGER}
   </select>
-    <select id="selectOwnerList" resultType="com.zw.admin.server.model.Owner">
+    <select id="selectOwnerList" resultType="com.zcc.admin.server.model.Owner">
       select
       <include refid="Base_Column_List" />
       from tb_owner
@@ -52,7 +52,7 @@
     delete from tb_owner
     where owner_id = #{ownerId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zw.admin.server.model.Owner" >
+  <insert id="insert" parameterType="com.zcc.admin.server.model.Owner" >
     insert into tb_owner (owner_id, owner_name, owner_sex, 
       owner_phone, owner_come_time, owner_id_card
       )
@@ -60,7 +60,7 @@
       #{ownerPhone,jdbcType=VARCHAR}, #{ownerComeTime,jdbcType=VARCHAR}, #{ownerIdCard,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zw.admin.server.model.Owner" >
+  <insert id="insertSelective" parameterType="com.zcc.admin.server.model.Owner" >
     insert into tb_owner
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="ownerId != null" >
@@ -103,7 +103,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.Owner" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zcc.admin.server.model.Owner" >
     update tb_owner
     <set >
       <if test="ownerName != null" >
@@ -124,7 +124,7 @@
     </set>
     where owner_id = #{ownerId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zw.admin.server.model.Owner" >
+  <update id="updateByPrimaryKey" parameterType="com.zcc.admin.server.model.Owner" >
     update tb_owner
     set owner_name = #{ownerName,jdbcType=VARCHAR},
       owner_sex = #{ownerSex,jdbcType=VARCHAR},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zw.admin.server.dao.VisitorMapper" >
-  <resultMap id="BaseResultMap" type="com.zw.admin.server.model.Visitor" >
+<mapper namespace="com.zcc.admin.server.dao.VisitorMapper" >
+  <resultMap id="BaseResultMap" type="com.zcc.admin.server.model.Visitor" >
     <id column="visitor_id" property="visitorId" jdbcType="INTEGER" />
     <result column="visitor_name" property="visitorName" jdbcType="VARCHAR" />
     <result column="visitor_sex" property="visitorSex" jdbcType="VARCHAR" />
@@ -36,7 +36,7 @@
     from tb_visitor
     where visitor_id = #{visitorId,jdbcType=INTEGER}
   </select>
-    <select id="selectVisitorList" resultType="com.zw.admin.server.model.Visitor">
+    <select id="selectVisitorList" resultType="com.zcc.admin.server.model.Visitor">
       select
       <include refid="Base_Column_List" />
       from tb_visitor
@@ -51,7 +51,7 @@
     delete from tb_visitor
     where visitor_id = #{visitorId,jdbcType=INTEGER}
   </delete>
-  <insert id="insertSelective" parameterType="com.zw.admin.server.model.Visitor" >
+  <insert id="insertSelective" parameterType="com.zcc.admin.server.model.Visitor" >
     insert into tb_visitor
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="visitorId != null" >
@@ -94,7 +94,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zw.admin.server.model.Visitor" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zcc.admin.server.model.Visitor" >
     update tb_visitor
     <set >
       <if test="visitorName != null" >
