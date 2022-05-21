@@ -8,9 +8,9 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * @Author: MrZcc
+ * @Author: superlewy
  * @Description:多条数据Response
- * @Date: Created in 9:28 2019-3-26
+ * @Date:
  * @Modified By:
  */
 public class DatasResponse<T> extends BaseResponse {

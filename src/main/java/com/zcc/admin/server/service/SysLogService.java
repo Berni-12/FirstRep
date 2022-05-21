@@ -7,7 +7,7 @@ import com.zcc.admin.server.model.SysLogs;
  * 
  * @author zhangcc
  *
- *         2017年8月19日
+ *         2019年8月19日
  */
 public interface SysLogService {
 

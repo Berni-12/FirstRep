@@ -21,8 +21,7 @@ import java.util.Objects;
 /**
  * @ClassName OwnerController
  * @Description 业主controller
- * @Author zhangcc
- * @Date 2019/12/31 15:51
+ * @Author superlewy
  */
 @RestController
 @RequestMapping("/owner")

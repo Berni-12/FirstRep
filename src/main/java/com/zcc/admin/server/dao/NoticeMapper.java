@@ -1,6 +1,4 @@
-package com.zw.admin.server.dao;
-
-import com.zw.admin.server.model.Notice;
+package com.zcc.admin.server.dao;
 
 public interface NoticeMapper {
     /*int deleteByPrimaryKey(Integer noticeId);

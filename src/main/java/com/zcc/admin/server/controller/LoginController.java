@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiOperation;
 /**
  * 登陆相关接口
  * 
- * @author zhangcc
+ * @author superlewy
  *
  */
 @Api(tags = "登陆")

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Ehcache配置
  * 
- * @author zhangcc
+ * @author superlewy
  *
  */
 @Configuration

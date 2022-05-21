@@ -31,7 +31,7 @@ import io.swagger.annotations.ApiOperation;
 /**
  * 角色相关接口
  * 
- * @author zhangcc
+ * @author superlewy
  *
  */
 @Api(tags = "角色")
@@ -77,6 +77,13 @@ public class RoleController {
 	@RequiresPermissions("sys:role:query")
 	public Role get(@PathVariable Long id) {
 		return roleDao.getById(id);
+	}
+
+	@GetMapping("/current/{userId}")
+	@ApiOperation(value = "根据用户id获取角色名称和角色描述")
+	@RequiresPermissions("sys:role:query")
+	public Role getRoleName(@PathVariable Long userId) {
+		return roleDao.getRoleByUserId(userId);
 	}
 
 	@GetMapping("/all")

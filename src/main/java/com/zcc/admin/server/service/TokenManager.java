@@ -16,7 +16,7 @@ import com.zcc.admin.server.service.impl.RedisTokenManager;
  * 
  * @author zhangcc
  *
- *         2017年8月4日
+ *         2019年8月4日
  */
 public interface TokenManager {
 

@@ -22,7 +22,7 @@ import com.zcc.admin.server.dto.Token;
  * 
  * @author zhangcc
  *
- *         2017年8月13日
+ *         2019年8月13日
  */
 @Service
 public class RedisTokenManager implements TokenManager {

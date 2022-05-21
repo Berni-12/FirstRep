@@ -28,7 +28,7 @@ import com.zcc.admin.server.utils.SpringUtil;
  * 
  * @author zhangcc
  *
- *         2017年8月3日
+ *         2019年8月3日
  */
 public class RestfulFilter extends UserFilter {
 

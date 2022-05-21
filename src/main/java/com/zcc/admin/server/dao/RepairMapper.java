@@ -1,7 +1,6 @@
-package com.zw.admin.server.dao;
+package com.zcc.admin.server.dao;
 
-import com.zw.admin.server.model.Repair;
-import com.zw.admin.server.model.Visitor;
+import com.zcc.admin.server.model.Repair;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

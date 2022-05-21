@@ -22,8 +22,7 @@ import java.util.Objects;
 /**
  * @ClassName ParkController
  * @Description 车位管理Controller
- * @Author zhangcc
- * @Date 2020/1/1 16:56
+ * @Author superlewy
  */
 @RestController
 @RequestMapping("/park")

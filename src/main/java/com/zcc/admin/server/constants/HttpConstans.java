@@ -5,8 +5,7 @@ import com.zcc.admin.server.common.ResponseBuilder;
 /**
  * @ClassName HttpConstans
  * @Description 请求响应的Code
- * @Author zhangcc
- * @Date 2019/12/29 18:05
+ * @Author superlewy
  */
 public class HttpConstans {
 

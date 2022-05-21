@@ -4,8 +4,6 @@ package com.zcc.admin.server.common;
  * @Title: IStatusMessage
  * @Description: 响应状态信息
  * @author: youqing
- * @version: 1.0
- * @date: 2018/11/23 9:50
  */
 public interface IStatusMessage {
 

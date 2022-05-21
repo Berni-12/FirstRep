@@ -9,13 +9,11 @@ import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSeriali
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
 
 /**
- * redis配置<br>
+ *
  * 集群下启动session共享，需打开@EnableRedisHttpSession<br>
  * 单机下不需要
  * 
- * @author zhangcc
- *
- *         2017年8月10日
+ * @author superlewy
  */
 //@EnableRedisHttpSession
 @Configuration

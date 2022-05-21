@@ -24,7 +24,7 @@ import com.zcc.admin.server.utils.UserUtil;
  * 
  * @author zhangcc
  *
- *         2017年8月13日
+ *         2019年8月13日
  */
 public class LogoutFilter extends org.apache.shiro.web.filter.authc.LogoutFilter {
 

@@ -24,6 +24,12 @@
             limit #{offset}, #{limit}
         </if>
 	</select>
+	<select id="getRoleByUserId" resultType="com.zcc.admin.server.model.Role">
+		SELECT name,description
+		FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId
+		LEFT JOIN sys_user su ON sru.userId=su.id
+		WHERE su.id=#{userId}
+	</select>
 
 	<insert id="saveRolePermission">
 		insert into sys_role_permission(roleId, permissionId) values

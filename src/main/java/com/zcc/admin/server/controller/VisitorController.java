@@ -1,17 +1,15 @@
-package com.zw.admin.server.controller;
+package com.zcc.admin.server.controller;
 
 import com.github.pagehelper.PageHelper;
-import com.zw.admin.server.common.BaseResponse;
-import com.zw.admin.server.common.ResponseBuilder;
-import com.zw.admin.server.constants.HttpConstans;
-import com.zw.admin.server.dao.VisitorMapper;
-import com.zw.admin.server.model.Owner;
-import com.zw.admin.server.model.Pay;
-import com.zw.admin.server.model.Visitor;
-import com.zw.admin.server.page.table.PageTableHandler;
-import com.zw.admin.server.page.table.PageTableRequest;
-import com.zw.admin.server.page.table.PageTableResponse;
-import com.zw.admin.server.service.VisitorService;
+import com.zcc.admin.server.constants.HttpConstans;
+import com.zcc.admin.server.dao.VisitorMapper;
+import com.zcc.admin.server.model.Visitor;
+import com.zcc.admin.server.page.table.PageTableHandler;
+import com.zcc.admin.server.page.table.PageTableRequest;
+import com.zcc.admin.server.page.table.PageTableResponse;
+import com.zcc.admin.server.service.VisitorService;
+import com.zcc.admin.server.common.BaseResponse;
+import com.zcc.admin.server.common.ResponseBuilder;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +22,7 @@ import java.util.Objects;
 /**
  * @ClassName VisitorController
  * @Description 访客Controller
- * @Author zhangcc
- * @Date 2019/12/29 17:53
+ * @Author superlewy
  */
 
 @RestController

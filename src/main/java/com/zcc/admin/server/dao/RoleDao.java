@@ -46,4 +46,7 @@ public interface RoleDao {
 	
 	@Delete("delete from sys_role_user where roleId = #{roleId}")
 	int deleteRoleUser(Long roleId);
+
+
+	Role getRoleByUserId(@Param("userId") Long userId);
 }

@@ -3,7 +3,7 @@ package com.zcc.admin.server.constants;
 /**
  * 用户相关常量
  * 
- * @author zhangcc
+ * @author superlewy
  *
  */
 public interface UserConstants {

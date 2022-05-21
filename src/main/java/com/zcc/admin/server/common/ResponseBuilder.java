@@ -5,10 +5,8 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * @Author: MrZcc
+ * @Author: superlewy
  * @Description:Response构建器
- * @Date: Created in 9:30 2019-3-26
- * @Modified By:
  */
 public class ResponseBuilder {
     private String message = "success";

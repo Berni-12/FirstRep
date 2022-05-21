@@ -1,10 +1,8 @@
 package com.zcc.admin.server.common;
 
 /**
- * @Author: MrZcc
+ * @Author: superlewy
  * @Description:分页数据Response bean
- * @Date: Created in 9:30 2019-3-26
- * @Modified By:
  */
 public class PageResponse {
     private long total;

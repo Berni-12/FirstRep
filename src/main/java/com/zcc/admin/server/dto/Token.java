@@ -8,7 +8,7 @@ import java.util.Date;
  * 
  * @author zhangcc
  *
- *         2017年8月4日
+ *         2019年8月4日
  */
 
 public class Token implements Serializable {

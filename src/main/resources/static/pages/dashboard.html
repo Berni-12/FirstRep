@@ -1,120 +1,99 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title></title>
-<link rel="stylesheet" href="../layui/css/layui.css" media="all" />
-<link rel="stylesheet" href="../css/global.css" media="all" />
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="../css/global.css" media="all"/>
 </head>
 
 <body>
-	<div class="admin-main">
-		<blockquote class="layui-elem-quote">
-			<fieldset class="layui-elem-field">
-				<legend>内置功能：</legend>
-				<div class="layui-field-box">
-					<p>
-						<span class="layui-badge-dot"></span>用户管理：用户查询、添加用户、修改用户、给用户分配角色
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>菜单管理：菜单列表、添加菜单、修改菜单、删除菜单、权限配置、菜单图标设置、菜单排序
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>角色管理：角色查询、添加角色、修改角色、删除角色
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>代码生成：根据表名生成bean、controller、dao、Mapper.xml、列表页、搜索、分页、新增页、修改页
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>job集群：创建job、取消job、查询job、下拉搜索spring bean
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>数据源监控：druid
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>接口swagger文档
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>日志查询
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>邮件管理：发送邮件、搜索邮件
-					</p>
+<div class="admin-main">
+    <blockquote class="layui-elem-quote">
+        <fieldset class="layui-elem-field">
+            <legend>尊敬的<span id="nickName" style="font-weight: bolder"></span>，欢迎进入小区物业管理系统</legend>
+            <div class="layui-field-box">
+                <table class="layui-table">
+                    <thead>
+                    <tr>
+                        <th colspan="2" scope="col" style="text-align: center;font-weight: bold">我的个人信息</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="font-weight: bold" width="30%">用户名</td>
+                        <td><span id="username"></span></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">昵称</td>
+                        <td id="nick-name"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">手机号</td>
+                        <td id="user-phone"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">邮箱</td>
+                        <td id="e-mail"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">生日</td>
+                        <td id="birthday"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">注册时间</td>
+                        <td id="create-time"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">我的角色</td>
+                        <td id="role-name"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </blockquote>
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <script type="text/javascript" src="../js/libs/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../js/jq.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+</div>
+<script>
+    showCurrentUser();
+    /**
+     * 获取当前用户信息
+     */
+    function showCurrentUser(){
+        $.ajax({
+            type : 'get',
+            url : '/users/current',
+            async : false,
+            success : function(data) {
+                $("#username").text(data.username);
+                $("#nick-name").text(data.nickname);
+                $("#user-phone").text(data.phone);
+                $("#e-mail").text(data.email);
+                $("#birthday").text(data.birthday);
+                $("#create-time").text(data.createTime);
+                getUserRole(data.id);
 
-					<p>
-						<span class="layui-badge-dot"></span>文件管理：上传文件、文件列表、文件删除
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>公告管理：公告未读提醒、发布公告、查询公告、公告阅读人列表
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>excel下载：自定义sql导出excel、也可在页面展示sql结果数据
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>字典管理：一些常量字典的维护
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>个人信息修改
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>修改密码
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>头像修改
-					</p>
-				</div>
-			</fieldset>
-		</blockquote>
-		<blockquote class="layui-elem-quote">
-			<fieldset class="layui-elem-field">
-				<legend>其他说明：</legend>
-				</h2>
-				<div class="layui-field-box"
-					style="margin: 0.0px; padding: 10.0px 15.0px; color: #000000; background-color: #f2f2f2;">
-					<p>
-						<span class="layui-badge-dot"></span>日志模块
-					</p>
-					<p>&nbsp;&nbsp;&nbsp; sl4j日志分包：将sql日志、业务日志、异常日志进行了分离，更方便定位问题</p>
-					<p>&nbsp;&nbsp;&nbsp; 日志表：使用aop拦截实现</p>
-					<p>
-						<span class="layui-badge-dot"></span>token管理器：基于redis和ehcache两种方式任你选择
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>权限控制：基于session和Restful的无状态token两种方式
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>分布式session共享：使用spring-session实现
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>对各种不同异常进行了全局统一处理
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>使用lombok简化java代码，让源码更简洁，可读性高
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>mybatis未进行二次封装，原滋原味，简单sql采用注解，复杂sql采用Mapper.xml配置
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>使用了layui的弹出层、菜单、文件上传、富文本编辑、日历、选项卡、数据表格等
-					</p>
-					<p>
-						<span class="layui-badge-dot"></span>表单数据采用bootstrapValidator校验，简单快捷方便
-					</p>
-			</fieldset>
-		</blockquote>
-		<blockquote class="layui-elem-quote">
-			<fieldset class="layui-elem-field">
-				<legend>说明：</legend>
-				<div class="layui-field-box">
-					<p>单机下不需要session共享</p>
-					<p>集群下，请打开pom里的 groupId：org.springframework.session
-						artifactId：spring-session-data-redis 和com.zw.admin.server.config.RedisConfig
-						中的@EnableRedisHttpSession</p>
-					<p>将EhCacheTokenManager类上的注解@Primary移到RedisTokenManager上面</p>
-				</div>
-			</fieldset>
-		</blockquote>
-	</div>
+            }
+        });
+    }
+
+    /**
+     * 获取当前用户的角色
+     */
+    function getUserRole(userId) {
+        $.ajax({
+            type : 'get',
+            url : '/roles/current/'+userId,
+            async : false,
+            success : function(data) {
+                $("#role-name").text(data.name+"("+data.description+")");
+            }
+        });
+    }
+</script>
 </body>
-
 </html>

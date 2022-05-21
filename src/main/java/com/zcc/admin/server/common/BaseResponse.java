@@ -7,10 +7,10 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- * @Author: MrZcc
+ * @Author: superlewy
  * @Description:标准默认的BaseResponse
- * @Date: Created in 9:27 2019-3-26
- * @Modified By:
+ * @Date:
+ * @Modified
  */
 public class BaseResponse extends TimeStampResponse implements Serializable {
     @JsonInclude(value = JsonInclude.Include.NON_NULL)

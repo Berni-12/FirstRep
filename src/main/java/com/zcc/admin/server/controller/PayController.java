@@ -1,13 +1,12 @@
-package com.zw.admin.server.controller;
+package com.zcc.admin.server.controller;
 
 import com.github.pagehelper.PageHelper;
-import com.zw.admin.server.common.BaseResponse;
-import com.zw.admin.server.common.ResponseBuilder;
-import com.zw.admin.server.constants.HttpConstans;
-import com.zw.admin.server.dao.PayMapper;
-import com.zw.admin.server.model.Park;
-import com.zw.admin.server.model.Pay;
-import com.zw.admin.server.service.PayService;
+import com.zcc.admin.server.dao.PayMapper;
+import com.zcc.admin.server.model.Pay;
+import com.zcc.admin.server.service.PayService;
+import com.zcc.admin.server.common.BaseResponse;
+import com.zcc.admin.server.common.ResponseBuilder;
+import com.zcc.admin.server.constants.HttpConstans;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +16,7 @@ import java.util.Objects;
 /**
  * @ClassName PayController
  * @Description 缴费单
- * @Author zhangcc
- * @Date 2020/1/3 16:40
+ * @Author superlewy
  */
 
 @RestController

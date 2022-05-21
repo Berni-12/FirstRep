@@ -22,7 +22,7 @@ import com.zcc.admin.server.filter.RestfulFilter;
 /**
  * shiro配置
  * 
- * @author zhangcc
+ * @author superlewy
  *
  */
 @Configuration

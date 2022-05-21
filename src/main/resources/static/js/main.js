@@ -77,7 +77,8 @@ function showLoginInfo(){
 		async : false,
 		success : function(data) {
 			$(".admin-header-user span").text(data.nickname);
-			
+			$("#nickName").text(data.nickname);
+
 			var pro = window.location.protocol;
 			var host = window.location.host;
 			var domain = pro + "//" + host;
