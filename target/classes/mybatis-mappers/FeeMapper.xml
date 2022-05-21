@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zcc.admin.server.dao.FeeMapper" >
+  <resultMap id="BaseResultMap" type="com.zcc.admin.server.model.Fee" >
+    <id column="fee_id" property="feeId" jdbcType="INTEGER" />
+    <result column="fee_name" property="feeName" jdbcType="VARCHAR" />
+    <result column="fee_norm" property="feeNorm" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fee_id, fee_name, fee_norm
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_fee
+    where fee_id = #{feeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_fee
+    where fee_id = #{feeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zcc.admin.server.model.Fee" >
+    insert into tb_fee (fee_id, fee_name, fee_norm
+      )
+    values (#{feeId,jdbcType=INTEGER}, #{feeName,jdbcType=VARCHAR}, #{feeNorm,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zcc.admin.server.model.Fee" >
+    insert into tb_fee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="feeId != null" >
+        fee_id,
+      </if>
+      <if test="feeName != null" >
+        fee_name,
+      </if>
+      <if test="feeNorm != null" >
+        fee_norm,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="feeId != null" >
+        #{feeId,jdbcType=INTEGER},
+      </if>
+      <if test="feeName != null" >
+        #{feeName,jdbcType=VARCHAR},
+      </if>
+      <if test="feeNorm != null" >
+        #{feeNorm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zcc.admin.server.model.Fee" >
+    update tb_fee
+    <set >
+      <if test="feeName != null" >
+        fee_name = #{feeName,jdbcType=VARCHAR},
+      </if>
+      <if test="feeNorm != null" >
+        fee_norm = #{feeNorm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fee_id = #{feeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zcc.admin.server.model.Fee" >
+    update tb_fee
+    set fee_name = #{feeName,jdbcType=VARCHAR},
+      fee_norm = #{feeNorm,jdbcType=VARCHAR}
+    where fee_id = #{feeId,jdbcType=INTEGER}
+  </update>
+</mapper>

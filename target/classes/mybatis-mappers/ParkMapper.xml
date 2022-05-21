@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zcc.admin.server.dao.ParkMapper" >
+  <resultMap id="BaseResultMap" type="com.zcc.admin.server.model.Park" >
+    <id column="park_no" property="parkNo" jdbcType="VARCHAR" />
+    <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
+    <result column="expira_date" property="expiraDate" jdbcType="VARCHAR" />
+    <result column="park_area" property="parkArea" jdbcType="VARCHAR" />
+    <result column="park_type" property="parkType" jdbcType="INTEGER" />
+    <result column="owner_name" property="ownerName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    park_no, owner_id, expira_date, park_area,park_type,owner_name
+  </sql>
+  <sql id="where">
+    <where>
+      <if test="params.park_no != null and params.park_no != ''">
+        and park_no = #{params.park_no}
+      </if>
+      <if test="params.park_type != null and params.park_type != ''">
+        and park_type = #{params.park_type}
+      </if>
+      <if test="params.owner_name != null and params.owner_name != ''">
+        and owner_name = #{params.owner_name}
+      </if>
+    </where>
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_park
+    where park_no = #{parkNo,jdbcType=VARCHAR}
+  </select>
+  <select id="selectParkList" resultType="com.zcc.admin.server.model.Park">
+    select
+    <include refid="Base_Column_List" />
+    from tb_park
+    <include refid="where"/>
+    limit #{offset}, #{limit}
+  </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(1) from tb_park t
+    <include refid="where"/>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tb_park
+    where park_no = #{parkNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zcc.admin.server.model.Park" >
+    insert into tb_park (park_no, owner_id, expira_date, 
+      park_area)
+    values (#{parkNo,jdbcType=VARCHAR}, #{ownerId,jdbcType=INTEGER}, #{expiraDate,jdbcType=VARCHAR}, 
+      #{parkArea,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zcc.admin.server.model.Park" >
+    insert into tb_park
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="parkNo != null" >
+        park_no,
+      </if>
+      <if test="ownerId != null" >
+        owner_id,
+      </if>
+      <if test="expiraDate != null" >
+        expira_date,
+      </if>
+      <if test="parkArea != null" >
+        park_area,
+      </if>
+      <if test="parkType != null" >
+        park_type,
+      </if>
+      <if test="ownerName != null" >
+        owner_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="parkNo != null" >
+        #{parkNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerId != null" >
+        #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="expiraDate != null" >
+        #{expiraDate,jdbcType=VARCHAR},
+      </if>
+      <if test="parkArea != null" >
+        #{parkArea,jdbcType=VARCHAR},
+      </if>
+      <if test="parkType != null" >
+        #{parkType,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerName != null" >
+        #{ownerName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+    <insert id="insertFromExcel" parameterType="java.util.List">
+      <foreach collection="parks" item="park" separator=";">
+        insert into tb_park
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="park.parkNo != null and park.parkNo != ''">
+            park_no,
+          </if>
+          <if test="park.parkArea != null and park.parkArea != ''" >
+            park_area,
+          </if>
+          <if test="park.parkType != null and park.parkType != ''" >
+            park_type,
+          </if>
+          <if test="park.ownerName != null and park.ownerName != ''" >
+            owner_name,
+          </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+          <if test="park.parkNo != null and park.parkNo != ''" >
+            #{park.parkNo,jdbcType=VARCHAR},
+          </if>
+          <if test="park.parkArea != null and park.parkArea != ''" >
+            #{park.parkArea,jdbcType=VARCHAR},
+          </if>
+          <if test="park.parkType != null and park.parkType != ''" >
+            #{park.parkType,jdbcType=VARCHAR},
+          </if>
+          <if test="park.ownerName != null and park.ownerName != ''" >
+            #{park.ownerName,jdbcType=VARCHAR},
+          </if>
+        </trim>
+      </foreach>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zcc.admin.server.model.Park" >
+    update tb_park
+    <set >
+      <if test="ownerId != null" >
+        owner_id = #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="expiraDate != null" >
+        expira_date = #{expiraDate,jdbcType=VARCHAR},
+      </if>
+      <if test="parkArea != null" >
+        park_area = #{parkArea,jdbcType=VARCHAR},
+      </if>
+      <if test="parkType != null" >
+        park_type = #{parkType,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerName != null" >
+        owner_name = #{ownerName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where park_no = #{parkNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zcc.admin.server.model.Park" >
+    update tb_park
+    set owner_id = #{ownerId,jdbcType=INTEGER},
+      expira_date = #{expiraDate,jdbcType=VARCHAR},
+      park_area = #{parkArea,jdbcType=VARCHAR}
+    where park_no = #{parkNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

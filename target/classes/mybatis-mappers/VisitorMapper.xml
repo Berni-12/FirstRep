@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zcc.admin.server.dao.VisitorMapper" >
+  <resultMap id="BaseResultMap" type="com.zcc.admin.server.model.Visitor" >
+    <id column="visitor_id" property="visitorId" jdbcType="INTEGER" />
+    <result column="visitor_name" property="visitorName" jdbcType="VARCHAR" />
+    <result column="visitor_sex" property="visitorSex" jdbcType="VARCHAR" />
+    <result column="visitor_phone" property="visitorPhone" jdbcType="VARCHAR" />
+    <result column="visitor_card_no" property="visitorCardNo" jdbcType="VARCHAR" />
+    <result column="visitor_come_time" property="visitorComeTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    visitor_id, visitor_name, visitor_sex, visitor_phone, visitor_card_no, visitor_come_time
+  </sql>
+
+  <sql id="where">
+  <where>
+    <if test="params.visitor_name != null and params.visitor_name != ''">
+      and visitor_name = #{params.visitor_name}
+    </if>
+    <if test="params.visitor_sex != null and params.visitor_sex != ''">
+      and visitor_sex = #{params.visitor_sex}
+    </if>
+    <if test="params.visitor_phone != null and params.visitor_phone != ''">
+      and visitor_phone = #{params.visitor_phone}
+    </if>
+    <if test="params.visitor_card_no != null and params.visitor_card_no != ''">
+      and visitor_card_no = #{params.visitor_card_no}
+    </if>
+  </where>
+</sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_visitor
+    where visitor_id = #{visitorId,jdbcType=INTEGER}
+  </select>
+    <select id="selectVisitorList" resultType="com.zcc.admin.server.model.Visitor">
+      select
+      <include refid="Base_Column_List" />
+      from tb_visitor
+      <include refid="where"/>
+      limit #{offset}, #{limit}
+    </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(1) from tb_visitor t
+    <include refid="where"/>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_visitor
+    where visitor_id = #{visitorId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective" parameterType="com.zcc.admin.server.model.Visitor" >
+    insert into tb_visitor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="visitorId != null" >
+        visitor_id,
+      </if>
+      <if test="visitorName != null" >
+        visitor_name,
+      </if>
+      <if test="visitorSex != null" >
+        visitor_sex,
+      </if>
+      <if test="visitorPhone != null" >
+        visitor_phone,
+      </if>
+      <if test="visitorCardNo != null" >
+        visitor_card_no,
+      </if>
+      <if test="visitorComeTime != null" >
+        visitor_come_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="visitorId != null" >
+        #{visitorId,jdbcType=INTEGER},
+      </if>
+      <if test="visitorName != null" >
+        #{visitorName,jdbcType=VARCHAR},
+      </if>
+      <if test="visitorSex != null" >
+        #{visitorSex,jdbcType=VARCHAR},
+      </if>
+      <if test="visitorPhone != null" >
+        #{visitorPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="visitorCardNo != null" >
+        #{visitorCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="visitorComeTime != null" >
+        #{visitorComeTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zcc.admin.server.model.Visitor" >
+    update tb_visitor
+    <set >
+      <if test="visitorName != null" >
+        visitor_name = #{visitorName,jdbcType=VARCHAR},
+      </if>
+      <if test="visitorSex != null" >
+        visitor_sex = #{visitorSex,jdbcType=VARCHAR},
+      </if>
+      <if test="visitorPhone != null" >
+        visitor_phone = #{visitorPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="visitorCardNo != null" >
+        visitor_card_no = #{visitorCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="visitorComeTime != null" >
+        visitor_come_time = #{visitorComeTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where visitor_id = #{visitorId,jdbcType=INTEGER}
+  </update>
+</mapper>

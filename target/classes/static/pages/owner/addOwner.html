@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <form class="form-horizontal" onsubmit="return false" id="form">
+        <fieldset>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>业主姓名</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='请输入业主姓名' type='text' name='owner_name' id='owner_name'
+                           data-bv-notempty='true' data-bv-notempty-message='业主姓名不能为空'>
+                </div>
+            </div>
+
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>联系电话</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='请输入业主联系电话' type='text' name='owner_phone' id='owner_phone'
+                           data-bv-notempty='true' data-bv-notempty-message='业主联系电话不能为空'>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>身份证号</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='请输入业主身份证号' type='text' name='owner_id_card'
+                           id='owner_id_card' data-bv-notempty='true' data-bv-notempty-message='请输入业主身份证号'>
+                </div>
+            </div>
+
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>业主性别</label>
+                <div class="col-md-10" style="width: 100px">
+                    <select class="form-control input-sm" name="owner_sex" id="owner_sex">
+                        <option value="1">男</option>
+                        <option value="2">女</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <div class="row" align="center">
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" onclick="location.href='ownerList.html'">返回</button>
+                        <button class="btn btn-primary" type="submit" onclick="add()">
+                            <i class="fa fa-save"></i> 保存
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../js/jq.js"></script>
+<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript">
+    layui.use(['layer', 'laydate'], function () {
+        var layer = layui.layer;
+    });
+
+    function add() {
+        $('#form').bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                owner_phone: {
+                    validators: {
+                        regexp: {
+                            regexp: /^1\d{10}$/,
+                            message: '手机号格式错误,请输入正确的手机号！'
+                        }
+                    }
+                },
+                owner_id_card: {
+                    validators: {
+                        callback: {
+                            message: '身份证号码格式错误',
+                            callback: function (value, validator) {
+                                if (!value) {
+                                    return true
+                                } else if (isCardNo(value)) {
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        var bootstrapValidator = $("#form").data('bootstrapValidator');
+        bootstrapValidator.validate();
+        if (!bootstrapValidator.isValid()) {
+            return;
+        }
+
+        var owner_sex;
+        var owner_name = $("#owner_name").val();
+        var owner_phone = $("#owner_phone").val();
+        var owner_id_card = $("#owner_id_card").val();
+        var sex = $("#owner_sex").val();
+        if (sex === "2") {
+            owner_sex = "女";
+        } else if (sex === "1") {
+            owner_sex = "男";
+        }
+        $.ajax({
+            type: 'post',
+            url: '/owner/saveOwner',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({
+                ownerName: owner_name,
+                ownerPhone: owner_phone,
+                ownerSex: owner_sex,
+                ownerIdCard: owner_id_card
+            }),
+            success: function (data) {
+                layer.msg("添加成功", {shift: -1, time: 1000}, function () {
+                    location.href = "ownerList.html";
+                });
+            },
+            error: function (data) {
+                layer.msg("添加失败", {shift: -1, time: 1000}, function () {
+                    location.href = "ownerList.html";
+                });
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

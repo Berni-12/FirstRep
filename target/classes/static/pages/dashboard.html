@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="../css/global.css" media="all"/>
+</head>
+
+<body>
+<div class="admin-main">
+    <blockquote class="layui-elem-quote">
+        <fieldset class="layui-elem-field">
+            <legend>尊敬的<span id="nickName" style="font-weight: bolder"></span>，欢迎进入小区物业管理系统</legend>
+            <div class="layui-field-box">
+                <table class="layui-table">
+                    <thead>
+                    <tr>
+                        <th colspan="2" scope="col" style="text-align: center;font-weight: bold">我的个人信息</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="font-weight: bold" width="30%">用户名</td>
+                        <td><span id="username"></span></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">昵称</td>
+                        <td id="nick-name"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">手机号</td>
+                        <td id="user-phone"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">邮箱</td>
+                        <td id="e-mail"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">生日</td>
+                        <td id="birthday"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">注册时间</td>
+                        <td id="create-time"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold">我的角色</td>
+                        <td id="role-name"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+    </blockquote>
+    <script type="text/javascript" src="../layui/layui.js"></script>
+    <script type="text/javascript" src="../js/libs/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../js/jq.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+</div>
+<script>
+    showCurrentUser();
+    /**
+     * 获取当前用户信息
+     */
+    function showCurrentUser(){
+        $.ajax({
+            type : 'get',
+            url : '/users/current',
+            async : false,
+            success : function(data) {
+                $("#username").text(data.username);
+                $("#nick-name").text(data.nickname);
+                $("#user-phone").text(data.phone);
+                $("#e-mail").text(data.email);
+                $("#birthday").text(data.birthday);
+                $("#create-time").text(data.createTime);
+                getUserRole(data.id);
+
+            }
+        });
+    }
+
+    /**
+     * 获取当前用户的角色
+     */
+    function getUserRole(userId) {
+        $.ajax({
+            type : 'get',
+            url : '/roles/current/'+userId,
+            async : false,
+            success : function(data) {
+                $("#role-name").text(data.name+"("+data.description+")");
+            }
+        });
+    }
+</script>
+</body>
+</html>

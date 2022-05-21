@@ -1,0 +1,5 @@
+2022-05-16 19:06:05,786 [http-nio-8081-exec-2] DEBUG -[MyShiroRealm.java:71]- 权限配置
+2022-05-16 19:07:58,554 [http-nio-8081-exec-1] DEBUG -[LogoutFilter.java:39]- admin退出成功
+2022-05-16 19:08:01,755 [http-nio-8081-exec-7] DEBUG -[MyShiroRealm.java:71]- 权限配置
+2022-05-16 23:05:27,606 [http-nio-8081-exec-3] DEBUG -[MyShiroRealm.java:71]- 权限配置
+2022-05-16 23:52:53,575 [http-nio-8081-exec-7] DEBUG -[MyShiroRealm.java:71]- 权限配置

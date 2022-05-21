@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zcc.admin.server.dao.OwnerMapper" >
+  <resultMap id="BaseResultMap" type="com.zcc.admin.server.model.Owner" >
+    <id column="owner_id" property="ownerId" jdbcType="INTEGER" />
+    <result column="owner_name" property="ownerName" jdbcType="VARCHAR" />
+    <result column="owner_sex" property="ownerSex" jdbcType="VARCHAR" />
+    <result column="owner_phone" property="ownerPhone" jdbcType="VARCHAR" />
+    <result column="owner_come_time" property="ownerComeTime" jdbcType="VARCHAR" />
+    <result column="owner_id_card" property="ownerIdCard" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    owner_id, owner_name, owner_sex, owner_phone, owner_come_time, owner_id_card
+  </sql>
+
+  <sql id="where">
+    <where>
+      <if test="params.owner_name != null and params.owner_name != ''">
+        and owner_name = #{params.owner_name}
+      </if>
+      <if test="params.owner_sex != null and params.owner_sex != ''">
+        and owner_sex = #{params.owner_sex}
+      </if>
+      <if test="params.owner_phone != null and params.owner_phone != ''">
+        and owner_phone = #{params.owner_phone}
+      </if>
+      <if test="params.owner_come_time != null and params.owner_come_time != ''">
+        and owner_come_time = #{params.owner_come_time}
+      </if>
+    </where>
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_owner
+    where owner_id = #{ownerId,jdbcType=INTEGER}
+  </select>
+    <select id="selectOwnerList" resultType="com.zcc.admin.server.model.Owner">
+      select
+      <include refid="Base_Column_List" />
+      from tb_owner
+      <include refid="where"/>
+      limit #{offset}, #{limit}
+    </select>
+  <select id="count" resultType="java.lang.Integer">
+    select count(1) from tb_owner t
+    <include refid="where"/>
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_owner
+    where owner_id = #{ownerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zcc.admin.server.model.Owner" >
+    insert into tb_owner (owner_id, owner_name, owner_sex, 
+      owner_phone, owner_come_time, owner_id_card
+      )
+    values (#{ownerId,jdbcType=INTEGER}, #{ownerName,jdbcType=VARCHAR}, #{ownerSex,jdbcType=VARCHAR}, 
+      #{ownerPhone,jdbcType=VARCHAR}, #{ownerComeTime,jdbcType=VARCHAR}, #{ownerIdCard,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zcc.admin.server.model.Owner" >
+    insert into tb_owner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ownerId != null" >
+        owner_id,
+      </if>
+      <if test="ownerName != null" >
+        owner_name,
+      </if>
+      <if test="ownerSex != null" >
+        owner_sex,
+      </if>
+      <if test="ownerPhone != null" >
+        owner_phone,
+      </if>
+      <if test="ownerComeTime != null" >
+        owner_come_time,
+      </if>
+      <if test="ownerIdCard != null" >
+        owner_id_card,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ownerId != null" >
+        #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="ownerName != null" >
+        #{ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerSex != null" >
+        #{ownerSex,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerPhone != null" >
+        #{ownerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerComeTime != null" >
+        #{ownerComeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerIdCard != null" >
+        #{ownerIdCard,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zcc.admin.server.model.Owner" >
+    update tb_owner
+    <set >
+      <if test="ownerName != null" >
+        owner_name = #{ownerName,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerSex != null" >
+        owner_sex = #{ownerSex,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerPhone != null" >
+        owner_phone = #{ownerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerComeTime != null" >
+        owner_come_time = #{ownerComeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ownerIdCard != null" >
+        owner_id_card = #{ownerIdCard,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where owner_id = #{ownerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zcc.admin.server.model.Owner" >
+    update tb_owner
+    set owner_name = #{ownerName,jdbcType=VARCHAR},
+      owner_sex = #{ownerSex,jdbcType=VARCHAR},
+      owner_phone = #{ownerPhone,jdbcType=VARCHAR},
+      owner_come_time = #{ownerComeTime,jdbcType=VARCHAR},
+      owner_id_card = #{ownerIdCard,jdbcType=VARCHAR}
+    where owner_id = #{ownerId,jdbcType=INTEGER}
+  </update>
+</mapper>

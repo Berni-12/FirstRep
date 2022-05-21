@@ -1,0 +1,4 @@
+2022-03-28 12:35:53,444 [http-nio-8081-exec-4] DEBUG -[MyShiroRealm.java:71]- 权限配置
+2022-03-28 12:37:25,870 [http-nio-8081-exec-9] DEBUG -[OwnerServiceImpl.java:47]- 添加名为小明的业主
+2022-03-28 12:37:57,080 [http-nio-8081-exec-2] DEBUG -[MyShiroRealm.java:71]- 权限配置
+2022-03-28 12:50:16,917 [http-nio-8081-exec-3] DEBUG -[MyShiroRealm.java:71]- 权限配置

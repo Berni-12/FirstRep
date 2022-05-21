@@ -1,0 +1,1590 @@
+2022-04-17 00:11:46,003 [http-nio-8081-exec-1] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 00:11:46,303 [http-nio-8081-exec-1] ==> Parameters: admin(String)
+2022-04-17 00:11:46,341 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 00:11:46,351 [http-nio-8081-exec-1] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 00:11:46,362 [http-nio-8081-exec-1] ==> Parameters: 1(Long), web端登陆(String), true(Boolean), null
+2022-04-17 00:11:46,563 [http-nio-8081-exec-1] <==    Updates: 1
+2022-04-17 00:11:46,727 [http-nio-8081-exec-2] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:11:46,732 [http-nio-8081-exec-2] ==> Parameters: 1(Long)
+2022-04-17 00:11:46,742 [http-nio-8081-exec-2] <==      Total: 50
+2022-04-17 00:11:46,833 [http-nio-8081-exec-4] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:11:46,837 [http-nio-8081-exec-4] ==> Parameters: 1(Long)
+2022-04-17 00:11:46,843 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 00:11:46,924 [http-nio-8081-exec-10] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:11:46,925 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 00:11:46,926 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 00:11:46,938 [http-nio-8081-exec-2] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:11:46,938 [http-nio-8081-exec-2] ==> Parameters: 1(Long)
+2022-04-17 00:11:46,940 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 00:11:46,944 [http-nio-8081-exec-2] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:11:46,944 [http-nio-8081-exec-2] ==> Parameters: 1(Long)
+2022-04-17 00:11:46,949 [http-nio-8081-exec-2] <==      Total: 50
+2022-04-17 00:11:46,958 [http-nio-8081-exec-2] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 00:11:46,960 [http-nio-8081-exec-2] ==> Parameters: 1(Long)
+2022-04-17 00:11:46,961 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 00:11:53,488 [http-nio-8081-exec-6] ==>  Preparing: select * from t_dict t where t.type = ? 
+2022-04-17 00:11:53,489 [http-nio-8081-exec-6] ==> Parameters: sex(String)
+2022-04-17 00:11:53,493 [http-nio-8081-exec-6] <==      Total: 2
+2022-04-17 00:11:58,125 [http-nio-8081-exec-7] ==>  Preparing: select * from t_dict t where t.type = ? 
+2022-04-17 00:11:58,126 [http-nio-8081-exec-7] ==> Parameters: userStatus(String)
+2022-04-17 00:11:58,127 [http-nio-8081-exec-7] <==      Total: 3
+2022-04-17 00:11:58,202 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from sys_user t 
+2022-04-17 00:11:58,202 [http-nio-8081-exec-6] ==> Parameters: 
+2022-04-17 00:11:58,205 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 00:11:58,209 [http-nio-8081-exec-6] ==>  Preparing: select * from sys_user t order by username desc, nickname asc limit ?, ? 
+2022-04-17 00:11:58,210 [http-nio-8081-exec-6] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:11:58,216 [http-nio-8081-exec-6] <==      Total: 5
+2022-04-17 00:12:04,771 [http-nio-8081-exec-2] ==>  Preparing: select * from sys_role t 
+2022-04-17 00:12:04,772 [http-nio-8081-exec-2] ==> Parameters: 
+2022-04-17 00:12:04,773 [http-nio-8081-exec-2] <==      Total: 4
+2022-04-17 00:12:04,785 [http-nio-8081-exec-1] ==>  Preparing: select * from sys_user t where t.id = ? 
+2022-04-17 00:12:04,785 [http-nio-8081-exec-1] ==> Parameters: 3(Long)
+2022-04-17 00:12:04,787 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 00:12:04,795 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:12:04,795 [http-nio-8081-exec-7] ==> Parameters: 3(Long)
+2022-04-17 00:12:04,797 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 00:12:11,449 [http-nio-8081-exec-5] ==>  Preparing: select * from sys_permission t order by t.sort 
+2022-04-17 00:12:11,450 [http-nio-8081-exec-5] ==> Parameters: 
+2022-04-17 00:12:11,453 [http-nio-8081-exec-5] <==      Total: 54
+2022-04-17 00:12:13,542 [http-nio-8081-exec-5] ==>  Preparing: select count(1) from sys_role t 
+2022-04-17 00:12:13,542 [http-nio-8081-exec-5] ==> Parameters: 
+2022-04-17 00:12:13,546 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 00:12:13,550 [http-nio-8081-exec-5] ==>  Preparing: select * from sys_role t order by updateTime desc limit ?, ? 
+2022-04-17 00:12:13,551 [http-nio-8081-exec-5] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:12:13,553 [http-nio-8081-exec-5] <==      Total: 4
+2022-04-17 00:12:19,916 [http-nio-8081-exec-7] ==>  Preparing: select count(1) from file_info t 
+2022-04-17 00:12:19,917 [http-nio-8081-exec-7] ==> Parameters: 
+2022-04-17 00:12:19,956 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 00:12:19,960 [http-nio-8081-exec-7] ==>  Preparing: select * from file_info t order by updateTime desc limit ?, ? 
+2022-04-17 00:12:19,961 [http-nio-8081-exec-7] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:12:19,963 [http-nio-8081-exec-7] <==      Total: 2
+2022-04-17 00:12:20,971 [http-nio-8081-exec-9] ==>  Preparing: select * from t_dict t where t.type = ? 
+2022-04-17 00:12:20,971 [http-nio-8081-exec-9] ==> Parameters: noticeStatus(String)
+2022-04-17 00:12:20,973 [http-nio-8081-exec-9] <==      Total: 2
+2022-04-17 00:12:21,004 [http-nio-8081-exec-7] ==>  Preparing: select count(1) from t_notice t 
+2022-04-17 00:12:21,005 [http-nio-8081-exec-7] ==> Parameters: 
+2022-04-17 00:12:21,007 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 00:12:21,012 [http-nio-8081-exec-7] ==>  Preparing: select * from t_notice t order by updateTime desc, title desc limit ?, ? 
+2022-04-17 00:12:21,013 [http-nio-8081-exec-7] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:12:21,017 [http-nio-8081-exec-7] <==      Total: 2
+2022-04-17 00:12:23,703 [http-nio-8081-exec-4] ==>  Preparing: select count(1) from sys_logs t left join sys_user u on u.id = t.userId 
+2022-04-17 00:12:23,704 [http-nio-8081-exec-4] ==> Parameters: 
+2022-04-17 00:12:23,705 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 00:12:23,710 [http-nio-8081-exec-4] ==>  Preparing: select t.*, u.username, u.nickname from sys_logs t left join sys_user u on u.id = t.userId order by createTime desc limit ?, ? 
+2022-04-17 00:12:23,711 [http-nio-8081-exec-4] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:12:23,715 [http-nio-8081-exec-4] <==      Total: 10
+2022-04-17 00:12:29,997 [http-nio-8081-exec-9] ==>  Preparing: select owner_id,owner_name from tb_owner 
+2022-04-17 00:12:29,998 [http-nio-8081-exec-9] ==> Parameters: 
+2022-04-17 00:12:30,083 [http-nio-8081-exec-9] <==      Total: 5
+2022-04-17 00:12:30,119 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from tb_house t 
+2022-04-17 00:12:30,119 [http-nio-8081-exec-1] ==> Parameters: 
+2022-04-17 00:12:30,123 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 00:12:30,128 [http-nio-8081-exec-1] ==>  Preparing: select house_no, owner_id, house_type, house_area,build_name,build_id,owner_name from tb_house limit ?, ? 
+2022-04-17 00:12:30,128 [http-nio-8081-exec-1] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:12:30,130 [http-nio-8081-exec-1] <==      Total: 10
+2022-04-17 00:12:36,608 [http-nio-8081-exec-4] ==>  Preparing: select count(1) from tb_owner t 
+2022-04-17 00:12:36,608 [http-nio-8081-exec-4] ==> Parameters: 
+2022-04-17 00:12:36,610 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 00:12:36,614 [http-nio-8081-exec-4] ==>  Preparing: select owner_id, owner_name, owner_sex, owner_phone, owner_come_time, owner_id_card from tb_owner limit ?, ? 
+2022-04-17 00:12:36,615 [http-nio-8081-exec-4] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:12:36,616 [http-nio-8081-exec-4] <==      Total: 5
+2022-04-17 00:12:38,533 [http-nio-8081-exec-8] ==>  Preparing: select count(1) from tb_visitor t 
+2022-04-17 00:12:38,533 [http-nio-8081-exec-8] ==> Parameters: 
+2022-04-17 00:12:38,541 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 00:12:38,544 [http-nio-8081-exec-8] ==>  Preparing: select visitor_id, visitor_name, visitor_sex, visitor_phone, visitor_card_no, visitor_come_time from tb_visitor limit ?, ? 
+2022-04-17 00:12:38,545 [http-nio-8081-exec-8] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:12:38,546 [http-nio-8081-exec-8] <==      Total: 3
+2022-04-17 00:12:57,192 [http-nio-8081-exec-3] ==>  Preparing: select count(1) from sys_user t 
+2022-04-17 00:12:57,193 [http-nio-8081-exec-3] ==> Parameters: 
+2022-04-17 00:12:57,197 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 00:12:57,202 [http-nio-8081-exec-3] ==>  Preparing: select * from sys_user t order by username desc, nickname asc limit ?, ? 
+2022-04-17 00:12:57,202 [http-nio-8081-exec-3] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:12:57,205 [http-nio-8081-exec-3] <==      Total: 5
+2022-04-17 00:13:01,465 [http-nio-8081-exec-4] ==>  Preparing: select * from sys_role t 
+2022-04-17 00:13:01,466 [http-nio-8081-exec-4] ==> Parameters: 
+2022-04-17 00:13:01,466 [http-nio-8081-exec-4] <==      Total: 4
+2022-04-17 00:13:01,476 [http-nio-8081-exec-5] ==>  Preparing: select * from sys_user t where t.id = ? 
+2022-04-17 00:13:01,477 [http-nio-8081-exec-5] ==> Parameters: 3(Long)
+2022-04-17 00:13:01,478 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 00:13:01,486 [http-nio-8081-exec-1] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:13:01,487 [http-nio-8081-exec-1] ==> Parameters: 3(Long)
+2022-04-17 00:13:01,489 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 00:16:29,460 [taskExecutor-1] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 00:16:29,461 [taskExecutor-1] ==> Parameters: 1(Long), 退出(String), true(Boolean), null
+2022-04-17 00:16:29,634 [taskExecutor-1] <==    Updates: 1
+2022-04-17 00:16:40,455 [http-nio-8081-exec-5] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 00:16:40,456 [http-nio-8081-exec-5] ==> Parameters: 小虎(String)
+2022-04-17 00:16:40,458 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 00:16:44,167 [http-nio-8081-exec-10] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 00:16:44,168 [http-nio-8081-exec-10] ==> Parameters: 小虎(String)
+2022-04-17 00:16:44,171 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 00:16:44,177 [http-nio-8081-exec-10] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 00:16:44,178 [http-nio-8081-exec-10] ==> Parameters: 3(Long), web端登陆(String), true(Boolean), null
+2022-04-17 00:16:44,270 [http-nio-8081-exec-10] <==    Updates: 1
+2022-04-17 00:16:44,370 [http-nio-8081-exec-1] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:16:44,371 [http-nio-8081-exec-1] ==> Parameters: 3(Long)
+2022-04-17 00:16:44,373 [http-nio-8081-exec-1] <==      Total: 14
+2022-04-17 00:16:44,394 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:16:44,395 [http-nio-8081-exec-6] ==> Parameters: 3(Long)
+2022-04-17 00:16:44,396 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 00:16:44,463 [http-nio-8081-exec-4] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:16:44,464 [http-nio-8081-exec-4] ==> Parameters: 3(Long)
+2022-04-17 00:16:44,465 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 00:16:44,469 [http-nio-8081-exec-10] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:16:44,470 [http-nio-8081-exec-10] ==> Parameters: 3(Long)
+2022-04-17 00:16:44,471 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 00:16:44,474 [http-nio-8081-exec-10] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:16:44,474 [http-nio-8081-exec-10] ==> Parameters: 3(Long)
+2022-04-17 00:16:44,476 [http-nio-8081-exec-10] <==      Total: 14
+2022-04-17 00:16:50,728 [http-nio-8081-exec-4] ==>  Preparing: select count(1) from tb_park t 
+2022-04-17 00:16:50,728 [http-nio-8081-exec-4] ==> Parameters: 
+2022-04-17 00:16:50,733 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 00:16:50,738 [http-nio-8081-exec-4] ==>  Preparing: select park_no, owner_id, expira_date, park_area,park_type,owner_name from tb_park limit ?, ? 
+2022-04-17 00:16:50,738 [http-nio-8081-exec-4] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:16:50,740 [http-nio-8081-exec-4] <==      Total: 10
+2022-04-17 00:16:51,223 [http-nio-8081-exec-5] ==>  Preparing: select count(1) from t_notice t 
+2022-04-17 00:16:51,224 [http-nio-8081-exec-5] ==> Parameters: 
+2022-04-17 00:16:51,225 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 00:16:51,229 [http-nio-8081-exec-5] ==>  Preparing: select * from t_notice t order by updateTime desc, title desc limit ?, ? 
+2022-04-17 00:16:51,229 [http-nio-8081-exec-5] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:16:51,231 [http-nio-8081-exec-5] <==      Total: 2
+2022-04-17 00:16:51,751 [http-nio-8081-exec-2] ==>  Preparing: select count(1) from file_info t 
+2022-04-17 00:16:51,752 [http-nio-8081-exec-2] ==> Parameters: 
+2022-04-17 00:16:51,755 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 00:16:51,760 [http-nio-8081-exec-2] ==>  Preparing: select * from file_info t order by updateTime desc limit ?, ? 
+2022-04-17 00:16:51,761 [http-nio-8081-exec-2] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:16:51,763 [http-nio-8081-exec-2] <==      Total: 2
+2022-04-17 00:16:52,783 [http-nio-8081-exec-2] ==>  Preparing: select count(1) from tb_car t 
+2022-04-17 00:16:52,783 [http-nio-8081-exec-2] ==> Parameters: 
+2022-04-17 00:16:52,787 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 00:16:52,792 [http-nio-8081-exec-2] ==>  Preparing: select car_id, car_num, park_no, car_flag, car_type, car_color,car_owner,car_owner_phone from tb_car limit ?, ? 
+2022-04-17 00:16:52,792 [http-nio-8081-exec-2] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:16:52,794 [http-nio-8081-exec-2] <==      Total: 3
+2022-04-17 00:16:56,659 [http-nio-8081-exec-9] ==>  Preparing: select * from t_dict t where t.type = ? 
+2022-04-17 00:16:56,660 [http-nio-8081-exec-9] ==> Parameters: isRead(String)
+2022-04-17 00:16:56,661 [http-nio-8081-exec-9] <==      Total: 2
+2022-04-17 00:16:56,688 [http-nio-8081-exec-2] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? WHERE t.status = 1 
+2022-04-17 00:16:56,689 [http-nio-8081-exec-2] ==> Parameters: 3(Long)
+2022-04-17 00:16:56,690 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 00:16:56,694 [http-nio-8081-exec-2] ==>  Preparing: select t.*,r.createTime readTime, if(r.createTime is null, 0, 1) isRead,r.userId from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? WHERE t.status = 1 order by updateTime desc limit ?, ? 
+2022-04-17 00:16:56,695 [http-nio-8081-exec-2] ==> Parameters: 3(Long), 0(Integer), 10(Integer)
+2022-04-17 00:16:56,697 [http-nio-8081-exec-2] <==      Total: 2
+2022-04-17 00:16:58,802 [http-nio-8081-exec-8] ==>  Preparing: select * from t_notice t where t.id = ? 
+2022-04-17 00:16:58,802 [http-nio-8081-exec-8] ==> Parameters: 3(Long)
+2022-04-17 00:16:58,803 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 00:16:58,806 [http-nio-8081-exec-8] ==>  Preparing: insert ignore into t_notice_read(noticeId, userId, createTime) values(?, ?, now()) 
+2022-04-17 00:16:58,806 [http-nio-8081-exec-8] ==> Parameters: 3(Long), 3(Long)
+2022-04-17 00:16:58,841 [http-nio-8081-exec-8] <==    Updates: 1
+2022-04-17 00:16:58,844 [http-nio-8081-exec-8] ==>  Preparing: select u.* from t_notice_read r inner join sys_user u on u.id = r.userId where r.noticeId = ? order by r.createTime desc 
+2022-04-17 00:16:58,845 [http-nio-8081-exec-8] ==> Parameters: 3(Long)
+2022-04-17 00:16:58,848 [http-nio-8081-exec-8] <==      Total: 2
+2022-04-17 00:17:05,184 [taskExecutor-2] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 00:17:05,185 [taskExecutor-2] ==> Parameters: 3(Long), 退出(String), true(Boolean), null
+2022-04-17 00:17:05,314 [taskExecutor-2] <==    Updates: 1
+2022-04-17 00:17:08,812 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 00:17:08,812 [http-nio-8081-exec-7] ==> Parameters: admin(String)
+2022-04-17 00:17:08,814 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 00:17:08,820 [http-nio-8081-exec-7] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 00:17:08,821 [http-nio-8081-exec-7] ==> Parameters: 1(Long), web端登陆(String), true(Boolean), null
+2022-04-17 00:17:08,950 [http-nio-8081-exec-7] <==    Updates: 1
+2022-04-17 00:17:09,018 [http-nio-8081-exec-6] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:17:09,018 [http-nio-8081-exec-6] ==> Parameters: 1(Long)
+2022-04-17 00:17:09,020 [http-nio-8081-exec-6] <==      Total: 50
+2022-04-17 00:17:09,039 [http-nio-8081-exec-8] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:17:09,040 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 00:17:09,041 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 00:17:09,111 [http-nio-8081-exec-10] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:17:09,112 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 00:17:09,113 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 00:17:09,116 [http-nio-8081-exec-2] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:17:09,117 [http-nio-8081-exec-2] ==> Parameters: 1(Long)
+2022-04-17 00:17:09,118 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 00:17:09,122 [http-nio-8081-exec-2] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:17:09,122 [http-nio-8081-exec-2] ==> Parameters: 1(Long)
+2022-04-17 00:17:09,124 [http-nio-8081-exec-2] <==      Total: 50
+2022-04-17 00:17:09,128 [http-nio-8081-exec-2] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 00:17:09,129 [http-nio-8081-exec-2] ==> Parameters: 1(Long)
+2022-04-17 00:17:09,130 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 00:40:33,858 [http-nio-8081-exec-9] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 00:40:33,924 [http-nio-8081-exec-9] ==> Parameters: admin(String)
+2022-04-17 00:40:33,950 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 00:40:33,960 [http-nio-8081-exec-9] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 00:40:33,968 [http-nio-8081-exec-9] ==> Parameters: 1(Long), web端登陆(String), true(Boolean), null
+2022-04-17 00:40:34,132 [http-nio-8081-exec-9] <==    Updates: 1
+2022-04-17 00:40:34,251 [http-nio-8081-exec-10] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:40:34,254 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 00:40:34,263 [http-nio-8081-exec-10] <==      Total: 50
+2022-04-17 00:40:34,320 [http-nio-8081-exec-5] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:40:34,322 [http-nio-8081-exec-5] ==> Parameters: 1(Long)
+2022-04-17 00:40:34,323 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 00:40:34,388 [http-nio-8081-exec-8] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:40:34,389 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 00:40:34,391 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 00:40:34,399 [http-nio-8081-exec-9] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:40:34,400 [http-nio-8081-exec-9] ==> Parameters: 1(Long)
+2022-04-17 00:40:34,401 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 00:40:34,405 [http-nio-8081-exec-9] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:40:34,405 [http-nio-8081-exec-9] ==> Parameters: 1(Long)
+2022-04-17 00:40:34,412 [http-nio-8081-exec-9] <==      Total: 50
+2022-04-17 00:40:34,420 [http-nio-8081-exec-9] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 00:40:34,422 [http-nio-8081-exec-9] ==> Parameters: 1(Long)
+2022-04-17 00:40:34,424 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 00:40:36,830 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from sys_user t 
+2022-04-17 00:40:36,830 [http-nio-8081-exec-6] ==> Parameters: 
+2022-04-17 00:40:36,832 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 00:40:36,837 [http-nio-8081-exec-6] ==>  Preparing: select * from sys_user t order by username desc, nickname asc limit ?, ? 
+2022-04-17 00:40:36,839 [http-nio-8081-exec-6] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:40:36,841 [http-nio-8081-exec-6] <==      Total: 5
+2022-04-17 00:40:40,042 [http-nio-8081-exec-3] ==>  Preparing: select * from sys_permission t order by t.sort 
+2022-04-17 00:40:40,043 [http-nio-8081-exec-3] ==> Parameters: 
+2022-04-17 00:40:40,047 [http-nio-8081-exec-3] <==      Total: 54
+2022-04-17 00:40:40,626 [http-nio-8081-exec-4] ==>  Preparing: select count(1) from sys_role t 
+2022-04-17 00:40:40,627 [http-nio-8081-exec-4] ==> Parameters: 
+2022-04-17 00:40:40,629 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 00:40:40,634 [http-nio-8081-exec-4] ==>  Preparing: select * from sys_role t order by updateTime desc limit ?, ? 
+2022-04-17 00:40:40,635 [http-nio-8081-exec-4] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:40:40,637 [http-nio-8081-exec-4] <==      Total: 4
+2022-04-17 00:40:48,185 [http-nio-8081-exec-8] ==>  Preparing: select count(1) from t_notice t 
+2022-04-17 00:40:48,185 [http-nio-8081-exec-8] ==> Parameters: 
+2022-04-17 00:40:48,188 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 00:40:48,192 [http-nio-8081-exec-8] ==>  Preparing: select * from t_notice t order by updateTime desc, title desc limit ?, ? 
+2022-04-17 00:40:48,193 [http-nio-8081-exec-8] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:40:48,199 [http-nio-8081-exec-8] <==      Total: 2
+2022-04-17 00:40:49,308 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from sys_logs t left join sys_user u on u.id = t.userId 
+2022-04-17 00:40:49,309 [http-nio-8081-exec-1] ==> Parameters: 
+2022-04-17 00:40:49,310 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 00:40:49,316 [http-nio-8081-exec-1] ==>  Preparing: select t.*, u.username, u.nickname from sys_logs t left join sys_user u on u.id = t.userId order by createTime desc limit ?, ? 
+2022-04-17 00:40:49,317 [http-nio-8081-exec-1] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:40:49,321 [http-nio-8081-exec-1] <==      Total: 10
+2022-04-17 00:42:15,011 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from sys_logs t left join sys_user u on u.id = t.userId 
+2022-04-17 00:42:15,011 [http-nio-8081-exec-1] ==> Parameters: 
+2022-04-17 00:42:15,013 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 00:42:15,016 [http-nio-8081-exec-1] ==>  Preparing: select t.*, u.username, u.nickname from sys_logs t left join sys_user u on u.id = t.userId order by createTime desc limit ?, ? 
+2022-04-17 00:42:15,017 [http-nio-8081-exec-1] ==> Parameters: 10(Integer), 10(Integer)
+2022-04-17 00:42:15,021 [http-nio-8081-exec-1] <==      Total: 10
+2022-04-17 00:43:13,852 [http-nio-8081-exec-8] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:43:13,853 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 00:43:13,855 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 00:43:13,969 [http-nio-8081-exec-10] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:43:13,970 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 00:43:13,971 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 00:43:13,978 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:43:13,979 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 00:43:13,980 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 00:43:13,986 [http-nio-8081-exec-7] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:43:13,986 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 00:43:13,990 [http-nio-8081-exec-7] <==      Total: 50
+2022-04-17 00:43:13,995 [http-nio-8081-exec-7] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 00:43:13,995 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 00:43:13,998 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 00:43:20,122 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from sys_user t 
+2022-04-17 00:43:20,123 [http-nio-8081-exec-9] ==> Parameters: 
+2022-04-17 00:43:20,126 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 00:43:20,133 [http-nio-8081-exec-9] ==>  Preparing: select * from sys_user t order by username desc, nickname asc limit ?, ? 
+2022-04-17 00:43:20,133 [http-nio-8081-exec-9] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:43:20,138 [http-nio-8081-exec-9] <==      Total: 5
+2022-04-17 00:43:21,781 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from t_notice t 
+2022-04-17 00:43:21,782 [http-nio-8081-exec-1] ==> Parameters: 
+2022-04-17 00:43:21,784 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 00:43:21,789 [http-nio-8081-exec-1] ==>  Preparing: select * from t_notice t order by updateTime desc, title desc limit ?, ? 
+2022-04-17 00:43:21,790 [http-nio-8081-exec-1] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:43:21,793 [http-nio-8081-exec-1] <==      Total: 2
+2022-04-17 00:43:24,301 [http-nio-8081-exec-7] ==>  Preparing: select count(1) from sys_logs t left join sys_user u on u.id = t.userId 
+2022-04-17 00:43:24,302 [http-nio-8081-exec-7] ==> Parameters: 
+2022-04-17 00:43:24,303 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 00:43:24,308 [http-nio-8081-exec-7] ==>  Preparing: select t.*, u.username, u.nickname from sys_logs t left join sys_user u on u.id = t.userId order by createTime desc limit ?, ? 
+2022-04-17 00:43:24,309 [http-nio-8081-exec-7] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:43:24,313 [http-nio-8081-exec-7] <==      Total: 10
+2022-04-17 00:43:37,182 [http-nio-8081-exec-8] ==>  Preparing: select count(1) from sys_logs t left join sys_user u on u.id = t.userId 
+2022-04-17 00:43:37,182 [http-nio-8081-exec-8] ==> Parameters: 
+2022-04-17 00:43:37,184 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 00:43:37,188 [http-nio-8081-exec-8] ==>  Preparing: select t.*, u.username, u.nickname from sys_logs t left join sys_user u on u.id = t.userId order by createTime desc limit ?, ? 
+2022-04-17 00:43:37,189 [http-nio-8081-exec-8] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:43:37,191 [http-nio-8081-exec-8] <==      Total: 10
+2022-04-17 00:44:05,600 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from sys_logs t left join sys_user u on u.id = t.userId WHERE t.flag = ? 
+2022-04-17 00:44:05,601 [http-nio-8081-exec-9] ==> Parameters: 1(String)
+2022-04-17 00:44:05,704 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 00:44:05,711 [http-nio-8081-exec-9] ==>  Preparing: select t.*, u.username, u.nickname from sys_logs t left join sys_user u on u.id = t.userId WHERE t.flag = ? order by createTime desc limit ?, ? 
+2022-04-17 00:44:05,712 [http-nio-8081-exec-9] ==> Parameters: 1(String), 0(Integer), 10(Integer)
+2022-04-17 00:44:05,714 [http-nio-8081-exec-9] <==      Total: 10
+2022-04-17 00:44:12,806 [http-nio-8081-exec-10] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:44:12,807 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 00:44:12,808 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 00:44:12,886 [http-nio-8081-exec-7] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:44:12,886 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 00:44:12,887 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 00:44:12,891 [http-nio-8081-exec-8] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 00:44:12,892 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 00:44:12,893 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 00:44:41,297 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from sys_logs t left join sys_user u on u.id = t.userId 
+2022-04-17 00:44:41,298 [http-nio-8081-exec-6] ==> Parameters: 
+2022-04-17 00:44:41,300 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 00:44:41,305 [http-nio-8081-exec-6] ==>  Preparing: select t.*, u.username, u.nickname from sys_logs t left join sys_user u on u.id = t.userId order by createTime desc limit ?, ? 
+2022-04-17 00:44:41,306 [http-nio-8081-exec-6] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:44:41,309 [http-nio-8081-exec-6] <==      Total: 10
+2022-04-17 00:45:16,149 [http-nio-8081-exec-8] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:45:16,149 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 00:45:16,150 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 00:45:16,154 [http-nio-8081-exec-8] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:45:16,154 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 00:45:16,157 [http-nio-8081-exec-8] <==      Total: 50
+2022-04-17 00:45:16,160 [http-nio-8081-exec-8] ==>  Preparing: select count(1) from sys_logs t left join sys_user u on u.id = t.userId 
+2022-04-17 00:45:16,161 [http-nio-8081-exec-8] ==> Parameters: 
+2022-04-17 00:45:16,162 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 00:45:16,165 [http-nio-8081-exec-8] ==>  Preparing: select t.*, u.username, u.nickname from sys_logs t left join sys_user u on u.id = t.userId order by createTime desc limit ?, ? 
+2022-04-17 00:45:16,165 [http-nio-8081-exec-8] ==> Parameters: 10(Integer), 10(Integer)
+2022-04-17 00:45:16,167 [http-nio-8081-exec-8] <==      Total: 10
+2022-04-17 00:45:17,519 [http-nio-8081-exec-10] ==>  Preparing: select count(1) from sys_logs t left join sys_user u on u.id = t.userId 
+2022-04-17 00:45:17,520 [http-nio-8081-exec-10] ==> Parameters: 
+2022-04-17 00:45:17,521 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 00:45:17,524 [http-nio-8081-exec-10] ==>  Preparing: select t.*, u.username, u.nickname from sys_logs t left join sys_user u on u.id = t.userId order by createTime desc limit ?, ? 
+2022-04-17 00:45:17,525 [http-nio-8081-exec-10] ==> Parameters: 240(Integer), 10(Integer)
+2022-04-17 00:45:17,527 [http-nio-8081-exec-10] <==      Total: 2
+2022-04-17 00:45:21,310 [http-nio-8081-exec-2] ==>  Preparing: select count(1) from sys_logs t left join sys_user u on u.id = t.userId 
+2022-04-17 00:45:21,311 [http-nio-8081-exec-2] ==> Parameters: 
+2022-04-17 00:45:21,312 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 00:45:21,314 [http-nio-8081-exec-2] ==>  Preparing: select t.*, u.username, u.nickname from sys_logs t left join sys_user u on u.id = t.userId order by createTime desc limit ?, ? 
+2022-04-17 00:45:21,315 [http-nio-8081-exec-2] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:45:21,317 [http-nio-8081-exec-2] <==      Total: 10
+2022-04-17 00:47:04,461 [http-nio-8081-exec-4] ==>  Preparing: select count(1) from tb_build t 
+2022-04-17 00:47:04,462 [http-nio-8081-exec-4] ==> Parameters: 
+2022-04-17 00:47:04,496 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 00:47:04,499 [http-nio-8081-exec-4] ==>  Preparing: select id, build_name, build_area, build_floor from tb_build limit ?, ? 
+2022-04-17 00:47:04,500 [http-nio-8081-exec-4] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:47:04,501 [http-nio-8081-exec-4] <==      Total: 10
+2022-04-17 00:47:06,550 [http-nio-8081-exec-3] ==>  Preparing: select count(1) from tb_car t 
+2022-04-17 00:47:06,550 [http-nio-8081-exec-3] ==> Parameters: 
+2022-04-17 00:47:06,552 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 00:47:06,557 [http-nio-8081-exec-3] ==>  Preparing: select car_id, car_num, park_no, car_flag, car_type, car_color,car_owner,car_owner_phone from tb_car limit ?, ? 
+2022-04-17 00:47:06,557 [http-nio-8081-exec-3] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:47:06,559 [http-nio-8081-exec-3] <==      Total: 3
+2022-04-17 00:47:07,376 [http-nio-8081-exec-8] ==>  Preparing: select count(1) from tb_park t 
+2022-04-17 00:47:07,376 [http-nio-8081-exec-8] ==> Parameters: 
+2022-04-17 00:47:07,378 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 00:47:07,382 [http-nio-8081-exec-8] ==>  Preparing: select park_no, owner_id, expira_date, park_area,park_type,owner_name from tb_park limit ?, ? 
+2022-04-17 00:47:07,383 [http-nio-8081-exec-8] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:47:07,384 [http-nio-8081-exec-8] <==      Total: 10
+2022-04-17 00:47:08,257 [http-nio-8081-exec-3] ==>  Preparing: select count(1) from tb_repair t 
+2022-04-17 00:47:08,257 [http-nio-8081-exec-3] ==> Parameters: 
+2022-04-17 00:47:08,290 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 00:47:08,294 [http-nio-8081-exec-3] ==>  Preparing: select repair_id, repair_time, repair_reson, repair_people_name, repair_state, finish_time,house_no,phone_num from tb_repair limit ?, ? 
+2022-04-17 00:47:08,294 [http-nio-8081-exec-3] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:47:08,296 [http-nio-8081-exec-3] <==      Total: 2
+2022-04-17 00:47:11,665 [http-nio-8081-exec-9] ==>  Preparing: select owner_id,owner_name from tb_owner 
+2022-04-17 00:47:11,665 [http-nio-8081-exec-9] ==> Parameters: 
+2022-04-17 00:47:11,667 [http-nio-8081-exec-9] <==      Total: 5
+2022-04-17 00:47:11,711 [http-nio-8081-exec-4] ==>  Preparing: select count(1) from tb_house t 
+2022-04-17 00:47:11,711 [http-nio-8081-exec-4] ==> Parameters: 
+2022-04-17 00:47:11,713 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 00:47:11,718 [http-nio-8081-exec-4] ==>  Preparing: select house_no, owner_id, house_type, house_area,build_name,build_id,owner_name from tb_house limit ?, ? 
+2022-04-17 00:47:11,719 [http-nio-8081-exec-4] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:47:11,720 [http-nio-8081-exec-4] <==      Total: 10
+2022-04-17 00:47:12,465 [http-nio-8081-exec-2] ==>  Preparing: select * from t_dict t where t.type = ? 
+2022-04-17 00:47:12,466 [http-nio-8081-exec-2] ==> Parameters: noticeStatus(String)
+2022-04-17 00:47:12,467 [http-nio-8081-exec-2] <==      Total: 2
+2022-04-17 00:47:12,494 [http-nio-8081-exec-10] ==>  Preparing: select count(1) from t_notice t 
+2022-04-17 00:47:12,494 [http-nio-8081-exec-10] ==> Parameters: 
+2022-04-17 00:47:12,496 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 00:47:12,500 [http-nio-8081-exec-10] ==>  Preparing: select * from t_notice t order by updateTime desc, title desc limit ?, ? 
+2022-04-17 00:47:12,501 [http-nio-8081-exec-10] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:47:12,502 [http-nio-8081-exec-10] <==      Total: 2
+2022-04-17 00:47:13,946 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from file_info t 
+2022-04-17 00:47:13,947 [http-nio-8081-exec-6] ==> Parameters: 
+2022-04-17 00:47:13,949 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 00:47:13,956 [http-nio-8081-exec-6] ==>  Preparing: select * from file_info t order by updateTime desc limit ?, ? 
+2022-04-17 00:47:13,956 [http-nio-8081-exec-6] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:47:13,958 [http-nio-8081-exec-6] <==      Total: 2
+2022-04-17 00:47:16,228 [http-nio-8081-exec-9] ==>  Preparing: select * from t_dict t where t.type = ? 
+2022-04-17 00:47:16,229 [http-nio-8081-exec-9] ==> Parameters: userStatus(String)
+2022-04-17 00:47:16,230 [http-nio-8081-exec-9] <==      Total: 3
+2022-04-17 00:47:16,258 [http-nio-8081-exec-3] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:47:16,259 [http-nio-8081-exec-3] ==> Parameters: 1(Long)
+2022-04-17 00:47:16,260 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 00:47:16,264 [http-nio-8081-exec-3] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:47:16,264 [http-nio-8081-exec-3] ==> Parameters: 1(Long)
+2022-04-17 00:47:16,267 [http-nio-8081-exec-3] <==      Total: 50
+2022-04-17 00:47:16,272 [http-nio-8081-exec-3] ==>  Preparing: select count(1) from sys_user t 
+2022-04-17 00:47:16,273 [http-nio-8081-exec-3] ==> Parameters: 
+2022-04-17 00:47:16,275 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 00:47:16,278 [http-nio-8081-exec-3] ==>  Preparing: select * from sys_user t order by username desc, nickname asc limit ?, ? 
+2022-04-17 00:47:16,279 [http-nio-8081-exec-3] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:47:16,281 [http-nio-8081-exec-3] <==      Total: 5
+2022-04-17 00:47:22,021 [http-nio-8081-exec-10] ==>  Preparing: select * from t_dict t where t.type = ? 
+2022-04-17 00:47:22,021 [http-nio-8081-exec-10] ==> Parameters: sex(String)
+2022-04-17 00:47:22,022 [http-nio-8081-exec-10] <==      Total: 2
+2022-04-17 00:47:22,032 [http-nio-8081-exec-1] ==>  Preparing: select * from sys_role t 
+2022-04-17 00:47:22,033 [http-nio-8081-exec-1] ==> Parameters: 
+2022-04-17 00:47:22,034 [http-nio-8081-exec-1] <==      Total: 4
+2022-04-17 00:47:22,044 [http-nio-8081-exec-9] ==>  Preparing: select * from sys_user t where t.id = ? 
+2022-04-17 00:47:22,044 [http-nio-8081-exec-9] ==> Parameters: 2(Long)
+2022-04-17 00:47:22,046 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 00:47:22,056 [http-nio-8081-exec-8] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:47:22,056 [http-nio-8081-exec-8] ==> Parameters: 2(Long)
+2022-04-17 00:47:22,058 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 00:47:28,194 [taskExecutor-1] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 00:47:28,196 [taskExecutor-1] ==> Parameters: 1(Long), 退出(String), true(Boolean), null
+2022-04-17 00:47:28,380 [taskExecutor-1] <==    Updates: 1
+2022-04-17 00:47:31,685 [http-nio-8081-exec-5] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 00:47:31,686 [http-nio-8081-exec-5] ==> Parameters: user(String)
+2022-04-17 00:47:31,687 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 00:47:31,691 [http-nio-8081-exec-5] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 00:47:31,692 [http-nio-8081-exec-5] ==> Parameters: 2(Long), web端登陆(String), true(Boolean), null
+2022-04-17 00:47:31,740 [http-nio-8081-exec-5] <==    Updates: 1
+2022-04-17 00:47:31,811 [http-nio-8081-exec-4] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:47:31,811 [http-nio-8081-exec-4] ==> Parameters: 2(Long)
+2022-04-17 00:47:31,812 [http-nio-8081-exec-4] <==      Total: 9
+2022-04-17 00:47:31,832 [http-nio-8081-exec-8] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:47:31,834 [http-nio-8081-exec-8] ==> Parameters: 2(Long)
+2022-04-17 00:47:31,836 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 00:47:31,895 [http-nio-8081-exec-10] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:47:31,895 [http-nio-8081-exec-10] ==> Parameters: 2(Long)
+2022-04-17 00:47:31,897 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 00:47:31,901 [http-nio-8081-exec-1] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:47:31,901 [http-nio-8081-exec-1] ==> Parameters: 2(Long)
+2022-04-17 00:47:31,902 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 00:47:31,906 [http-nio-8081-exec-1] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:47:31,906 [http-nio-8081-exec-1] ==> Parameters: 2(Long)
+2022-04-17 00:47:31,907 [http-nio-8081-exec-1] <==      Total: 9
+2022-04-17 00:47:36,219 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from tb_owner t 
+2022-04-17 00:47:36,220 [http-nio-8081-exec-6] ==> Parameters: 
+2022-04-17 00:47:36,222 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 00:47:36,228 [http-nio-8081-exec-6] ==>  Preparing: select owner_id, owner_name, owner_sex, owner_phone, owner_come_time, owner_id_card from tb_owner limit ?, ? 
+2022-04-17 00:47:36,229 [http-nio-8081-exec-6] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:47:36,230 [http-nio-8081-exec-6] <==      Total: 5
+2022-04-17 00:47:41,805 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from tb_visitor t 
+2022-04-17 00:47:41,806 [http-nio-8081-exec-6] ==> Parameters: 
+2022-04-17 00:47:41,810 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 00:47:41,814 [http-nio-8081-exec-6] ==>  Preparing: select visitor_id, visitor_name, visitor_sex, visitor_phone, visitor_card_no, visitor_come_time from tb_visitor limit ?, ? 
+2022-04-17 00:47:41,815 [http-nio-8081-exec-6] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:47:41,816 [http-nio-8081-exec-6] <==      Total: 3
+2022-04-17 00:47:50,953 [taskExecutor-2] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 00:47:50,954 [taskExecutor-2] ==> Parameters: 2(Long), 退出(String), true(Boolean), null
+2022-04-17 00:47:51,076 [taskExecutor-2] <==    Updates: 1
+2022-04-17 00:47:53,387 [http-nio-8081-exec-10] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 00:47:53,388 [http-nio-8081-exec-10] ==> Parameters: admin(String)
+2022-04-17 00:47:53,390 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 00:47:53,394 [http-nio-8081-exec-10] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 00:47:53,394 [http-nio-8081-exec-10] ==> Parameters: 1(Long), web端登陆(String), true(Boolean), null
+2022-04-17 00:47:53,435 [http-nio-8081-exec-10] <==    Updates: 1
+2022-04-17 00:47:53,504 [http-nio-8081-exec-5] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:47:53,504 [http-nio-8081-exec-5] ==> Parameters: 1(Long)
+2022-04-17 00:47:53,506 [http-nio-8081-exec-5] <==      Total: 50
+2022-04-17 00:47:53,525 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:47:53,526 [http-nio-8081-exec-1] ==> Parameters: 1(Long)
+2022-04-17 00:47:53,527 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 00:47:53,605 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:47:53,606 [http-nio-8081-exec-9] ==> Parameters: 1(Long)
+2022-04-17 00:47:53,607 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 00:47:53,614 [http-nio-8081-exec-10] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:47:53,615 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 00:47:53,615 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 00:47:53,618 [http-nio-8081-exec-10] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:47:53,619 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 00:47:53,620 [http-nio-8081-exec-10] <==      Total: 50
+2022-04-17 00:47:53,624 [http-nio-8081-exec-10] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 00:47:53,624 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 00:47:53,625 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 00:47:58,151 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from tb_repair t 
+2022-04-17 00:47:58,151 [http-nio-8081-exec-6] ==> Parameters: 
+2022-04-17 00:47:58,154 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 00:47:58,158 [http-nio-8081-exec-6] ==>  Preparing: select repair_id, repair_time, repair_reson, repair_people_name, repair_state, finish_time,house_no,phone_num from tb_repair limit ?, ? 
+2022-04-17 00:47:58,159 [http-nio-8081-exec-6] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:47:58,160 [http-nio-8081-exec-6] <==      Total: 2
+2022-04-17 00:48:01,742 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from t_notice t 
+2022-04-17 00:48:01,743 [http-nio-8081-exec-9] ==> Parameters: 
+2022-04-17 00:48:01,745 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 00:48:01,748 [http-nio-8081-exec-9] ==>  Preparing: select * from t_notice t order by updateTime desc, title desc limit ?, ? 
+2022-04-17 00:48:01,750 [http-nio-8081-exec-9] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:48:01,752 [http-nio-8081-exec-9] <==      Total: 2
+2022-04-17 00:48:03,183 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from sys_logs t left join sys_user u on u.id = t.userId 
+2022-04-17 00:48:03,184 [http-nio-8081-exec-6] ==> Parameters: 
+2022-04-17 00:48:03,186 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 00:48:03,190 [http-nio-8081-exec-6] ==>  Preparing: select t.*, u.username, u.nickname from sys_logs t left join sys_user u on u.id = t.userId order by createTime desc limit ?, ? 
+2022-04-17 00:48:03,190 [http-nio-8081-exec-6] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:48:03,192 [http-nio-8081-exec-6] <==      Total: 10
+2022-04-17 00:48:09,254 [http-nio-8081-exec-7] ==>  Preparing: select owner_id,owner_name from tb_owner 
+2022-04-17 00:48:09,254 [http-nio-8081-exec-7] ==> Parameters: 
+2022-04-17 00:48:09,255 [http-nio-8081-exec-7] <==      Total: 5
+2022-04-17 00:48:09,278 [http-nio-8081-exec-2] ==>  Preparing: select count(1) from tb_house t 
+2022-04-17 00:48:09,278 [http-nio-8081-exec-2] ==> Parameters: 
+2022-04-17 00:48:09,280 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 00:48:09,285 [http-nio-8081-exec-2] ==>  Preparing: select house_no, owner_id, house_type, house_area,build_name,build_id,owner_name from tb_house limit ?, ? 
+2022-04-17 00:48:09,286 [http-nio-8081-exec-2] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:48:09,287 [http-nio-8081-exec-2] <==      Total: 10
+2022-04-17 00:48:11,697 [http-nio-8081-exec-3] ==>  Preparing: select count(1) from file_info t 
+2022-04-17 00:48:11,697 [http-nio-8081-exec-3] ==> Parameters: 
+2022-04-17 00:48:11,699 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 00:48:11,704 [http-nio-8081-exec-3] ==>  Preparing: select * from file_info t order by updateTime desc limit ?, ? 
+2022-04-17 00:48:11,705 [http-nio-8081-exec-3] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:48:11,706 [http-nio-8081-exec-3] <==      Total: 2
+2022-04-17 00:48:12,835 [http-nio-8081-exec-5] ==>  Preparing: select count(1) from sys_user t 
+2022-04-17 00:48:12,836 [http-nio-8081-exec-5] ==> Parameters: 
+2022-04-17 00:48:12,838 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 00:48:12,841 [http-nio-8081-exec-5] ==>  Preparing: select * from sys_user t order by username desc, nickname asc limit ?, ? 
+2022-04-17 00:48:12,841 [http-nio-8081-exec-5] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:48:12,843 [http-nio-8081-exec-5] <==      Total: 5
+2022-04-17 00:48:16,692 [http-nio-8081-exec-2] ==>  Preparing: select * from sys_role t 
+2022-04-17 00:48:16,692 [http-nio-8081-exec-2] ==> Parameters: 
+2022-04-17 00:48:16,693 [http-nio-8081-exec-2] <==      Total: 4
+2022-04-17 00:48:16,704 [http-nio-8081-exec-3] ==>  Preparing: select * from sys_user t where t.id = ? 
+2022-04-17 00:48:16,704 [http-nio-8081-exec-3] ==> Parameters: 5(Long)
+2022-04-17 00:48:16,705 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 00:48:16,714 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:48:16,715 [http-nio-8081-exec-7] ==> Parameters: 5(Long)
+2022-04-17 00:48:16,716 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 00:48:29,649 [http-nio-8081-exec-10] ==>  Preparing: select count(1) from sys_user t 
+2022-04-17 00:48:29,649 [http-nio-8081-exec-10] ==> Parameters: 
+2022-04-17 00:48:29,651 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 00:48:29,656 [http-nio-8081-exec-10] ==>  Preparing: select * from sys_user t order by username desc, nickname asc limit ?, ? 
+2022-04-17 00:48:29,656 [http-nio-8081-exec-10] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:48:29,659 [http-nio-8081-exec-10] <==      Total: 5
+2022-04-17 00:48:34,765 [http-nio-8081-exec-9] ==>  Preparing: select * from sys_role t 
+2022-04-17 00:48:34,765 [http-nio-8081-exec-9] ==> Parameters: 
+2022-04-17 00:48:34,766 [http-nio-8081-exec-9] <==      Total: 4
+2022-04-17 00:48:34,776 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_user t where t.id = ? 
+2022-04-17 00:48:34,776 [http-nio-8081-exec-7] ==> Parameters: 2(Long)
+2022-04-17 00:48:34,777 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 00:48:34,785 [http-nio-8081-exec-8] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:48:34,786 [http-nio-8081-exec-8] ==> Parameters: 2(Long)
+2022-04-17 00:48:34,787 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 00:50:18,964 [http-nio-8081-exec-10] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:50:18,964 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 00:50:18,965 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 00:50:18,968 [http-nio-8081-exec-10] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:50:18,969 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 00:50:18,971 [http-nio-8081-exec-10] <==      Total: 50
+2022-04-17 00:50:18,975 [http-nio-8081-exec-10] ==>  Preparing: select count(1) from sys_user t 
+2022-04-17 00:50:18,976 [http-nio-8081-exec-10] ==> Parameters: 
+2022-04-17 00:50:18,977 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 00:50:18,981 [http-nio-8081-exec-10] ==>  Preparing: select * from sys_user t order by username desc, nickname asc limit ?, ? 
+2022-04-17 00:50:18,981 [http-nio-8081-exec-10] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:50:18,982 [http-nio-8081-exec-10] <==      Total: 5
+2022-04-17 00:50:22,789 [http-nio-8081-exec-8] ==>  Preparing: select * from sys_role t 
+2022-04-17 00:50:22,789 [http-nio-8081-exec-8] ==> Parameters: 
+2022-04-17 00:50:22,790 [http-nio-8081-exec-8] <==      Total: 4
+2022-04-17 00:50:22,799 [http-nio-8081-exec-1] ==>  Preparing: select * from sys_user t where t.id = ? 
+2022-04-17 00:50:22,799 [http-nio-8081-exec-1] ==> Parameters: 4(Long)
+2022-04-17 00:50:22,800 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 00:50:22,814 [http-nio-8081-exec-5] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:50:22,815 [http-nio-8081-exec-5] ==> Parameters: 4(Long)
+2022-04-17 00:50:22,816 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 00:50:37,649 [taskExecutor-3] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 00:50:37,650 [taskExecutor-3] ==> Parameters: 1(Long), 退出(String), true(Boolean), null
+2022-04-17 00:50:37,778 [taskExecutor-3] <==    Updates: 1
+2022-04-17 00:50:43,843 [http-nio-8081-exec-6] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 00:50:43,844 [http-nio-8081-exec-6] ==> Parameters: 小虎(String)
+2022-04-17 00:50:43,845 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 00:50:43,848 [http-nio-8081-exec-6] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 00:50:43,849 [http-nio-8081-exec-6] ==> Parameters: 3(Long), web端登陆(String), true(Boolean), null
+2022-04-17 00:50:43,964 [http-nio-8081-exec-6] <==    Updates: 1
+2022-04-17 00:50:44,042 [http-nio-8081-exec-6] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:50:44,042 [http-nio-8081-exec-6] ==> Parameters: 3(Long)
+2022-04-17 00:50:44,043 [http-nio-8081-exec-6] <==      Total: 14
+2022-04-17 00:50:44,064 [http-nio-8081-exec-3] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:50:44,065 [http-nio-8081-exec-3] ==> Parameters: 3(Long)
+2022-04-17 00:50:44,067 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 00:50:44,128 [http-nio-8081-exec-3] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:50:44,129 [http-nio-8081-exec-3] ==> Parameters: 3(Long)
+2022-04-17 00:50:44,130 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 00:50:44,134 [http-nio-8081-exec-9] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:50:44,135 [http-nio-8081-exec-9] ==> Parameters: 3(Long)
+2022-04-17 00:50:44,136 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 00:50:44,139 [http-nio-8081-exec-9] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:50:44,139 [http-nio-8081-exec-9] ==> Parameters: 3(Long)
+2022-04-17 00:50:44,141 [http-nio-8081-exec-9] <==      Total: 14
+2022-04-17 00:50:45,570 [http-nio-8081-exec-5] ==>  Preparing: select count(1) from tb_park t 
+2022-04-17 00:50:45,571 [http-nio-8081-exec-5] ==> Parameters: 
+2022-04-17 00:50:45,573 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 00:50:45,576 [http-nio-8081-exec-5] ==>  Preparing: select park_no, owner_id, expira_date, park_area,park_type,owner_name from tb_park limit ?, ? 
+2022-04-17 00:50:45,578 [http-nio-8081-exec-5] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:50:45,580 [http-nio-8081-exec-5] <==      Total: 10
+2022-04-17 00:50:48,728 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from tb_car t 
+2022-04-17 00:50:48,729 [http-nio-8081-exec-6] ==> Parameters: 
+2022-04-17 00:50:48,731 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 00:50:48,735 [http-nio-8081-exec-6] ==>  Preparing: select car_id, car_num, park_no, car_flag, car_type, car_color,car_owner,car_owner_phone from tb_car limit ?, ? 
+2022-04-17 00:50:48,735 [http-nio-8081-exec-6] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:50:48,736 [http-nio-8081-exec-6] <==      Total: 3
+2022-04-17 00:50:50,695 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from t_notice t 
+2022-04-17 00:50:50,696 [http-nio-8081-exec-6] ==> Parameters: 
+2022-04-17 00:50:50,698 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 00:50:50,702 [http-nio-8081-exec-6] ==>  Preparing: select * from t_notice t order by updateTime desc, title desc limit ?, ? 
+2022-04-17 00:50:50,702 [http-nio-8081-exec-6] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:50:50,704 [http-nio-8081-exec-6] <==      Total: 2
+2022-04-17 00:50:51,966 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from file_info t 
+2022-04-17 00:50:51,966 [http-nio-8081-exec-9] ==> Parameters: 
+2022-04-17 00:50:51,968 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 00:50:51,972 [http-nio-8081-exec-9] ==>  Preparing: select * from file_info t order by updateTime desc limit ?, ? 
+2022-04-17 00:50:51,973 [http-nio-8081-exec-9] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:50:51,974 [http-nio-8081-exec-9] <==      Total: 2
+2022-04-17 00:51:00,420 [http-nio-8081-exec-2] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:51:00,420 [http-nio-8081-exec-2] ==> Parameters: 3(Long)
+2022-04-17 00:51:00,421 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 00:51:00,482 [http-nio-8081-exec-3] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:51:00,482 [http-nio-8081-exec-3] ==> Parameters: 3(Long)
+2022-04-17 00:51:00,483 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 00:51:01,304 [http-nio-8081-exec-10] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:51:01,305 [http-nio-8081-exec-10] ==> Parameters: 3(Long)
+2022-04-17 00:51:01,307 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 00:51:01,380 [http-nio-8081-exec-7] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:51:01,380 [http-nio-8081-exec-7] ==> Parameters: 3(Long)
+2022-04-17 00:51:01,381 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 00:51:06,286 [taskExecutor-4] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 00:51:06,287 [taskExecutor-4] ==> Parameters: 3(Long), 退出(String), true(Boolean), null
+2022-04-17 00:51:06,412 [taskExecutor-4] <==    Updates: 1
+2022-04-17 00:51:09,556 [http-nio-8081-exec-5] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 00:51:09,557 [http-nio-8081-exec-5] ==> Parameters: user(String)
+2022-04-17 00:51:09,558 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 00:51:09,561 [http-nio-8081-exec-5] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 00:51:09,562 [http-nio-8081-exec-5] ==> Parameters: 2(Long), web端登陆(String), true(Boolean), null
+2022-04-17 00:51:09,595 [http-nio-8081-exec-5] <==    Updates: 1
+2022-04-17 00:51:09,662 [http-nio-8081-exec-5] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:51:09,662 [http-nio-8081-exec-5] ==> Parameters: 2(Long)
+2022-04-17 00:51:09,663 [http-nio-8081-exec-5] <==      Total: 9
+2022-04-17 00:51:09,683 [http-nio-8081-exec-4] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:51:09,684 [http-nio-8081-exec-4] ==> Parameters: 2(Long)
+2022-04-17 00:51:09,686 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 00:51:09,747 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 00:51:09,747 [http-nio-8081-exec-1] ==> Parameters: 2(Long)
+2022-04-17 00:51:09,748 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 00:51:09,754 [http-nio-8081-exec-5] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 00:51:09,754 [http-nio-8081-exec-5] ==> Parameters: 2(Long)
+2022-04-17 00:51:09,755 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 00:51:09,758 [http-nio-8081-exec-5] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 00:51:09,758 [http-nio-8081-exec-5] ==> Parameters: 2(Long)
+2022-04-17 00:51:09,759 [http-nio-8081-exec-5] <==      Total: 9
+2022-04-17 00:51:18,647 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from tb_owner t 
+2022-04-17 00:51:18,647 [http-nio-8081-exec-1] ==> Parameters: 
+2022-04-17 00:51:18,650 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 00:51:18,654 [http-nio-8081-exec-1] ==>  Preparing: select owner_id, owner_name, owner_sex, owner_phone, owner_come_time, owner_id_card from tb_owner limit ?, ? 
+2022-04-17 00:51:18,654 [http-nio-8081-exec-1] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 00:51:18,656 [http-nio-8081-exec-1] <==      Total: 5
+2022-04-17 01:01:31,816 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 01:01:31,816 [http-nio-8081-exec-7] ==> Parameters: 2(Long)
+2022-04-17 01:01:31,817 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 01:01:31,820 [http-nio-8081-exec-7] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 01:01:31,820 [http-nio-8081-exec-7] ==> Parameters: 2(Long)
+2022-04-17 01:01:31,822 [http-nio-8081-exec-7] <==      Total: 9
+2022-04-17 01:01:31,825 [http-nio-8081-exec-7] ==>  Preparing: select count(1) from tb_visitor t 
+2022-04-17 01:01:31,826 [http-nio-8081-exec-7] ==> Parameters: 
+2022-04-17 01:01:31,828 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 01:01:31,831 [http-nio-8081-exec-7] ==>  Preparing: select visitor_id, visitor_name, visitor_sex, visitor_phone, visitor_card_no, visitor_come_time from tb_visitor limit ?, ? 
+2022-04-17 01:01:31,831 [http-nio-8081-exec-7] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 01:01:31,832 [http-nio-8081-exec-7] <==      Total: 3
+2022-04-17 01:05:17,224 [http-nio-8081-exec-5] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 01:05:17,225 [http-nio-8081-exec-5] ==> Parameters: 2(Long)
+2022-04-17 01:05:17,225 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 01:05:17,228 [http-nio-8081-exec-5] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 01:05:17,229 [http-nio-8081-exec-5] ==> Parameters: 2(Long)
+2022-04-17 01:05:17,230 [http-nio-8081-exec-5] <==      Total: 9
+2022-04-17 01:05:17,233 [http-nio-8081-exec-5] ==>  Preparing: select owner_id, owner_name, owner_sex, owner_phone, owner_come_time, owner_id_card from tb_owner where owner_id = ? 
+2022-04-17 01:05:17,234 [http-nio-8081-exec-5] ==> Parameters: 2(Integer)
+2022-04-17 01:05:17,235 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 01:05:24,895 [taskExecutor-5] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 01:05:24,896 [taskExecutor-5] ==> Parameters: 2(Long), 退出(String), true(Boolean), null
+2022-04-17 01:05:25,056 [taskExecutor-5] <==    Updates: 1
+2022-04-17 01:05:27,440 [http-nio-8081-exec-8] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 01:05:27,441 [http-nio-8081-exec-8] ==> Parameters: admin(String)
+2022-04-17 01:05:27,442 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 01:05:27,445 [http-nio-8081-exec-8] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 01:05:27,445 [http-nio-8081-exec-8] ==> Parameters: 1(Long), web端登陆(String), true(Boolean), null
+2022-04-17 01:05:27,576 [http-nio-8081-exec-8] <==    Updates: 1
+2022-04-17 01:05:27,663 [http-nio-8081-exec-1] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 01:05:27,664 [http-nio-8081-exec-1] ==> Parameters: 1(Long)
+2022-04-17 01:05:27,666 [http-nio-8081-exec-1] <==      Total: 50
+2022-04-17 01:05:27,687 [http-nio-8081-exec-3] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 01:05:27,687 [http-nio-8081-exec-3] ==> Parameters: 1(Long)
+2022-04-17 01:05:27,689 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 01:05:27,754 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 01:05:27,754 [http-nio-8081-exec-9] ==> Parameters: 1(Long)
+2022-04-17 01:05:27,755 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 01:05:27,759 [http-nio-8081-exec-8] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 01:05:27,759 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 01:05:27,760 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 01:05:27,763 [http-nio-8081-exec-8] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 01:05:27,763 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 01:05:27,765 [http-nio-8081-exec-8] <==      Total: 50
+2022-04-17 01:05:27,768 [http-nio-8081-exec-8] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 01:05:27,769 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 01:05:27,769 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 01:05:36,099 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from tb_repair t 
+2022-04-17 01:05:36,100 [http-nio-8081-exec-1] ==> Parameters: 
+2022-04-17 01:05:36,101 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 01:05:36,105 [http-nio-8081-exec-1] ==>  Preparing: select repair_id, repair_time, repair_reson, repair_people_name, repair_state, finish_time,house_no,phone_num from tb_repair limit ?, ? 
+2022-04-17 01:05:36,105 [http-nio-8081-exec-1] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 01:05:36,106 [http-nio-8081-exec-1] <==      Total: 2
+2022-04-17 01:05:48,875 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from tb_park t 
+2022-04-17 01:05:48,875 [http-nio-8081-exec-1] ==> Parameters: 
+2022-04-17 01:05:48,877 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 01:05:48,881 [http-nio-8081-exec-1] ==>  Preparing: select park_no, owner_id, expira_date, park_area,park_type,owner_name from tb_park limit ?, ? 
+2022-04-17 01:05:48,881 [http-nio-8081-exec-1] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 01:05:48,883 [http-nio-8081-exec-1] <==      Total: 10
+2022-04-17 01:05:53,034 [http-nio-8081-exec-7] ==>  Preparing: select count(1) from tb_build t 
+2022-04-17 01:05:53,035 [http-nio-8081-exec-7] ==> Parameters: 
+2022-04-17 01:05:53,036 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 01:05:53,041 [http-nio-8081-exec-7] ==>  Preparing: select id, build_name, build_area, build_floor from tb_build limit ?, ? 
+2022-04-17 01:05:53,041 [http-nio-8081-exec-7] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 01:05:53,043 [http-nio-8081-exec-7] <==      Total: 10
+2022-04-17 01:05:54,846 [http-nio-8081-exec-7] ==>  Preparing: select count(1) from t_notice t 
+2022-04-17 01:05:54,846 [http-nio-8081-exec-7] ==> Parameters: 
+2022-04-17 01:05:54,848 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 01:05:54,851 [http-nio-8081-exec-7] ==>  Preparing: select * from t_notice t order by updateTime desc, title desc limit ?, ? 
+2022-04-17 01:05:54,852 [http-nio-8081-exec-7] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 01:05:54,854 [http-nio-8081-exec-7] <==      Total: 2
+2022-04-17 01:05:55,519 [http-nio-8081-exec-7] ==>  Preparing: select count(1) from file_info t 
+2022-04-17 01:05:55,519 [http-nio-8081-exec-7] ==> Parameters: 
+2022-04-17 01:05:55,522 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 01:05:55,526 [http-nio-8081-exec-7] ==>  Preparing: select * from file_info t order by updateTime desc limit ?, ? 
+2022-04-17 01:05:55,526 [http-nio-8081-exec-7] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 01:05:55,527 [http-nio-8081-exec-7] <==      Total: 2
+2022-04-17 01:05:57,263 [http-nio-8081-exec-2] ==>  Preparing: select * from sys_permission t order by t.sort 
+2022-04-17 01:05:57,263 [http-nio-8081-exec-2] ==> Parameters: 
+2022-04-17 01:05:57,263 [http-nio-8081-exec-2] <==      Total: 54
+2022-04-17 01:06:12,573 [http-nio-8081-exec-10] ==>  Preparing: select count(1) from sys_role t 
+2022-04-17 01:06:12,574 [http-nio-8081-exec-10] ==> Parameters: 
+2022-04-17 01:06:12,575 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 01:06:12,579 [http-nio-8081-exec-10] ==>  Preparing: select * from sys_role t order by updateTime desc limit ?, ? 
+2022-04-17 01:06:12,579 [http-nio-8081-exec-10] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 01:06:12,580 [http-nio-8081-exec-10] <==      Total: 4
+2022-04-17 11:13:17,278 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 11:13:17,567 [http-nio-8081-exec-7] ==> Parameters: admin(String)
+2022-04-17 11:13:17,588 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 11:13:17,615 [http-nio-8081-exec-7] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 11:13:17,626 [http-nio-8081-exec-7] ==> Parameters: 1(Long), web端登陆(String), true(Boolean), null
+2022-04-17 11:13:17,712 [http-nio-8081-exec-7] <==    Updates: 1
+2022-04-17 11:13:17,927 [http-nio-8081-exec-8] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 11:13:17,932 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 11:13:17,940 [http-nio-8081-exec-8] <==      Total: 50
+2022-04-17 11:13:18,011 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 11:13:18,014 [http-nio-8081-exec-6] ==> Parameters: 1(Long)
+2022-04-17 11:13:18,016 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 11:13:18,034 [http-nio-8081-exec-4] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 11:13:18,035 [http-nio-8081-exec-4] ==> Parameters: 1(Long)
+2022-04-17 11:13:18,037 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 11:13:18,105 [http-nio-8081-exec-8] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 11:13:18,106 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 11:13:18,107 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 11:13:18,111 [http-nio-8081-exec-8] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 11:13:18,111 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 11:13:18,117 [http-nio-8081-exec-8] <==      Total: 50
+2022-04-17 11:13:18,125 [http-nio-8081-exec-8] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 11:13:18,126 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 11:13:18,127 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 11:13:32,462 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from sys_user t 
+2022-04-17 11:13:32,462 [http-nio-8081-exec-1] ==> Parameters: 
+2022-04-17 11:13:32,504 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 11:13:32,509 [http-nio-8081-exec-1] ==>  Preparing: select * from sys_user t order by username desc, nickname asc limit ?, ? 
+2022-04-17 11:13:32,511 [http-nio-8081-exec-1] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 11:13:32,514 [http-nio-8081-exec-1] <==      Total: 5
+2022-04-17 12:26:42,936 [http-nio-8081-exec-4] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 12:26:42,937 [http-nio-8081-exec-4] ==> Parameters: admin(String)
+2022-04-17 12:26:42,969 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 12:26:42,972 [http-nio-8081-exec-4] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 12:26:42,973 [http-nio-8081-exec-4] ==> Parameters: 1(Long), web端登陆(String), true(Boolean), null
+2022-04-17 12:26:43,172 [http-nio-8081-exec-4] <==    Updates: 1
+2022-04-17 12:26:43,361 [http-nio-8081-exec-10] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 12:26:43,362 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 12:26:43,423 [http-nio-8081-exec-10] <==      Total: 50
+2022-04-17 12:26:43,445 [http-nio-8081-exec-7] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 12:26:43,445 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 12:26:43,474 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 12:26:43,475 [http-nio-8081-exec-6] ==> Parameters: 1(Long)
+2022-04-17 12:26:43,483 [http-nio-8081-exec-10] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 12:26:43,484 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 12:26:43,488 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 12:26:43,492 [http-nio-8081-exec-10] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 12:26:43,493 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 12:26:43,497 [http-nio-8081-exec-10] <==      Total: 50
+2022-04-17 12:26:43,501 [http-nio-8081-exec-10] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 12:26:43,501 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 12:26:43,503 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 12:26:43,533 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 12:26:43,534 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 12:26:45,177 [taskExecutor-1] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 12:26:45,178 [taskExecutor-1] ==> Parameters: 1(Long), 退出(String), true(Boolean), null
+2022-04-17 12:26:45,270 [taskExecutor-1] <==    Updates: 1
+2022-04-17 12:27:00,435 [http-nio-8081-exec-3] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 12:27:00,436 [http-nio-8081-exec-3] ==> Parameters: admin(String)
+2022-04-17 12:27:00,444 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 12:27:00,447 [http-nio-8081-exec-3] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 12:27:00,448 [http-nio-8081-exec-3] ==> Parameters: 1(Long), web端登陆(String), true(Boolean), null
+2022-04-17 12:27:00,568 [http-nio-8081-exec-3] <==    Updates: 1
+2022-04-17 12:27:00,659 [http-nio-8081-exec-3] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 12:27:00,660 [http-nio-8081-exec-3] ==> Parameters: 1(Long)
+2022-04-17 12:27:00,664 [http-nio-8081-exec-3] <==      Total: 50
+2022-04-17 12:27:00,690 [http-nio-8081-exec-8] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 12:27:00,691 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 12:27:00,694 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 12:27:00,780 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 12:27:00,781 [http-nio-8081-exec-1] ==> Parameters: 1(Long)
+2022-04-17 12:27:00,782 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 12:27:00,790 [http-nio-8081-exec-2] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 12:27:00,791 [http-nio-8081-exec-2] ==> Parameters: 1(Long)
+2022-04-17 12:27:00,793 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 12:27:00,797 [http-nio-8081-exec-2] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 12:27:00,798 [http-nio-8081-exec-2] ==> Parameters: 1(Long)
+2022-04-17 12:27:00,802 [http-nio-8081-exec-2] <==      Total: 50
+2022-04-17 12:27:00,807 [http-nio-8081-exec-2] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 12:27:00,807 [http-nio-8081-exec-2] ==> Parameters: 1(Long)
+2022-04-17 12:27:00,808 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 12:27:05,618 [taskExecutor-2] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 12:27:05,619 [taskExecutor-2] ==> Parameters: 1(Long), 退出(String), true(Boolean), null
+2022-04-17 12:27:05,750 [taskExecutor-2] <==    Updates: 1
+2022-04-17 12:36:43,566 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 12:36:43,567 [http-nio-8081-exec-7] ==> Parameters: admin(String)
+2022-04-17 12:36:43,568 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 12:36:43,572 [http-nio-8081-exec-7] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 12:36:43,573 [http-nio-8081-exec-7] ==> Parameters: 1(Long), web端登陆(String), true(Boolean), null
+2022-04-17 12:36:43,657 [http-nio-8081-exec-7] <==    Updates: 1
+2022-04-17 12:36:43,774 [http-nio-8081-exec-1] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 12:36:43,774 [http-nio-8081-exec-1] ==> Parameters: 1(Long)
+2022-04-17 12:36:43,777 [http-nio-8081-exec-1] <==      Total: 50
+2022-04-17 12:36:43,803 [http-nio-8081-exec-4] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 12:36:43,804 [http-nio-8081-exec-4] ==> Parameters: 1(Long)
+2022-04-17 12:36:43,805 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 12:36:43,879 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 12:36:43,879 [http-nio-8081-exec-9] ==> Parameters: 1(Long)
+2022-04-17 12:36:43,880 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 12:36:43,884 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 12:36:43,885 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 12:36:43,886 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 12:36:43,889 [http-nio-8081-exec-7] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 12:36:43,890 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 12:36:43,892 [http-nio-8081-exec-7] <==      Total: 50
+2022-04-17 12:36:43,895 [http-nio-8081-exec-7] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 12:36:43,896 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 12:36:43,897 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 12:36:47,682 [http-nio-8081-exec-7] ==>  Preparing: select count(1) from sys_user t 
+2022-04-17 12:36:47,683 [http-nio-8081-exec-7] ==> Parameters: 
+2022-04-17 12:36:47,685 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 12:36:47,689 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_user t order by username desc, nickname asc limit ?, ? 
+2022-04-17 12:36:47,690 [http-nio-8081-exec-7] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 12:36:47,692 [http-nio-8081-exec-7] <==      Total: 5
+2022-04-17 12:40:47,394 [http-nio-8081-exec-9] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 12:40:47,394 [http-nio-8081-exec-9] ==> Parameters: 1(Long)
+2022-04-17 12:40:47,397 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 12:40:47,401 [http-nio-8081-exec-9] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 12:40:47,402 [http-nio-8081-exec-9] ==> Parameters: 1(Long)
+2022-04-17 12:40:47,405 [http-nio-8081-exec-9] <==      Total: 50
+2022-04-17 12:40:47,444 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from t_notice t 
+2022-04-17 12:40:47,445 [http-nio-8081-exec-9] ==> Parameters: 
+2022-04-17 12:40:47,447 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 12:40:47,450 [http-nio-8081-exec-9] ==>  Preparing: select * from t_notice t order by updateTime desc, title desc limit ?, ? 
+2022-04-17 12:40:47,451 [http-nio-8081-exec-9] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 12:40:47,456 [http-nio-8081-exec-9] <==      Total: 2
+2022-04-17 15:49:55,693 [http-nio-8081-exec-8] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 15:49:55,697 [http-nio-8081-exec-8] ==> Parameters: admin(String)
+2022-04-17 15:49:55,702 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 15:49:55,707 [http-nio-8081-exec-8] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 15:49:55,707 [http-nio-8081-exec-8] ==> Parameters: 1(Long), web端登陆(String), true(Boolean), null
+2022-04-17 15:49:55,881 [http-nio-8081-exec-8] <==    Updates: 1
+2022-04-17 15:49:55,966 [http-nio-8081-exec-8] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 15:49:55,967 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 15:49:55,971 [http-nio-8081-exec-8] <==      Total: 50
+2022-04-17 15:49:55,996 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 15:49:55,996 [http-nio-8081-exec-9] ==> Parameters: 1(Long)
+2022-04-17 15:49:55,998 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 15:49:56,074 [http-nio-8081-exec-2] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 15:49:56,075 [http-nio-8081-exec-2] ==> Parameters: 1(Long)
+2022-04-17 15:49:56,077 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 15:49:56,084 [http-nio-8081-exec-8] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 15:49:56,085 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 15:49:56,086 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 15:49:56,090 [http-nio-8081-exec-8] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 15:49:56,090 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 15:49:56,094 [http-nio-8081-exec-8] <==      Total: 50
+2022-04-17 15:49:56,098 [http-nio-8081-exec-8] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 15:49:56,098 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 15:49:56,100 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 15:50:09,881 [http-nio-8081-exec-2] ==>  Preparing: select count(1) from sys_user t 
+2022-04-17 15:50:09,882 [http-nio-8081-exec-2] ==> Parameters: 
+2022-04-17 15:50:09,885 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 15:50:09,889 [http-nio-8081-exec-2] ==>  Preparing: select * from sys_user t order by username desc, nickname asc limit ?, ? 
+2022-04-17 15:50:09,889 [http-nio-8081-exec-2] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 15:50:09,893 [http-nio-8081-exec-2] <==      Total: 5
+2022-04-17 16:09:28,542 [taskExecutor-3] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 16:09:28,543 [taskExecutor-3] ==> Parameters: 1(Long), 退出(String), true(Boolean), null
+2022-04-17 16:09:28,631 [taskExecutor-3] <==    Updates: 1
+2022-04-17 16:09:31,549 [http-nio-8081-exec-5] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 16:09:31,550 [http-nio-8081-exec-5] ==> Parameters: 小虎(String)
+2022-04-17 16:09:31,598 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 16:09:31,603 [http-nio-8081-exec-5] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 16:09:31,603 [http-nio-8081-exec-5] ==> Parameters: 3(Long), web端登陆(String), true(Boolean), null
+2022-04-17 16:09:31,691 [http-nio-8081-exec-5] <==    Updates: 1
+2022-04-17 16:09:31,788 [http-nio-8081-exec-1] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:09:31,788 [http-nio-8081-exec-1] ==> Parameters: 3(Long)
+2022-04-17 16:09:31,866 [http-nio-8081-exec-1] <==      Total: 14
+2022-04-17 16:09:31,887 [http-nio-8081-exec-8] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:09:31,888 [http-nio-8081-exec-8] ==> Parameters: 3(Long)
+2022-04-17 16:09:31,958 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 16:09:31,963 [http-nio-8081-exec-5] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:09:31,963 [http-nio-8081-exec-5] ==> Parameters: 3(Long)
+2022-04-17 16:09:31,964 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 16:09:31,977 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 16:09:31,977 [http-nio-8081-exec-7] ==> Parameters: 3(Long)
+2022-04-17 16:09:31,979 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 16:09:31,983 [http-nio-8081-exec-7] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:09:31,983 [http-nio-8081-exec-7] ==> Parameters: 3(Long)
+2022-04-17 16:09:31,984 [http-nio-8081-exec-7] <==      Total: 14
+2022-04-17 16:09:34,949 [http-nio-8081-exec-7] ==>  Preparing: select count(1) from file_info t 
+2022-04-17 16:09:34,951 [http-nio-8081-exec-7] ==> Parameters: 
+2022-04-17 16:09:34,996 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 16:09:34,999 [http-nio-8081-exec-7] ==>  Preparing: select * from file_info t order by updateTime desc limit ?, ? 
+2022-04-17 16:09:35,000 [http-nio-8081-exec-7] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 16:09:35,002 [http-nio-8081-exec-7] <==      Total: 2
+2022-04-17 16:09:35,658 [http-nio-8081-exec-5] ==>  Preparing: select count(1) from t_notice t 
+2022-04-17 16:09:35,659 [http-nio-8081-exec-5] ==> Parameters: 
+2022-04-17 16:09:35,661 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 16:09:35,664 [http-nio-8081-exec-5] ==>  Preparing: select * from t_notice t order by updateTime desc, title desc limit ?, ? 
+2022-04-17 16:09:35,665 [http-nio-8081-exec-5] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 16:09:35,667 [http-nio-8081-exec-5] <==      Total: 2
+2022-04-17 16:09:37,030 [http-nio-8081-exec-5] ==>  Preparing: select count(1) from tb_park t 
+2022-04-17 16:09:37,031 [http-nio-8081-exec-5] ==> Parameters: 
+2022-04-17 16:09:37,035 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 16:09:37,040 [http-nio-8081-exec-5] ==>  Preparing: select park_no, owner_id, expira_date, park_area,park_type,owner_name from tb_park limit ?, ? 
+2022-04-17 16:09:37,041 [http-nio-8081-exec-5] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 16:09:37,042 [http-nio-8081-exec-5] <==      Total: 10
+2022-04-17 16:09:40,979 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from tb_car t 
+2022-04-17 16:09:40,979 [http-nio-8081-exec-9] ==> Parameters: 
+2022-04-17 16:09:40,984 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 16:09:40,991 [http-nio-8081-exec-9] ==>  Preparing: select car_id, car_num, park_no, car_flag, car_type, car_color,car_owner,car_owner_phone from tb_car limit ?, ? 
+2022-04-17 16:09:40,992 [http-nio-8081-exec-9] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 16:09:40,993 [http-nio-8081-exec-9] <==      Total: 3
+2022-04-17 16:09:46,910 [taskExecutor-4] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 16:09:46,911 [taskExecutor-4] ==> Parameters: 3(Long), 退出(String), true(Boolean), null
+2022-04-17 16:09:47,028 [taskExecutor-4] <==    Updates: 1
+2022-04-17 16:09:50,076 [http-nio-8081-exec-4] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 16:09:50,076 [http-nio-8081-exec-4] ==> Parameters: user(String)
+2022-04-17 16:09:50,077 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 16:09:50,081 [http-nio-8081-exec-4] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 16:09:50,081 [http-nio-8081-exec-4] ==> Parameters: 2(Long), web端登陆(String), true(Boolean), null
+2022-04-17 16:09:50,122 [http-nio-8081-exec-4] <==    Updates: 1
+2022-04-17 16:09:50,197 [http-nio-8081-exec-9] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:09:50,198 [http-nio-8081-exec-9] ==> Parameters: 2(Long)
+2022-04-17 16:09:50,199 [http-nio-8081-exec-9] <==      Total: 9
+2022-04-17 16:09:50,217 [http-nio-8081-exec-5] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:09:50,218 [http-nio-8081-exec-5] ==> Parameters: 2(Long)
+2022-04-17 16:09:50,219 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 16:09:50,293 [http-nio-8081-exec-10] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:09:50,294 [http-nio-8081-exec-10] ==> Parameters: 2(Long)
+2022-04-17 16:09:50,295 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 16:09:50,300 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 16:09:50,300 [http-nio-8081-exec-7] ==> Parameters: 2(Long)
+2022-04-17 16:09:50,302 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 16:09:50,305 [http-nio-8081-exec-7] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:09:50,305 [http-nio-8081-exec-7] ==> Parameters: 2(Long)
+2022-04-17 16:09:50,307 [http-nio-8081-exec-7] <==      Total: 9
+2022-04-17 16:10:01,138 [http-nio-8081-exec-10] ==>  Preparing: select count(1) from tb_owner t 
+2022-04-17 16:10:01,139 [http-nio-8081-exec-10] ==> Parameters: 
+2022-04-17 16:10:01,141 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 16:10:01,146 [http-nio-8081-exec-10] ==>  Preparing: select owner_id, owner_name, owner_sex, owner_phone, owner_come_time, owner_id_card from tb_owner limit ?, ? 
+2022-04-17 16:10:01,147 [http-nio-8081-exec-10] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 16:10:01,148 [http-nio-8081-exec-10] <==      Total: 5
+2022-04-17 16:10:01,698 [http-nio-8081-exec-4] ==>  Preparing: select count(1) from tb_visitor t 
+2022-04-17 16:10:01,699 [http-nio-8081-exec-4] ==> Parameters: 
+2022-04-17 16:10:01,733 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 16:10:01,737 [http-nio-8081-exec-4] ==>  Preparing: select visitor_id, visitor_name, visitor_sex, visitor_phone, visitor_card_no, visitor_come_time from tb_visitor limit ?, ? 
+2022-04-17 16:10:01,737 [http-nio-8081-exec-4] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 16:10:01,738 [http-nio-8081-exec-4] <==      Total: 3
+2022-04-17 16:10:26,076 [taskExecutor-5] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 16:10:26,076 [taskExecutor-5] ==> Parameters: 2(Long), 退出(String), true(Boolean), null
+2022-04-17 16:10:26,200 [taskExecutor-5] <==    Updates: 1
+2022-04-17 16:10:30,433 [http-nio-8081-exec-5] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 16:10:30,433 [http-nio-8081-exec-5] ==> Parameters: admin(String)
+2022-04-17 16:10:30,435 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 16:10:30,438 [http-nio-8081-exec-5] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 16:10:30,438 [http-nio-8081-exec-5] ==> Parameters: 1(Long), web端登陆(String), true(Boolean), null
+2022-04-17 16:10:31,432 [http-nio-8081-exec-5] <==    Updates: 1
+2022-04-17 16:10:31,526 [http-nio-8081-exec-5] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:10:31,526 [http-nio-8081-exec-5] ==> Parameters: 1(Long)
+2022-04-17 16:10:31,528 [http-nio-8081-exec-5] <==      Total: 50
+2022-04-17 16:10:31,552 [http-nio-8081-exec-2] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:10:31,553 [http-nio-8081-exec-2] ==> Parameters: 1(Long)
+2022-04-17 16:10:31,555 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 16:10:31,636 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:10:31,637 [http-nio-8081-exec-9] ==> Parameters: 1(Long)
+2022-04-17 16:10:31,638 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 16:10:31,643 [http-nio-8081-exec-10] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 16:10:31,644 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 16:10:31,645 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 16:10:31,650 [http-nio-8081-exec-10] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:10:31,651 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 16:10:31,653 [http-nio-8081-exec-10] <==      Total: 50
+2022-04-17 16:10:31,656 [http-nio-8081-exec-10] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 16:10:31,656 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 16:10:31,657 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 16:10:34,992 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from sys_user t 
+2022-04-17 16:10:34,992 [http-nio-8081-exec-1] ==> Parameters: 
+2022-04-17 16:10:34,994 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 16:10:34,998 [http-nio-8081-exec-1] ==>  Preparing: select * from sys_user t order by username desc, nickname asc limit ?, ? 
+2022-04-17 16:10:34,999 [http-nio-8081-exec-1] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 16:10:35,001 [http-nio-8081-exec-1] <==      Total: 5
+2022-04-17 16:10:38,680 [http-nio-8081-exec-9] ==>  Preparing: select * from sys_role t 
+2022-04-17 16:10:38,681 [http-nio-8081-exec-9] ==> Parameters: 
+2022-04-17 16:10:38,682 [http-nio-8081-exec-9] <==      Total: 4
+2022-04-17 16:10:38,693 [http-nio-8081-exec-10] ==>  Preparing: select * from sys_user t where t.id = ? 
+2022-04-17 16:10:38,694 [http-nio-8081-exec-10] ==> Parameters: 5(Long)
+2022-04-17 16:10:38,695 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 16:10:38,705 [http-nio-8081-exec-5] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 16:10:38,705 [http-nio-8081-exec-5] ==> Parameters: 5(Long)
+2022-04-17 16:10:38,706 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 16:11:42,410 [taskExecutor-6] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 16:11:42,411 [taskExecutor-6] ==> Parameters: 1(Long), 退出(String), true(Boolean), null
+2022-04-17 16:11:42,453 [taskExecutor-6] <==    Updates: 1
+2022-04-17 16:11:51,625 [http-nio-8081-exec-8] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 16:11:51,625 [http-nio-8081-exec-8] ==> Parameters: muller(String)
+2022-04-17 16:11:51,626 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 16:11:56,395 [http-nio-8081-exec-1] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 16:11:56,395 [http-nio-8081-exec-1] ==> Parameters: muller(String)
+2022-04-17 16:11:56,396 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 16:11:57,478 [http-nio-8081-exec-5] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 16:11:57,478 [http-nio-8081-exec-5] ==> Parameters: muller(String)
+2022-04-17 16:11:57,479 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 16:12:01,626 [http-nio-8081-exec-2] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 16:12:01,626 [http-nio-8081-exec-2] ==> Parameters: muller(String)
+2022-04-17 16:12:01,627 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 16:12:06,827 [http-nio-8081-exec-3] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 16:12:06,827 [http-nio-8081-exec-3] ==> Parameters: muller(String)
+2022-04-17 16:12:06,828 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 16:12:06,831 [http-nio-8081-exec-3] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 16:12:06,831 [http-nio-8081-exec-3] ==> Parameters: 5(Long), web端登陆(String), true(Boolean), null
+2022-04-17 16:12:06,869 [http-nio-8081-exec-3] <==    Updates: 1
+2022-04-17 16:12:06,949 [http-nio-8081-exec-4] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:12:06,950 [http-nio-8081-exec-4] ==> Parameters: 5(Long)
+2022-04-17 16:12:06,951 [http-nio-8081-exec-4] <==      Total: 11
+2022-04-17 16:12:06,969 [http-nio-8081-exec-10] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:12:06,969 [http-nio-8081-exec-10] ==> Parameters: 5(Long)
+2022-04-17 16:12:06,970 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 16:12:07,039 [http-nio-8081-exec-8] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:12:07,040 [http-nio-8081-exec-8] ==> Parameters: 5(Long)
+2022-04-17 16:12:07,041 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 16:12:07,045 [http-nio-8081-exec-4] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 16:12:07,046 [http-nio-8081-exec-4] ==> Parameters: 5(Long)
+2022-04-17 16:12:07,046 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 16:12:07,049 [http-nio-8081-exec-4] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:12:07,050 [http-nio-8081-exec-4] ==> Parameters: 5(Long)
+2022-04-17 16:12:07,051 [http-nio-8081-exec-4] <==      Total: 11
+2022-04-17 16:47:03,858 [http-nio-8081-exec-4] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 16:47:03,858 [http-nio-8081-exec-4] ==> Parameters: admin(String)
+2022-04-17 16:47:03,859 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 16:47:03,864 [http-nio-8081-exec-4] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 16:47:03,866 [http-nio-8081-exec-4] ==> Parameters: 1(Long), web端登陆(String), true(Boolean), null
+2022-04-17 16:47:03,963 [http-nio-8081-exec-4] <==    Updates: 1
+2022-04-17 16:47:04,035 [http-nio-8081-exec-4] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:47:04,036 [http-nio-8081-exec-4] ==> Parameters: 1(Long)
+2022-04-17 16:47:04,037 [http-nio-8081-exec-4] <==      Total: 50
+2022-04-17 16:47:04,064 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:47:04,065 [http-nio-8081-exec-6] ==> Parameters: 1(Long)
+2022-04-17 16:47:04,067 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 16:47:04,131 [http-nio-8081-exec-5] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:47:04,132 [http-nio-8081-exec-5] ==> Parameters: 1(Long)
+2022-04-17 16:47:04,133 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 16:47:04,137 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 16:47:04,138 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 16:47:04,139 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 16:47:04,141 [http-nio-8081-exec-7] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:47:04,142 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 16:47:04,143 [http-nio-8081-exec-7] <==      Total: 50
+2022-04-17 16:47:04,147 [http-nio-8081-exec-7] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 16:47:04,147 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 16:47:04,148 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 16:47:08,485 [taskExecutor-7] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 16:47:08,486 [taskExecutor-7] ==> Parameters: 1(Long), 退出(String), true(Boolean), null
+2022-04-17 16:47:08,642 [taskExecutor-7] <==    Updates: 1
+2022-04-17 16:47:11,218 [http-nio-8081-exec-2] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 16:47:11,218 [http-nio-8081-exec-2] ==> Parameters: user(String)
+2022-04-17 16:47:11,219 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 16:47:11,222 [http-nio-8081-exec-2] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 16:47:11,222 [http-nio-8081-exec-2] ==> Parameters: 2(Long), web端登陆(String), true(Boolean), null
+2022-04-17 16:47:11,341 [http-nio-8081-exec-2] <==    Updates: 1
+2022-04-17 16:47:11,409 [http-nio-8081-exec-2] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:47:11,415 [http-nio-8081-exec-2] ==> Parameters: 2(Long)
+2022-04-17 16:47:11,418 [http-nio-8081-exec-2] <==      Total: 9
+2022-04-17 16:47:11,440 [http-nio-8081-exec-10] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:47:11,440 [http-nio-8081-exec-10] ==> Parameters: 2(Long)
+2022-04-17 16:47:11,442 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 16:47:11,509 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:47:11,510 [http-nio-8081-exec-1] ==> Parameters: 2(Long)
+2022-04-17 16:47:11,511 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 16:47:11,520 [http-nio-8081-exec-8] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 16:47:11,520 [http-nio-8081-exec-8] ==> Parameters: 2(Long)
+2022-04-17 16:47:11,521 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 16:47:11,524 [http-nio-8081-exec-8] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:47:11,524 [http-nio-8081-exec-8] ==> Parameters: 2(Long)
+2022-04-17 16:47:11,525 [http-nio-8081-exec-8] <==      Total: 9
+2022-04-17 16:49:11,475 [taskExecutor-8] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 16:49:11,475 [taskExecutor-8] ==> Parameters: 2(Long), 退出(String), true(Boolean), null
+2022-04-17 16:49:11,594 [taskExecutor-8] <==    Updates: 1
+2022-04-17 16:49:27,023 [http-nio-8081-exec-10] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 16:49:27,024 [http-nio-8081-exec-10] ==> Parameters: muller(String)
+2022-04-17 16:49:27,025 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 16:49:27,028 [http-nio-8081-exec-10] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 16:49:27,028 [http-nio-8081-exec-10] ==> Parameters: 5(Long), web端登陆(String), true(Boolean), null
+2022-04-17 16:49:27,330 [http-nio-8081-exec-10] <==    Updates: 1
+2022-04-17 16:49:27,417 [http-nio-8081-exec-4] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:49:27,417 [http-nio-8081-exec-4] ==> Parameters: 5(Long)
+2022-04-17 16:49:27,419 [http-nio-8081-exec-4] <==      Total: 11
+2022-04-17 16:49:27,437 [http-nio-8081-exec-8] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:49:27,437 [http-nio-8081-exec-8] ==> Parameters: 5(Long)
+2022-04-17 16:49:27,438 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 16:49:27,507 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:49:27,507 [http-nio-8081-exec-9] ==> Parameters: 5(Long)
+2022-04-17 16:49:27,508 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 16:49:27,513 [http-nio-8081-exec-2] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 16:49:27,513 [http-nio-8081-exec-2] ==> Parameters: 5(Long)
+2022-04-17 16:49:27,514 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 16:49:27,517 [http-nio-8081-exec-2] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:49:27,517 [http-nio-8081-exec-2] ==> Parameters: 5(Long)
+2022-04-17 16:49:27,518 [http-nio-8081-exec-2] <==      Total: 11
+2022-04-17 16:51:49,722 [taskExecutor-9] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 16:51:49,722 [taskExecutor-9] ==> Parameters: 5(Long), 退出(String), true(Boolean), null
+2022-04-17 16:51:49,864 [taskExecutor-9] <==    Updates: 1
+2022-04-17 16:51:52,286 [http-nio-8081-exec-6] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 16:51:52,286 [http-nio-8081-exec-6] ==> Parameters: admin(String)
+2022-04-17 16:51:52,287 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 16:51:52,291 [http-nio-8081-exec-6] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 16:51:52,291 [http-nio-8081-exec-6] ==> Parameters: 1(Long), web端登陆(String), true(Boolean), null
+2022-04-17 16:51:52,337 [http-nio-8081-exec-6] <==    Updates: 1
+2022-04-17 16:51:52,413 [http-nio-8081-exec-7] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:51:52,413 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 16:51:52,415 [http-nio-8081-exec-7] <==      Total: 50
+2022-04-17 16:51:52,435 [http-nio-8081-exec-3] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:51:52,435 [http-nio-8081-exec-3] ==> Parameters: 1(Long)
+2022-04-17 16:51:52,436 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 16:51:52,509 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:51:52,510 [http-nio-8081-exec-9] ==> Parameters: 1(Long)
+2022-04-17 16:51:52,511 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 16:51:52,515 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 16:51:52,515 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 16:51:52,516 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 16:51:52,519 [http-nio-8081-exec-7] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:51:52,520 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 16:51:52,521 [http-nio-8081-exec-7] <==      Total: 50
+2022-04-17 16:51:52,525 [http-nio-8081-exec-7] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 16:51:52,525 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 16:51:52,526 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 16:51:56,711 [http-nio-8081-exec-5] ==>  Preparing: select count(1) from sys_user t 
+2022-04-17 16:51:56,712 [http-nio-8081-exec-5] ==> Parameters: 
+2022-04-17 16:51:56,713 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 16:51:56,716 [http-nio-8081-exec-5] ==>  Preparing: select * from sys_user t order by username desc, nickname asc limit ?, ? 
+2022-04-17 16:51:56,717 [http-nio-8081-exec-5] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 16:51:56,718 [http-nio-8081-exec-5] <==      Total: 5
+2022-04-17 16:52:00,734 [http-nio-8081-exec-2] ==>  Preparing: select * from sys_role t 
+2022-04-17 16:52:00,734 [http-nio-8081-exec-2] ==> Parameters: 
+2022-04-17 16:52:00,735 [http-nio-8081-exec-2] <==      Total: 4
+2022-04-17 16:52:00,745 [http-nio-8081-exec-10] ==>  Preparing: select * from sys_user t where t.id = ? 
+2022-04-17 16:52:00,745 [http-nio-8081-exec-10] ==> Parameters: 4(Long)
+2022-04-17 16:52:00,746 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 16:52:00,763 [http-nio-8081-exec-8] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 16:52:00,763 [http-nio-8081-exec-8] ==> Parameters: 4(Long)
+2022-04-17 16:52:00,765 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 16:52:06,455 [taskExecutor-10] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 16:52:06,455 [taskExecutor-10] ==> Parameters: 1(Long), 退出(String), true(Boolean), null
+2022-04-17 16:52:06,591 [taskExecutor-10] <==    Updates: 1
+2022-04-17 16:52:09,183 [http-nio-8081-exec-9] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 16:52:09,183 [http-nio-8081-exec-9] ==> Parameters: 小虎(String)
+2022-04-17 16:52:09,184 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 16:52:09,187 [http-nio-8081-exec-9] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 16:52:09,187 [http-nio-8081-exec-9] ==> Parameters: 3(Long), web端登陆(String), true(Boolean), null
+2022-04-17 16:52:09,224 [http-nio-8081-exec-9] <==    Updates: 1
+2022-04-17 16:52:09,296 [http-nio-8081-exec-3] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:52:09,296 [http-nio-8081-exec-3] ==> Parameters: 3(Long)
+2022-04-17 16:52:09,297 [http-nio-8081-exec-3] <==      Total: 14
+2022-04-17 16:52:09,314 [http-nio-8081-exec-2] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:52:09,314 [http-nio-8081-exec-2] ==> Parameters: 3(Long)
+2022-04-17 16:52:09,316 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 16:52:09,388 [http-nio-8081-exec-5] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 16:52:09,389 [http-nio-8081-exec-5] ==> Parameters: 3(Long)
+2022-04-17 16:52:09,390 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 16:52:09,398 [http-nio-8081-exec-9] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 16:52:09,398 [http-nio-8081-exec-9] ==> Parameters: 3(Long)
+2022-04-17 16:52:09,399 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 16:52:09,402 [http-nio-8081-exec-9] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 16:52:09,403 [http-nio-8081-exec-9] ==> Parameters: 3(Long)
+2022-04-17 16:52:09,404 [http-nio-8081-exec-9] <==      Total: 14
+2022-04-17 21:06:39,529 [http-nio-8081-exec-1] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 21:06:39,717 [http-nio-8081-exec-1] ==> Parameters: admin(String)
+2022-04-17 21:06:39,745 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 21:06:39,772 [http-nio-8081-exec-1] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 21:06:39,888 [http-nio-8081-exec-1] ==> Parameters: 1(Long), web端登陆(String), true(Boolean), null
+2022-04-17 21:06:39,985 [http-nio-8081-exec-1] <==    Updates: 1
+2022-04-17 21:06:40,150 [http-nio-8081-exec-4] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 21:06:40,153 [http-nio-8081-exec-4] ==> Parameters: 1(Long)
+2022-04-17 21:06:40,174 [http-nio-8081-exec-4] <==      Total: 50
+2022-04-17 21:06:40,253 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 21:06:40,256 [http-nio-8081-exec-6] ==> Parameters: 1(Long)
+2022-04-17 21:06:40,259 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 21:06:40,287 [http-nio-8081-exec-5] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 21:06:40,289 [http-nio-8081-exec-5] ==> Parameters: 1(Long)
+2022-04-17 21:06:40,290 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 21:06:40,337 [http-nio-8081-exec-4] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 21:06:40,338 [http-nio-8081-exec-4] ==> Parameters: 1(Long)
+2022-04-17 21:06:40,345 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 21:06:40,348 [http-nio-8081-exec-4] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 21:06:40,348 [http-nio-8081-exec-4] ==> Parameters: 1(Long)
+2022-04-17 21:06:40,354 [http-nio-8081-exec-4] <==      Total: 50
+2022-04-17 21:06:40,362 [http-nio-8081-exec-4] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 21:06:40,368 [http-nio-8081-exec-4] ==> Parameters: 1(Long)
+2022-04-17 21:06:40,369 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 21:06:44,922 [http-nio-8081-exec-4] ==>  Preparing: select count(1) from sys_user t 
+2022-04-17 21:06:44,923 [http-nio-8081-exec-4] ==> Parameters: 
+2022-04-17 21:06:44,926 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 21:06:44,931 [http-nio-8081-exec-4] ==>  Preparing: select * from sys_user t order by username desc, nickname asc limit ?, ? 
+2022-04-17 21:06:44,932 [http-nio-8081-exec-4] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 21:06:44,935 [http-nio-8081-exec-4] <==      Total: 5
+2022-04-17 21:15:05,315 [http-nio-8081-exec-8] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 21:15:05,316 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 21:15:05,320 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 21:15:05,323 [http-nio-8081-exec-8] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 21:15:05,325 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 21:15:05,328 [http-nio-8081-exec-8] <==      Total: 50
+2022-04-17 21:15:05,333 [http-nio-8081-exec-8] ==>  Preparing: select * from sys_role t 
+2022-04-17 21:15:05,333 [http-nio-8081-exec-8] ==> Parameters: 
+2022-04-17 21:15:05,335 [http-nio-8081-exec-8] <==      Total: 4
+2022-04-17 21:17:14,106 [http-nio-8081-exec-1] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 21:17:14,107 [http-nio-8081-exec-1] ==> Parameters: 1(Long)
+2022-04-17 21:17:14,109 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 21:17:14,112 [http-nio-8081-exec-1] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 21:17:14,112 [http-nio-8081-exec-1] ==> Parameters: 1(Long)
+2022-04-17 21:17:14,116 [http-nio-8081-exec-1] <==      Total: 50
+2022-04-17 21:17:14,121 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from sys_user t 
+2022-04-17 21:17:14,121 [http-nio-8081-exec-1] ==> Parameters: 
+2022-04-17 21:17:14,125 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 21:17:14,129 [http-nio-8081-exec-1] ==>  Preparing: select * from sys_user t order by username desc, nickname asc limit ?, ? 
+2022-04-17 21:17:14,129 [http-nio-8081-exec-1] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 21:17:14,132 [http-nio-8081-exec-1] <==      Total: 5
+2022-04-17 21:17:19,024 [http-nio-8081-exec-3] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? WHERE t.status = 1 
+2022-04-17 21:17:19,025 [http-nio-8081-exec-3] ==> Parameters: 1(Long)
+2022-04-17 21:17:19,026 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 21:17:19,030 [http-nio-8081-exec-3] ==>  Preparing: select t.*,r.createTime readTime, if(r.createTime is null, 0, 1) isRead,r.userId from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? WHERE t.status = 1 order by updateTime desc limit ?, ? 
+2022-04-17 21:17:19,031 [http-nio-8081-exec-3] ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2022-04-17 21:17:19,036 [http-nio-8081-exec-3] <==      Total: 2
+2022-04-17 21:17:21,717 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from t_notice t 
+2022-04-17 21:17:21,718 [http-nio-8081-exec-9] ==> Parameters: 
+2022-04-17 21:17:21,720 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 21:17:21,725 [http-nio-8081-exec-9] ==>  Preparing: select * from t_notice t order by updateTime desc, title desc limit ?, ? 
+2022-04-17 21:17:21,725 [http-nio-8081-exec-9] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 21:17:21,727 [http-nio-8081-exec-9] <==      Total: 2
+2022-04-17 21:21:46,395 [http-nio-8081-exec-2] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 21:21:46,396 [http-nio-8081-exec-2] ==> Parameters: 1(Long)
+2022-04-17 21:21:46,398 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 21:21:46,401 [http-nio-8081-exec-2] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 21:21:46,401 [http-nio-8081-exec-2] ==> Parameters: 1(Long)
+2022-04-17 21:21:46,404 [http-nio-8081-exec-2] <==      Total: 50
+2022-04-17 21:21:46,409 [http-nio-8081-exec-2] ==>  Preparing: select * from sys_permission t order by t.sort 
+2022-04-17 21:21:46,410 [http-nio-8081-exec-2] ==> Parameters: 
+2022-04-17 21:21:46,414 [http-nio-8081-exec-2] <==      Total: 54
+2022-04-17 21:21:52,293 [http-nio-8081-exec-4] ==>  Preparing: select * from sys_permission t where t.type = 1 order by t.sort 
+2022-04-17 21:21:52,293 [http-nio-8081-exec-4] ==> Parameters: 
+2022-04-17 21:21:52,295 [http-nio-8081-exec-4] <==      Total: 17
+2022-04-17 21:22:36,059 [http-nio-8081-exec-8] ==>  Preparing: select count(1) from sys_role t 
+2022-04-17 21:22:36,060 [http-nio-8081-exec-8] ==> Parameters: 
+2022-04-17 21:22:36,063 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 21:22:36,067 [http-nio-8081-exec-8] ==>  Preparing: select * from sys_role t order by updateTime desc limit ?, ? 
+2022-04-17 21:22:36,067 [http-nio-8081-exec-8] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 21:22:36,069 [http-nio-8081-exec-8] <==      Total: 4
+2022-04-17 21:25:33,360 [http-nio-8081-exec-6] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 21:25:33,361 [http-nio-8081-exec-6] ==> Parameters: 1(Long)
+2022-04-17 21:25:33,363 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 21:25:33,367 [http-nio-8081-exec-6] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 21:25:33,367 [http-nio-8081-exec-6] ==> Parameters: 1(Long)
+2022-04-17 21:25:33,370 [http-nio-8081-exec-6] <==      Total: 50
+2022-04-17 21:25:33,373 [http-nio-8081-exec-6] ==>  Preparing: select * from sys_permission t order by t.sort 
+2022-04-17 21:25:33,374 [http-nio-8081-exec-6] ==> Parameters: 
+2022-04-17 21:25:33,376 [http-nio-8081-exec-6] <==      Total: 54
+2022-04-17 21:25:33,408 [http-nio-8081-exec-8] ==>  Preparing: select * from sys_role t where t.id = ? 
+2022-04-17 21:25:33,409 [http-nio-8081-exec-8] ==> Parameters: 2(Long)
+2022-04-17 21:25:33,410 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 21:25:33,419 [http-nio-8081-exec-4] ==>  Preparing: select p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId where rp.roleId = ? order by p.sort 
+2022-04-17 21:25:33,420 [http-nio-8081-exec-4] ==> Parameters: 2(Long)
+2022-04-17 21:25:33,422 [http-nio-8081-exec-4] <==      Total: 9
+2022-04-17 21:25:49,328 [http-nio-8081-exec-7] ==>  Preparing: select count(1) from sys_role t 
+2022-04-17 21:25:49,329 [http-nio-8081-exec-7] ==> Parameters: 
+2022-04-17 21:25:49,331 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 21:25:49,335 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_role t order by updateTime desc limit ?, ? 
+2022-04-17 21:25:49,335 [http-nio-8081-exec-7] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 21:25:49,337 [http-nio-8081-exec-7] <==      Total: 4
+2022-04-17 21:29:25,617 [http-nio-8081-exec-3] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 21:29:25,617 [http-nio-8081-exec-3] ==> Parameters: 1(Long)
+2022-04-17 21:29:25,618 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 21:29:25,621 [http-nio-8081-exec-3] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 21:29:25,621 [http-nio-8081-exec-3] ==> Parameters: 1(Long)
+2022-04-17 21:29:25,623 [http-nio-8081-exec-3] <==      Total: 50
+2022-04-17 21:29:25,627 [http-nio-8081-exec-3] ==>  Preparing: select * from sys_permission t order by t.sort 
+2022-04-17 21:29:25,627 [http-nio-8081-exec-3] ==> Parameters: 
+2022-04-17 21:29:25,629 [http-nio-8081-exec-3] <==      Total: 54
+2022-04-17 21:29:28,779 [http-nio-8081-exec-8] ==>  Preparing: select * from sys_permission t where t.type = 1 order by t.sort 
+2022-04-17 21:29:28,780 [http-nio-8081-exec-8] ==> Parameters: 
+2022-04-17 21:29:28,781 [http-nio-8081-exec-8] <==      Total: 17
+2022-04-17 21:37:24,559 [http-nio-8081-exec-5] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 21:37:24,560 [http-nio-8081-exec-5] ==> Parameters: 1(Long)
+2022-04-17 21:37:24,562 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 21:37:24,566 [http-nio-8081-exec-5] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 21:37:24,567 [http-nio-8081-exec-5] ==> Parameters: 1(Long)
+2022-04-17 21:37:24,569 [http-nio-8081-exec-5] <==      Total: 50
+2022-04-17 21:37:24,577 [http-nio-8081-exec-5] ==>  Preparing: select count(1) from file_info t 
+2022-04-17 21:37:24,578 [http-nio-8081-exec-5] ==> Parameters: 
+2022-04-17 21:37:24,580 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 21:37:24,584 [http-nio-8081-exec-5] ==>  Preparing: select * from file_info t order by updateTime desc limit ?, ? 
+2022-04-17 21:37:24,585 [http-nio-8081-exec-5] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 21:37:24,591 [http-nio-8081-exec-5] <==      Total: 2
+2022-04-17 21:37:44,419 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from sys_logs t left join sys_user u on u.id = t.userId 
+2022-04-17 21:37:44,420 [http-nio-8081-exec-9] ==> Parameters: 
+2022-04-17 21:37:44,421 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 21:37:44,427 [http-nio-8081-exec-9] ==>  Preparing: select t.*, u.username, u.nickname from sys_logs t left join sys_user u on u.id = t.userId order by createTime desc limit ?, ? 
+2022-04-17 21:37:44,428 [http-nio-8081-exec-9] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 21:37:44,433 [http-nio-8081-exec-9] <==      Total: 10
+2022-04-17 21:37:48,581 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from sys_logs t left join sys_user u on u.id = t.userId 
+2022-04-17 21:37:48,582 [http-nio-8081-exec-1] ==> Parameters: 
+2022-04-17 21:37:48,583 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 21:37:48,586 [http-nio-8081-exec-1] ==>  Preparing: select t.*, u.username, u.nickname from sys_logs t left join sys_user u on u.id = t.userId order by createTime asc limit ?, ? 
+2022-04-17 21:37:48,587 [http-nio-8081-exec-1] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 21:37:48,589 [http-nio-8081-exec-1] <==      Total: 10
+2022-04-17 21:37:49,309 [http-nio-8081-exec-3] ==>  Preparing: select count(1) from sys_logs t left join sys_user u on u.id = t.userId 
+2022-04-17 21:37:49,310 [http-nio-8081-exec-3] ==> Parameters: 
+2022-04-17 21:37:49,311 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 21:37:49,314 [http-nio-8081-exec-3] ==>  Preparing: select t.*, u.username, u.nickname from sys_logs t left join sys_user u on u.id = t.userId order by createTime desc limit ?, ? 
+2022-04-17 21:37:49,314 [http-nio-8081-exec-3] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 21:37:49,317 [http-nio-8081-exec-3] <==      Total: 10
+2022-04-17 21:53:44,839 [http-nio-8081-exec-10] ==>  Preparing: select * from t_notice t where t.id = ? 
+2022-04-17 21:53:44,840 [http-nio-8081-exec-10] ==> Parameters: 3(Long)
+2022-04-17 21:53:44,841 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 21:53:44,844 [http-nio-8081-exec-10] ==>  Preparing: insert ignore into t_notice_read(noticeId, userId, createTime) values(?, ?, now()) 
+2022-04-17 21:53:44,845 [http-nio-8081-exec-10] ==> Parameters: 3(Long), 1(Long)
+2022-04-17 21:53:44,849 [http-nio-8081-exec-10] <==    Updates: 0
+2022-04-17 21:53:44,852 [http-nio-8081-exec-10] ==>  Preparing: select u.* from t_notice_read r inner join sys_user u on u.id = r.userId where r.noticeId = ? order by r.createTime desc 
+2022-04-17 21:53:44,853 [http-nio-8081-exec-10] ==> Parameters: 3(Long)
+2022-04-17 21:53:44,855 [http-nio-8081-exec-10] <==      Total: 2
+2022-04-17 21:53:47,949 [http-nio-8081-exec-7] ==>  Preparing: select * from t_notice t where t.id = ? 
+2022-04-17 21:53:47,949 [http-nio-8081-exec-7] ==> Parameters: 2(Long)
+2022-04-17 21:53:47,951 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 21:53:47,954 [http-nio-8081-exec-7] ==>  Preparing: insert ignore into t_notice_read(noticeId, userId, createTime) values(?, ?, now()) 
+2022-04-17 21:53:47,954 [http-nio-8081-exec-7] ==> Parameters: 2(Long), 1(Long)
+2022-04-17 21:53:47,955 [http-nio-8081-exec-7] <==    Updates: 0
+2022-04-17 21:53:47,957 [http-nio-8081-exec-7] ==>  Preparing: select u.* from t_notice_read r inner join sys_user u on u.id = r.userId where r.noticeId = ? order by r.createTime desc 
+2022-04-17 21:53:47,958 [http-nio-8081-exec-7] ==> Parameters: 2(Long)
+2022-04-17 21:53:47,959 [http-nio-8081-exec-7] <==      Total: 2
+2022-04-17 21:53:54,233 [http-nio-8081-exec-1] ==>  Preparing: select * from t_notice t where t.id = ? 
+2022-04-17 21:53:54,234 [http-nio-8081-exec-1] ==> Parameters: 2(Long)
+2022-04-17 21:53:54,235 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 21:53:54,238 [http-nio-8081-exec-1] ==>  Preparing: insert ignore into t_notice_read(noticeId, userId, createTime) values(?, ?, now()) 
+2022-04-17 21:53:54,238 [http-nio-8081-exec-1] ==> Parameters: 2(Long), 1(Long)
+2022-04-17 21:53:54,239 [http-nio-8081-exec-1] <==    Updates: 0
+2022-04-17 21:53:54,242 [http-nio-8081-exec-1] ==>  Preparing: select u.* from t_notice_read r inner join sys_user u on u.id = r.userId where r.noticeId = ? order by r.createTime desc 
+2022-04-17 21:53:54,242 [http-nio-8081-exec-1] ==> Parameters: 2(Long)
+2022-04-17 21:53:54,245 [http-nio-8081-exec-1] <==      Total: 2
+2022-04-17 21:57:42,027 [http-nio-8081-exec-4] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 21:57:42,028 [http-nio-8081-exec-4] ==> Parameters: 1(Long)
+2022-04-17 21:57:42,029 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 21:57:42,034 [http-nio-8081-exec-4] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 21:57:42,035 [http-nio-8081-exec-4] ==> Parameters: 1(Long)
+2022-04-17 21:57:42,038 [http-nio-8081-exec-4] <==      Total: 50
+2022-04-17 21:57:42,043 [http-nio-8081-exec-4] ==>  Preparing: select count(1) from t_notice t 
+2022-04-17 21:57:42,044 [http-nio-8081-exec-4] ==> Parameters: 
+2022-04-17 21:57:42,045 [http-nio-8081-exec-4] <==      Total: 1
+2022-04-17 21:57:42,048 [http-nio-8081-exec-4] ==>  Preparing: select * from t_notice t order by updateTime desc, title desc limit ?, ? 
+2022-04-17 21:57:42,049 [http-nio-8081-exec-4] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 21:57:42,050 [http-nio-8081-exec-4] <==      Total: 2
+2022-04-17 22:05:38,926 [http-nio-8081-exec-2] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 22:05:38,926 [http-nio-8081-exec-2] ==> Parameters: 1(Long)
+2022-04-17 22:05:38,928 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 22:05:38,931 [http-nio-8081-exec-2] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 22:05:38,931 [http-nio-8081-exec-2] ==> Parameters: 1(Long)
+2022-04-17 22:05:38,933 [http-nio-8081-exec-2] <==      Total: 50
+2022-04-17 22:05:38,936 [http-nio-8081-exec-2] ==>  Preparing: select count(1) from sys_logs t left join sys_user u on u.id = t.userId 
+2022-04-17 22:05:38,937 [http-nio-8081-exec-2] ==> Parameters: 
+2022-04-17 22:05:38,938 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 22:05:38,940 [http-nio-8081-exec-2] ==>  Preparing: select t.*, u.username, u.nickname from sys_logs t left join sys_user u on u.id = t.userId order by remark asc limit ?, ? 
+2022-04-17 22:05:38,941 [http-nio-8081-exec-2] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 22:05:38,950 [http-nio-8081-exec-2] <==      Total: 10
+2022-04-17 22:07:42,898 [http-nio-8081-exec-1] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 22:07:42,899 [http-nio-8081-exec-1] ==> Parameters: 1(Long)
+2022-04-17 22:07:42,901 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 22:07:42,905 [http-nio-8081-exec-1] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 22:07:42,906 [http-nio-8081-exec-1] ==> Parameters: 1(Long)
+2022-04-17 22:07:42,908 [http-nio-8081-exec-1] <==      Total: 50
+2022-04-17 22:07:42,916 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from tb_owner t 
+2022-04-17 22:07:42,917 [http-nio-8081-exec-1] ==> Parameters: 
+2022-04-17 22:07:42,920 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 22:07:42,924 [http-nio-8081-exec-1] ==>  Preparing: select owner_id, owner_name, owner_sex, owner_phone, owner_come_time, owner_id_card from tb_owner limit ?, ? 
+2022-04-17 22:07:42,925 [http-nio-8081-exec-1] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 22:07:42,926 [http-nio-8081-exec-1] <==      Total: 5
+2022-04-17 22:07:45,326 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from tb_visitor t 
+2022-04-17 22:07:45,326 [http-nio-8081-exec-1] ==> Parameters: 
+2022-04-17 22:07:45,328 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 22:07:45,333 [http-nio-8081-exec-1] ==>  Preparing: select visitor_id, visitor_name, visitor_sex, visitor_phone, visitor_card_no, visitor_come_time from tb_visitor limit ?, ? 
+2022-04-17 22:07:45,333 [http-nio-8081-exec-1] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 22:07:45,335 [http-nio-8081-exec-1] <==      Total: 3
+2022-04-17 22:16:20,445 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 22:16:20,446 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 22:16:20,447 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 22:16:20,450 [http-nio-8081-exec-7] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 22:16:20,450 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 22:16:20,453 [http-nio-8081-exec-7] <==      Total: 50
+2022-04-17 22:16:20,463 [http-nio-8081-exec-7] ==>  Preparing: select count(1) from tb_repair t 
+2022-04-17 22:16:20,463 [http-nio-8081-exec-7] ==> Parameters: 
+2022-04-17 22:16:20,507 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 22:16:20,513 [http-nio-8081-exec-7] ==>  Preparing: select repair_id, repair_time, repair_reson, repair_people_name, repair_state, finish_time,house_no,phone_num from tb_repair limit ?, ? 
+2022-04-17 22:16:20,514 [http-nio-8081-exec-7] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 22:16:20,516 [http-nio-8081-exec-7] <==      Total: 2
+2022-04-17 22:16:23,188 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from tb_park t 
+2022-04-17 22:16:23,189 [http-nio-8081-exec-1] ==> Parameters: 
+2022-04-17 22:16:23,192 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 22:16:23,196 [http-nio-8081-exec-1] ==>  Preparing: select park_no, owner_id, expira_date, park_area,park_type,owner_name from tb_park limit ?, ? 
+2022-04-17 22:16:23,197 [http-nio-8081-exec-1] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 22:16:23,198 [http-nio-8081-exec-1] <==      Total: 10
+2022-04-17 22:16:28,719 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from tb_car t 
+2022-04-17 22:16:28,719 [http-nio-8081-exec-6] ==> Parameters: 
+2022-04-17 22:16:28,722 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 22:16:28,726 [http-nio-8081-exec-6] ==>  Preparing: select car_id, car_num, park_no, car_flag, car_type, car_color,car_owner,car_owner_phone from tb_car limit ?, ? 
+2022-04-17 22:16:28,727 [http-nio-8081-exec-6] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 22:16:28,728 [http-nio-8081-exec-6] <==      Total: 3
+2022-04-17 22:16:40,488 [http-nio-8081-exec-2] ==>  Preparing: select owner_id,owner_name from tb_owner 
+2022-04-17 22:16:40,489 [http-nio-8081-exec-2] ==> Parameters: 
+2022-04-17 22:16:40,489 [http-nio-8081-exec-2] <==      Total: 5
+2022-04-17 22:16:40,533 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from tb_house t 
+2022-04-17 22:16:40,534 [http-nio-8081-exec-6] ==> Parameters: 
+2022-04-17 22:16:40,655 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 22:16:40,658 [http-nio-8081-exec-6] ==>  Preparing: select house_no, owner_id, house_type, house_area,build_name,build_id,owner_name from tb_house limit ?, ? 
+2022-04-17 22:16:40,659 [http-nio-8081-exec-6] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 22:16:40,660 [http-nio-8081-exec-6] <==      Total: 10
+2022-04-17 22:37:44,473 [http-nio-8081-exec-1] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 22:37:44,474 [http-nio-8081-exec-1] ==> Parameters: 1(Long)
+2022-04-17 22:37:44,475 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 22:37:44,478 [http-nio-8081-exec-1] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 22:37:44,479 [http-nio-8081-exec-1] ==> Parameters: 1(Long)
+2022-04-17 22:37:44,481 [http-nio-8081-exec-1] <==      Total: 50
+2022-04-17 22:37:44,490 [http-nio-8081-exec-1] ==>  Preparing: select count(1) from tb_build t 
+2022-04-17 22:37:44,490 [http-nio-8081-exec-1] ==> Parameters: 
+2022-04-17 22:37:44,530 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 22:37:44,536 [http-nio-8081-exec-1] ==>  Preparing: select id, build_name, build_area, build_floor from tb_build limit ?, ? 
+2022-04-17 22:37:44,537 [http-nio-8081-exec-1] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 22:37:44,539 [http-nio-8081-exec-1] <==      Total: 10
+2022-04-17 22:39:38,285 [http-nio-8081-exec-7] ==>  Preparing: select id, build_name, build_area, build_floor from tb_build where id = ? 
+2022-04-17 22:39:38,286 [http-nio-8081-exec-7] ==> Parameters: 16(Integer)
+2022-04-17 22:39:38,287 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 22:39:40,678 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from tb_build t 
+2022-04-17 22:39:40,678 [http-nio-8081-exec-9] ==> Parameters: 
+2022-04-17 22:39:40,681 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 22:39:40,687 [http-nio-8081-exec-9] ==>  Preparing: select id, build_name, build_area, build_floor from tb_build limit ?, ? 
+2022-04-17 22:39:40,687 [http-nio-8081-exec-9] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 22:39:40,690 [http-nio-8081-exec-9] <==      Total: 10
+2022-04-17 22:46:34,962 [http-nio-8081-exec-3] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 22:46:34,963 [http-nio-8081-exec-3] ==> Parameters: 1(Long)
+2022-04-17 22:46:34,964 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 22:46:34,967 [http-nio-8081-exec-3] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 22:46:34,967 [http-nio-8081-exec-3] ==> Parameters: 1(Long)
+2022-04-17 22:46:34,968 [http-nio-8081-exec-3] <==      Total: 50
+2022-04-17 22:46:34,972 [http-nio-8081-exec-3] ==>  Preparing: select repair_id, repair_time, repair_reson, repair_people_name, repair_state, finish_time,house_no,phone_num from tb_repair where repair_id = ? 
+2022-04-17 22:46:34,973 [http-nio-8081-exec-3] ==> Parameters: 2(Integer)
+2022-04-17 22:46:34,973 [http-nio-8081-exec-3] <==      Total: 1
+2022-04-17 22:46:38,667 [http-nio-8081-exec-9] ==>  Preparing: update tb_repair SET repair_reson = ?, repair_people_name = ?, repair_state = ?, finish_time = ?, house_no = ?, phone_num = ? where repair_id = ? 
+2022-04-17 22:46:38,732 [http-nio-8081-exec-9] ==> Parameters: 马桶坏了(String), 邱一成(String), 1(Integer), 2022-04-17 22:46:38(String), 2401(String), 13547454191(String), 2(Integer)
+2022-04-17 22:46:38,846 [http-nio-8081-exec-9] <==    Updates: 1
+2022-04-17 22:46:40,176 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from tb_repair t 
+2022-04-17 22:46:40,176 [http-nio-8081-exec-6] ==> Parameters: 
+2022-04-17 22:46:40,178 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 22:46:40,182 [http-nio-8081-exec-6] ==>  Preparing: select repair_id, repair_time, repair_reson, repair_people_name, repair_state, finish_time,house_no,phone_num from tb_repair limit ?, ? 
+2022-04-17 22:46:40,182 [http-nio-8081-exec-6] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 22:46:40,184 [http-nio-8081-exec-6] <==      Total: 2
+2022-04-17 22:48:20,360 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 22:48:20,361 [http-nio-8081-exec-6] ==> Parameters: 1(Long)
+2022-04-17 22:48:20,412 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 22:48:20,434 [http-nio-8081-exec-10] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 22:48:20,435 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 22:48:20,437 [http-nio-8081-exec-10] <==      Total: 1
+2022-04-17 22:48:20,444 [http-nio-8081-exec-7] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 22:48:20,445 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 22:48:20,508 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 22:48:22,514 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from tb_owner t 
+2022-04-17 22:48:22,515 [http-nio-8081-exec-9] ==> Parameters: 
+2022-04-17 22:48:22,622 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 22:48:22,626 [http-nio-8081-exec-9] ==>  Preparing: select owner_id, owner_name, owner_sex, owner_phone, owner_come_time, owner_id_card from tb_owner limit ?, ? 
+2022-04-17 22:48:22,627 [http-nio-8081-exec-9] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 22:48:22,628 [http-nio-8081-exec-9] <==      Total: 5
+2022-04-17 22:49:08,729 [http-nio-8081-exec-6] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 22:49:08,729 [http-nio-8081-exec-6] ==> Parameters: 1(Long)
+2022-04-17 22:49:08,730 [http-nio-8081-exec-6] <==      Total: 1
+2022-04-17 22:49:08,809 [http-nio-8081-exec-8] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 22:49:08,809 [http-nio-8081-exec-8] ==> Parameters: 1(Long)
+2022-04-17 22:49:08,810 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 22:49:08,815 [http-nio-8081-exec-9] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 22:49:08,816 [http-nio-8081-exec-9] ==> Parameters: 1(Long)
+2022-04-17 22:49:08,817 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 22:49:08,819 [http-nio-8081-exec-9] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 22:49:08,820 [http-nio-8081-exec-9] ==> Parameters: 1(Long)
+2022-04-17 22:49:08,955 [http-nio-8081-exec-9] <==      Total: 50
+2022-04-17 22:49:08,959 [http-nio-8081-exec-9] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 22:49:08,960 [http-nio-8081-exec-9] ==> Parameters: 1(Long)
+2022-04-17 22:49:08,961 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 22:49:10,897 [taskExecutor-1] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 22:49:10,898 [taskExecutor-1] ==> Parameters: 1(Long), 退出(String), true(Boolean), null
+2022-04-17 22:49:11,174 [taskExecutor-1] <==    Updates: 1
+2022-04-17 22:49:11,986 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_user t where t.username = ? 
+2022-04-17 22:49:11,987 [http-nio-8081-exec-7] ==> Parameters: admin(String)
+2022-04-17 22:49:11,988 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 22:49:11,992 [http-nio-8081-exec-7] ==>  Preparing: insert into sys_logs(userId, module, flag, remark, createTime) values(?, ?, ?, ?, now()) 
+2022-04-17 22:49:11,993 [http-nio-8081-exec-7] ==> Parameters: 1(Long), web端登陆(String), true(Boolean), null
+2022-04-17 22:49:12,031 [http-nio-8081-exec-7] <==    Updates: 1
+2022-04-17 22:49:12,127 [http-nio-8081-exec-10] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 22:49:12,127 [http-nio-8081-exec-10] ==> Parameters: 1(Long)
+2022-04-17 22:49:12,129 [http-nio-8081-exec-10] <==      Total: 50
+2022-04-17 22:49:12,147 [http-nio-8081-exec-2] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 22:49:12,148 [http-nio-8081-exec-2] ==> Parameters: 1(Long)
+2022-04-17 22:49:12,150 [http-nio-8081-exec-2] <==      Total: 1
+2022-04-17 22:49:12,221 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from t_notice t left join t_notice_read r on r.noticeId = t.id and r.userId = ? where t.status = 1 and r.userId is null 
+2022-04-17 22:49:12,221 [http-nio-8081-exec-9] ==> Parameters: 1(Long)
+2022-04-17 22:49:12,222 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 22:49:12,226 [http-nio-8081-exec-7] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 22:49:12,226 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 22:49:12,227 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 22:49:12,231 [http-nio-8081-exec-7] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 22:49:12,231 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 22:49:12,233 [http-nio-8081-exec-7] <==      Total: 50
+2022-04-17 22:49:12,236 [http-nio-8081-exec-7] ==>  Preparing: SELECT name,description FROM sys_role sr LEFT JOIN sys_role_user sru ON sr.id=sru.roleId LEFT JOIN sys_user su ON sru.userId=su.id WHERE su.id=? 
+2022-04-17 22:49:12,236 [http-nio-8081-exec-7] ==> Parameters: 1(Long)
+2022-04-17 22:49:12,237 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 22:50:35,284 [http-nio-8081-exec-5] ==>  Preparing: select count(1) from tb_repair t 
+2022-04-17 22:50:35,284 [http-nio-8081-exec-5] ==> Parameters: 
+2022-04-17 22:50:35,426 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 22:50:35,431 [http-nio-8081-exec-5] ==>  Preparing: select repair_id, repair_time, repair_reson, repair_people_name, repair_state, finish_time,house_no,phone_num from tb_repair limit ?, ? 
+2022-04-17 22:50:35,431 [http-nio-8081-exec-5] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 22:50:35,432 [http-nio-8081-exec-5] <==      Total: 2
+2022-04-17 22:50:40,936 [http-nio-8081-exec-8] ==>  Preparing: select repair_id, repair_time, repair_reson, repair_people_name, repair_state, finish_time,house_no,phone_num from tb_repair where repair_id = ? 
+2022-04-17 22:50:40,936 [http-nio-8081-exec-8] ==> Parameters: 2(Integer)
+2022-04-17 22:50:40,937 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 22:50:50,348 [http-nio-8081-exec-9] ==>  Preparing: update tb_repair SET repair_reson = ?, repair_people_name = ?, repair_state = ?, finish_time = ?, house_no = ?, phone_num = ? where repair_id = ? 
+2022-04-17 22:50:50,348 [http-nio-8081-exec-9] ==> Parameters: 马桶坏了(String), 小虎(String), 1(Integer), 2022-04-17 22:50:50(String), 2401(String), 13547454191(String), 2(Integer)
+2022-04-17 22:50:50,404 [http-nio-8081-exec-9] <==    Updates: 1
+2022-04-17 22:50:51,714 [http-nio-8081-exec-9] ==>  Preparing: select count(1) from tb_repair t 
+2022-04-17 22:50:51,714 [http-nio-8081-exec-9] ==> Parameters: 
+2022-04-17 22:50:51,716 [http-nio-8081-exec-9] <==      Total: 1
+2022-04-17 22:50:51,719 [http-nio-8081-exec-9] ==>  Preparing: select repair_id, repair_time, repair_reson, repair_people_name, repair_state, finish_time,house_no,phone_num from tb_repair limit ?, ? 
+2022-04-17 22:50:51,720 [http-nio-8081-exec-9] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 22:50:51,721 [http-nio-8081-exec-9] <==      Total: 2
+2022-04-17 22:51:23,642 [http-nio-8081-exec-1] ==>  Preparing: select * from sys_role r inner join sys_role_user ru on r.id = ru.roleId where ru.userId = ? 
+2022-04-17 22:51:23,642 [http-nio-8081-exec-1] ==> Parameters: 1(Long)
+2022-04-17 22:51:23,649 [http-nio-8081-exec-1] <==      Total: 1
+2022-04-17 22:51:23,652 [http-nio-8081-exec-1] ==>  Preparing: select distinct p.* from sys_permission p inner join sys_role_permission rp on p.id = rp.permissionId inner join sys_role_user ru on ru.roleId = rp.roleId where ru.userId = ? order by p.sort 
+2022-04-17 22:51:23,652 [http-nio-8081-exec-1] ==> Parameters: 1(Long)
+2022-04-17 22:51:23,659 [http-nio-8081-exec-1] <==      Total: 50
+2022-04-17 22:51:23,667 [http-nio-8081-exec-1] ==>  Preparing: insert into tb_repair ( repair_time, repair_reson, repair_people_name, repair_state, house_no, phone_num ) values ( ?, ?, ?, ?, ?, ? ) 
+2022-04-17 22:51:23,668 [http-nio-8081-exec-1] ==> Parameters: 2022-04-17 22:51:23(String), 路灯坏了(String), 咖啡(String), 0(Integer), 23(String), 18112345256(String)
+2022-04-17 22:51:23,795 [http-nio-8081-exec-1] <==    Updates: 1
+2022-04-17 22:51:25,106 [http-nio-8081-exec-8] ==>  Preparing: select count(1) from tb_repair t 
+2022-04-17 22:51:25,106 [http-nio-8081-exec-8] ==> Parameters: 
+2022-04-17 22:51:25,108 [http-nio-8081-exec-8] <==      Total: 1
+2022-04-17 22:51:25,112 [http-nio-8081-exec-8] ==>  Preparing: select repair_id, repair_time, repair_reson, repair_people_name, repair_state, finish_time,house_no,phone_num from tb_repair limit ?, ? 
+2022-04-17 22:51:25,113 [http-nio-8081-exec-8] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 22:51:25,115 [http-nio-8081-exec-8] <==      Total: 3
+2022-04-17 22:51:32,638 [http-nio-8081-exec-7] ==>  Preparing: select repair_id, repair_time, repair_reson, repair_people_name, repair_state, finish_time,house_no,phone_num from tb_repair where repair_id = ? 
+2022-04-17 22:51:32,638 [http-nio-8081-exec-7] ==> Parameters: 4(Integer)
+2022-04-17 22:51:32,639 [http-nio-8081-exec-7] <==      Total: 1
+2022-04-17 22:51:36,061 [http-nio-8081-exec-6] ==>  Preparing: update tb_repair SET repair_reson = ?, repair_people_name = ?, repair_state = ?, finish_time = ?, house_no = ?, phone_num = ? where repair_id = ? 
+2022-04-17 22:51:36,062 [http-nio-8081-exec-6] ==> Parameters: 路灯坏了(String), 咖啡(String), 1(Integer), 2022-04-17 22:51:36(String), 23(String), 18112345256(String), 4(Integer)
+2022-04-17 22:51:36,096 [http-nio-8081-exec-6] <==    Updates: 1
+2022-04-17 22:51:37,409 [http-nio-8081-exec-5] ==>  Preparing: select count(1) from tb_repair t 
+2022-04-17 22:51:37,410 [http-nio-8081-exec-5] ==> Parameters: 
+2022-04-17 22:51:37,412 [http-nio-8081-exec-5] <==      Total: 1
+2022-04-17 22:51:37,416 [http-nio-8081-exec-5] ==>  Preparing: select repair_id, repair_time, repair_reson, repair_people_name, repair_state, finish_time,house_no,phone_num from tb_repair limit ?, ? 
+2022-04-17 22:51:37,416 [http-nio-8081-exec-5] ==> Parameters: 0(Integer), 10(Integer)
+2022-04-17 22:51:37,417 [http-nio-8081-exec-5] <==      Total: 3

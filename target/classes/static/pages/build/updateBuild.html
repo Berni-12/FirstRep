@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+		<fieldset>
+			<input type="hidden" id="id" name="id">
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>楼栋名称</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='请输入楼栋名称' type='text' name='build_name'
+						   id='build_name' data-bv-notempty='true' data-bv-notempty-message='楼栋名称不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>楼栋面积(m²)</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='请输入楼栋面积' type='text' name='build_area'
+						   id='build_area' data-bv-notempty='false'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>楼层数</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='请输入楼层数' type='text' name='build_floor'
+						   id='build_floor' data-bv-notempty='false'>
+				</div>
+			</div>
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+					    <button class="btn btn-primary" onclick="location.href='buildList.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="update()">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+	<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jq.js"></script>
+	<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use(['layer','laydate'], function(){
+		    var layer = layui.layer;
+		});
+		
+		initData();
+
+        /**
+         * 根据ID查询房屋信息
+         */
+		function initData(){
+			var id = getUrlParam("id");
+			if(id != ""){
+				$.ajax({
+					type : 'get',
+					url : '/build/selectBuild',
+					data:{
+					  id:id
+					},
+					async : false,
+					success : function(data) {
+						$('#id').val(data.data.id);
+						$('#build_name').val(data.data.buildName);
+						$('#build_area').val(data.data.buildArea);
+						$('#build_floor').val(data.data.buildFloor);
+					}
+				});
+			}
+		}
+
+        /**
+		 * 更新房屋信息
+         */
+		function update() {
+			$('#form').bootstrapValidator();
+			var bootstrapValidator = $("#form").data('bootstrapValidator');
+			bootstrapValidator.validate();
+		    if(!bootstrapValidator.isValid()){
+			   return;
+		    }
+
+            var id = getUrlParam("id");
+            var build_name=$("#build_name").val();
+            var build_area=$("#build_area").val();
+            var build_floor=$("#build_floor").val();
+
+			$.ajax({
+				type : 'post',
+				url : '/build/updateBuild',
+				contentType: "application/json; charset=utf-8",
+                data : JSON.stringify({
+					id:id,
+                    buildName:build_name,
+                    buildArea:build_area,
+                    buildFloor:build_floor
+                }),
+				success : function(data) {
+					layer.msg("修改成功", {shift: -1, time: 1000}, function(){
+                        location.href = "buildList.html";
+                    });
+				},error:function (data) {
+                    layer.msg("修改失败", {shift: -1, time: 1000}, function(){
+                        location.href = "buildList.html";
+                    });
+                }
+			});
+		}
+		
+	</script>
+</body>
+</html>

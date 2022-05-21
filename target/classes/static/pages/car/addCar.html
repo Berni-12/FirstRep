@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <form class="form-horizontal" onsubmit="return false" id="form">
+        <fieldset>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>车牌号</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='请输入车牌号' type='text' name='car_num' id='car_num'
+                           data-bv-notempty='true' data-bv-notempty-message='车牌号不能为空'>
+                </div>
+            </div>
+
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>车位号</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='请输入所用车位号' type='text' name='park_no' id='park_no'
+                           data-bv-notempty='false'>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>车辆型号</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='请输入车辆型号' type='text' name='car_type'
+                           id='car_type' data-bv-notempty='false'>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>车辆颜色</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='请输入车辆颜色' type='text' name='car_color'
+                           id='car_color' data-bv-notempty='false'>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>车主姓名</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='请输入车主姓名' type='text' name='car_owner'
+                           id='car_owner' data-bv-notempty='false'>
+                </div>
+            </div>
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>车主联系电话</label>
+                <div class='col-md-10'>
+                    <input class='form-control' placeholder='请输入车主联系电话' type='text' name='car_owner_phone'
+                           id='car_owner_phone' data-bv-notempty='false'>
+                </div>
+            </div>
+
+            <div class='form-group'>
+                <label class='col-md-2 control-label'>车辆来源</label>
+                <div class="col-md-10" style="width: 120px">
+                    <select class="form-control input-sm" name="car_flag" id="car_flag">
+                        <option value="1">业主车辆</option>
+                        <option value="2">外来车辆</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <div class="row" align="center">
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" onclick="location.href='carList.html'">返回</button>
+                        <button class="btn btn-primary" type="submit" onclick="add()">
+                            <i class="fa fa-save"></i> 保存
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../js/jq.js"></script>
+<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript">
+    layui.use(['layer', 'laydate'], function () {
+        var layer = layui.layer;
+    });
+
+    function add() {
+        $('#form').bootstrapValidator();
+        var bootstrapValidator = $("#form").data('bootstrapValidator');
+        bootstrapValidator.validate();
+        if (!bootstrapValidator.isValid()) {
+            return;
+        }
+
+        var car_num = $("#car_num").val();
+        var park_no = $("#park_no").val();
+        var car_flag = $("#car_flag").val();
+        var car_type = $("#car_type").val();
+        var car_color = $("#car_color").val();
+        var car_owner = $("#car_owner").val();
+        var car_owner_phone = $("#car_owner_phone").val();
+        $.ajax({
+            type: 'post',
+            url: '/car/saveCar',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({
+                carNum: car_num,
+                parkNo: park_no,
+                carFlag: car_flag,
+                carColor: car_color,
+                carType: car_type,
+                carOwner: car_owner,
+                carOwnerPhone: car_owner_phone
+            }),
+            success: function (data) {
+                layer.msg("添加成功", {shift: -1, time: 1000}, function () {
+                    location.href = "carList.html";
+                });
+            },
+            error: function (data) {
+                layer.msg("添加失败", {shift: -1, time: 1000}, function () {
+                    location.href = "carList.html";
+                });
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

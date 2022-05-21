@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zcc.admin.server.dao.PayMapper" >
+  <resultMap id="BaseResultMap" type="com.zcc.admin.server.model.Pay" >
+    <id column="owner_pay_id" property="ownerPayId" jdbcType="INTEGER" />
+    <result column="fee_item_id" property="feeItemId" jdbcType="INTEGER" />
+    <result column="owner_id" property="ownerId" jdbcType="INTEGER" />
+    <result column="pay_time" property="payTime" jdbcType="VARCHAR" />
+    <result column="pay_money" property="payMoney" jdbcType="DECIMAL" />
+    <result column="pay_receive" property="payReceive" jdbcType="DECIMAL" />
+    <result column="pay_state" property="payState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    owner_pay_id, fee_item_id, owner_id, pay_time, pay_money, pay_receive, pay_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_pay
+    where owner_pay_id = #{ownerPayId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_pay
+    where owner_pay_id = #{ownerPayId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zcc.admin.server.model.Pay" >
+    insert into tb_pay (owner_pay_id, fee_item_id, owner_id, 
+      pay_time, pay_money, pay_receive, 
+      pay_state)
+    values (#{ownerPayId,jdbcType=INTEGER}, #{feeItemId,jdbcType=INTEGER}, #{ownerId,jdbcType=INTEGER}, 
+      #{payTime,jdbcType=VARCHAR}, #{payMoney,jdbcType=DECIMAL}, #{payReceive,jdbcType=DECIMAL}, 
+      #{payState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zcc.admin.server.model.Pay" >
+    insert into tb_pay
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ownerPayId != null" >
+        owner_pay_id,
+      </if>
+      <if test="feeItemId != null" >
+        fee_item_id,
+      </if>
+      <if test="ownerId != null" >
+        owner_id,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="payMoney != null" >
+        pay_money,
+      </if>
+      <if test="payReceive != null" >
+        pay_receive,
+      </if>
+      <if test="payState != null" >
+        pay_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ownerPayId != null" >
+        #{ownerPayId,jdbcType=INTEGER},
+      </if>
+      <if test="feeItemId != null" >
+        #{feeItemId,jdbcType=INTEGER},
+      </if>
+      <if test="ownerId != null" >
+        #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=VARCHAR},
+      </if>
+      <if test="payMoney != null" >
+        #{payMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="payReceive != null" >
+        #{payReceive,jdbcType=DECIMAL},
+      </if>
+      <if test="payState != null" >
+        #{payState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zcc.admin.server.model.Pay" >
+    update tb_pay
+    <set >
+      <if test="feeItemId != null" >
+        fee_item_id = #{feeItemId,jdbcType=INTEGER},
+      </if>
+      <if test="ownerId != null" >
+        owner_id = #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=VARCHAR},
+      </if>
+      <if test="payMoney != null" >
+        pay_money = #{payMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="payReceive != null" >
+        pay_receive = #{payReceive,jdbcType=DECIMAL},
+      </if>
+      <if test="payState != null" >
+        pay_state = #{payState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where owner_pay_id = #{ownerPayId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zcc.admin.server.model.Pay" >
+    update tb_pay
+    set fee_item_id = #{feeItemId,jdbcType=INTEGER},
+      owner_id = #{ownerId,jdbcType=INTEGER},
+      pay_time = #{payTime,jdbcType=VARCHAR},
+      pay_money = #{payMoney,jdbcType=DECIMAL},
+      pay_receive = #{payReceive,jdbcType=DECIMAL},
+      pay_state = #{payState,jdbcType=VARCHAR}
+    where owner_pay_id = #{ownerPayId,jdbcType=INTEGER}
+  </update>
+</mapper>

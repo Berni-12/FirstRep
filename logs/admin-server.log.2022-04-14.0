@@ -1,0 +1,3 @@
+2022-04-14 20:01:14,214 [http-nio-8081-exec-1] DEBUG -[MyShiroRealm.java:71]- 权限配置
+2022-04-14 20:03:17,763 [http-nio-8081-exec-10] DEBUG -[MyShiroRealm.java:71]- 权限配置
+2022-04-14 20:03:17,872 [http-nio-8081-exec-10] DEBUG -[UserServiceImpl.java:42]- 新增用户muller

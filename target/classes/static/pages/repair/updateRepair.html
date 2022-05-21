@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+		<fieldset>
+			<input type="hidden" id="id" name="id">
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>报修人姓名</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='报修人姓名' type='text' name='repair_people_name' id='repair_people_name'
+						   data-bv-notempty='true' data-bv-notempty-message='报修人姓名不能为空'>
+				</div>
+			</div>
+
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>联系电话</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='请输入联系电话' type='text' name='phone_num' id='phone_num'
+						   data-bv-notempty='true' data-bv-notempty-message='联系电话不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>报修事项</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='请输入报修事项号' type='text' name='repair_reason'
+						   id='repair_reason' data-bv-notempty='true' data-bv-notempty-message='报修事项不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>房间号</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='请输入房间号' type='text' name='house_no'
+						   id='house_no' data-bv-notempty='true' data-bv-notempty-message='房间号不能为空'>
+				</div>
+			</div>
+
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>修理状态</label>
+				<div class="col-md-10" style="width: 100px">
+					<select class="form-control input-sm" name="repair_state" id="repair_state">
+						<option value="0">未修理</option>
+						<option value="1">已修理</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+					    <button class="btn btn-primary" onclick="location.href='repairList.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="update()">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>
+	<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jq.js"></script>
+	<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use(['layer','laydate'], function(){
+		    var layer = layui.layer;
+		});
+		
+		initData();
+
+        /**
+         * 根据ID查询房屋信息
+         */
+		function initData(){
+			var id = getUrlParam("id");
+			if(id != ""){
+				$.ajax({
+					type : 'get',
+					url : '/repair/selectRepair',
+					data:{
+					  repairId:id
+					},
+					async : false,
+					success : function(data) {
+						$('#id').val(data.data.repairId);
+						$('#repair_people_name').val(data.data.repairPeopleName);
+						$('#phone_num').val(data.data.phoneNum);
+						$('#repair_reason').val(data.data.repairReson);
+						$('#house_no').val(data.data.houseNo);
+						$('#repair_state').val(data.data.repairState);
+					}
+				});
+			}
+		}
+
+        /**
+		 * 更新房屋信息
+         */
+		function update() {
+            $('#form').bootstrapValidator({
+                message: 'This value is not valid',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    phone_num: {
+                        validators: {
+                            regexp: {
+                                regexp: /^1\d{10}$/,
+                                message: '手机号格式错误,请输入正确的手机号！'
+                            }
+                        }
+                    }
+                }
+
+            });
+			var bootstrapValidator = $("#form").data('bootstrapValidator');
+			bootstrapValidator.validate();
+		    if(!bootstrapValidator.isValid()){
+			   return;
+		    }
+
+            var id = getUrlParam("id");
+            var repair_state=$('#repair_state').val();
+            var repair_people_name = $("#repair_people_name").val();
+            var phone_num = $("#phone_num").val();
+            var repair_reason = $("#repair_reason").val();
+            var house_no = $("#house_no").val();
+			$.ajax({
+				type : 'post',
+				url : '/repair/updateRepair',
+				contentType: "application/json; charset=utf-8",
+                data : JSON.stringify({
+					repairId:id,
+                    repairPeopleName: repair_people_name,
+                    phoneNum: phone_num,
+                    repairReson: repair_reason,
+                    houseNo: house_no,
+                    repairState:repair_state
+                }),
+				success : function(data) {
+					layer.msg("修改成功", {shift: -1, time: 1000}, function(){
+                        location.href = "repairList.html";
+                    });
+				},
+				error:function (data) {
+                    layer.msg("修改失败", {shift: -1, time: 1000}, function(){
+                        location.href = "repairList.html";
+                    });
+                }
+			});
+		}
+		
+	</script>
+</body>
+</html>

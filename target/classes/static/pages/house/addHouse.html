@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="../../css/bootstrap.min.css">
+</head>
+<body>
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+	<form class="form-horizontal" onsubmit="return false" id="form">
+		<fieldset>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>房屋编号</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='请输入房屋编号' type='text' name='house_no' id='house_no' data-bv-notempty='true' data-bv-notempty-message='房屋编号不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>楼栋名称</label>
+				<div class="col-md-10" style="width: 120px">
+					<select class="form-control input-sm" name="build_name" id="build_name">
+
+					</select>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>房屋面积</label>
+				<div class='col-md-10'>
+					<input class='form-control' placeholder='请输入房屋面积' type='text' name='house_area' id='house_area' data-bv-notempty='true' data-bv-notempty-message='房屋面积不能为空'>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label class='col-md-2 control-label'>房屋状态</label>
+				<div class="col-md-10" style="width: 100px">
+					<select class="form-control input-sm" name="house_type" id="house_type">
+						<option value="1">空置</option>
+						<option value="2">在住</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-actions">
+				<div class="row" align="center">
+					<div class="col-md-12">
+					    <button class="btn btn-primary" onclick="location.href='houseList.html'">返回</button>
+						<button class="btn btn-primary" type="submit" onclick="add()">
+							<i class="fa fa-save"></i> 保存
+						</button>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>
+	<script type="text/javascript" src="../../js/libs/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="../../js/jq.js"></script>
+	<script type="text/javascript" src="../../js/plugin/bootstrapvalidator/bootstrapValidator.min.js"></script>
+	<script type="text/javascript" src="../../js/common.js"></script>
+	<script type="text/javascript" src="../../layui/layui.js"></script>
+	<script type="text/javascript">
+		layui.use(['layer','laydate'], function(){
+		    var layer = layui.layer;
+		});
+        showBuildSelect();
+		function add() {
+			$('#form').bootstrapValidator();
+			var bootstrapValidator = $("#form").data('bootstrapValidator');
+			bootstrapValidator.validate();
+		    if(!bootstrapValidator.isValid()){
+			   return;
+		    }
+		    
+		    var house_type;
+		    var house_no=$("#house_no").val();
+		    var house_area=$("#house_area").val();
+            var status=$("#house_type").val();
+            var buildName=  $("#build_name").find("option:selected").text(); //取文字
+            var buildId=$("#build_name").val(); //取id
+           if (status==="2"){
+               house_type="在住";
+            } else if (status==="1"){
+               house_type="空置";
+            }
+
+			$.ajax({
+				type : 'post',
+				url : '/house/saveHouse',
+				contentType: "application/json; charset=utf-8",  
+				data : JSON.stringify({
+					houseNo:house_no,
+					houseArea:house_area,
+					houseType:house_type,
+					buildName:buildName,
+					id:buildId
+				}),
+				success : function(data) {
+				    debugger;
+					layer.msg("添加成功", {shift: -1, time: 1000}, function(){
+                        location.href = "houseList.html";
+                    });
+				}
+			});
+		}
+        function showBuildSelect() {
+            var buildNames={};
+            $.ajax({
+                type : 'get',
+                url : '/house/selectBuildName',
+                async : false,
+                success : function(data) {
+                    $.each(data.datas, function(i, d) {
+                        buildNames[d.id] = d.buildName;
+                    });
+                }
+            });
+            $("#build_name").append("<option value =''>"+"请选择"+"</option>");
+            $.each(buildNames, function(k, v) {
+                $("#build_name").append("<option value ='" + k + "'>" + v + "</option>");
+            });
+        }
+
+
+	</script>
+</body>
+</html>
